@@ -3,7 +3,10 @@ package com.mocion.web;
 import com.mocion.web.pages.ClubPage;
 import com.mocion.web.pages.LoginPage;
 import org.testng.annotations.Test;
+
 import java.util.List;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class ClubTest extends BaseTest {
     public LoginPage loginPage;
@@ -11,9 +14,8 @@ public class ClubTest extends BaseTest {
 
     @Test(description = "Valid club creation should successful")
     public void verify_club_creation_should_succeed() {
-        String clubName = "club_test_001";
-        String landline = "111111111";
-        String address = "Sonapur - Dubai - 7C69+CQQ - محيصنة - محيصنة ٢ - دبي - United Arab Emirates";
+        String clubName = "club_test_003";
+        String landline = "+971 111 111 111";
         String aboutClub = "test_club";
         String accountHolderName = "test_account_holder";
         String bankName = "test_bank";
@@ -49,7 +51,7 @@ public class ClubTest extends BaseTest {
                 .fillSwiftCode(swiftCode)
                 .clickSaveButton();
 
-        assert
+        assertThat(clubPage.getSuccessfullMessageLocator()).isVisible();
     }
 
     private void userLogin() {

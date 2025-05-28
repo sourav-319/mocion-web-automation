@@ -28,6 +28,7 @@ public class ClubPage {
     public String ibanField = "input[name='iban']";
     public String swiftCodeField = "input[name='swift_code']";
     public String saveButton = "button[type='submit']:has-text('Save')";
+    public String clubCreateSuccessMessage = "Club has been added successfully";
 
     public ClubPage(Page page) {
         this.page = page;
@@ -140,7 +141,7 @@ public class ClubPage {
         page.locator(saveButton).last().click();
     }
 
-//    public Locator getSuccessMessageLocator() {
-//        page
-//    }
+    public Locator getSuccessfullMessageLocator(){
+        return page.getByText(clubCreateSuccessMessage);
+    }
 }

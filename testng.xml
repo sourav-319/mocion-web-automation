@@ -1,0 +1,10 @@
+<suite name="Mocion Web Automation Suite" verbose="1" parallel="methods" thread-count="2">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    <test name="Mocion Web Automation Tests">
+        <packages>
+            <package name="com.mocion.web"/>
+        </packages>
+    </test>
+</suite>

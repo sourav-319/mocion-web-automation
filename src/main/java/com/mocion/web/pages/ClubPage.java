@@ -1,24 +1,27 @@
 package com.mocion.web.pages;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+
+import java.nio.file.Paths;
 
 public class ClubPage {
     private final Page page;
 
     public String organizationText = "p:has-text('Organization')";
     public String createClubButton = "button:has-text('Create')";
-    public String clubNameField = "input[type='text']";
+    public String clubNameField = "input[name='name']";
     public String landlineField = "input[name='phone_number']";
     public String mobileNumberField = "input[name='mobile_number']";
     public String addressField = "input[name='address']";
     public String aboutClubField = "textarea[name='about_club']";
     public String amenitiesFields = "input[type='checkbox']";
-    public String clubLogoField = "input[name='logo']";
+    public String clubLogoField = "#clubLogo";
     public String clubImageField = "#clubImage";
     public String selectWorkingDaysDropdown = ".react-select__dropdown-indicator";
     public String selectWorkingDays = "All days";
-    public String selectHourFrom = "#react-select-4-input";
-    public String selectHourTo = "input.react-select__input[type='text']";
+    public String selectHourFrom = "div.react-select__indicators >> svg[viewBox='0 0 16 16']";
+    public String selectHourTo = "svg[viewBox='0 0 16 16']";
     public String accountHolderNameField = "input[name='account_holder_name']";
     public String bankNameField = "input[name='bank_name']";
     public String accountNumberField = "input[name='account_number']";
@@ -41,7 +44,7 @@ public class ClubPage {
     }
 
     public ClubPage fillClubName(String clubName) {
-        page.locator(clubNameField).fill(clubName);
+        page.locator(clubNameField).nth(1).fill(clubName);
         return this;
     }
 
@@ -55,8 +58,12 @@ public class ClubPage {
         return this;
     }
 
-    public ClubPage fillAddress(String address) {
-        page.locator(addressField).fill(address);
+    public ClubPage fillAddress() {
+        page.locator("img[src='/static/media/AddressInputimage.e846467521100c215175898f6cc6e147.svg']").nth(1).click();
+        page.locator("#autocomplete").fill("Arab Emirates");
+        page.keyboard().press("ArrowDown");
+        page.keyboard().press("Enter");
+        page.locator("text='Close'").click();
         return this;
     }
 
@@ -71,17 +78,19 @@ public class ClubPage {
     }
 
     public ClubPage uploadClubLogo() {
-        page.locator(clubLogoField).fill("src/main/resources/club_image.png");
+        Locator clubLogo = page.locator(clubLogoField);
+        clubLogo.setInputFiles(Paths.get("src/main/resources/club_image.png"));
         return this;
     }
 
     public ClubPage uploadClubImage() {
-        page.locator(clubImageField).fill("src/main/resources/club_image.png");
+        Locator clubImage = page.locator(clubImageField);
+        clubImage.setInputFiles(Paths.get("src/main/resources/club_image.png"));
         return this;
     }
 
     public ClubPage clickWorkingDaysDropdown() {
-        page.locator(selectWorkingDaysDropdown).click();
+        page.locator(selectWorkingDaysDropdown).nth(1).click();
         return this;
     }
 
@@ -91,12 +100,14 @@ public class ClubPage {
     }
 
     public ClubPage selectHourFrom() {
-        page.locator(selectHourFrom).fill("12:00 AM");
+        page.locator(selectHourFrom).nth(0).click();
+        page.getByText("12:00 AM").click();
         return this;
     }
 
     public ClubPage selectHourTo() {
-        page.locator(selectHourTo).fill("12:30 AM");
+        page.locator(selectHourFrom).nth(1).click();
+        page.getByText("12:30 AM").click();
         return this;
     }
 
@@ -126,6 +137,10 @@ public class ClubPage {
     }
 
     public void clickSaveButton() {
-        page.locator(saveButton).click();
+        page.locator(saveButton).last().click();
     }
+
+//    public Locator getSuccessMessageLocator() {
+//        page
+//    }
 }

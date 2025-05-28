@@ -3,6 +3,7 @@ package com.mocion.web;
 import com.mocion.web.pages.ClubPage;
 import com.mocion.web.pages.LoginPage;
 import org.testng.annotations.Test;
+import java.util.List;
 
 public class ClubTest extends BaseTest {
     public LoginPage loginPage;
@@ -11,7 +12,7 @@ public class ClubTest extends BaseTest {
     @Test(description = "Valid club creation should successful")
     public void verify_club_creation_should_succeed() {
         String clubName = "club_test_001";
-        String landline = "97111111111";
+        String landline = "111111111";
         String address = "Sonapur - Dubai - 7C69+CQQ - محيصنة - محيصنة ٢ - دبي - United Arab Emirates";
         String aboutClub = "test_club";
         String accountHolderName = "test_account_holder";
@@ -23,14 +24,16 @@ public class ClubTest extends BaseTest {
         clubPage = new ClubPage(page);
         loginPage = new LoginPage(page);
 
+        // Grant location permission
+        page.context().grantPermissions(List.of("geolocation"));
+
         userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickCreateClubButton()
                 .fillClubName(clubName)
-                .fillLandline(landline)
                 .fillMobileNumber(landline)
-                .fillAddress(address)
+                .fillAddress()
                 .fillAboutClub(aboutClub)
                 .selectAmenitiesEquipmentRental()
                 .uploadClubLogo()
@@ -46,6 +49,7 @@ public class ClubTest extends BaseTest {
                 .fillSwiftCode(swiftCode)
                 .clickSaveButton();
 
+        assert
     }
 
     private void userLogin() {

@@ -11,9 +11,7 @@ public class ClubPage {
     public String organizationText = "p:has-text('Organization')";
     public String createClubButton = "button:has-text('Create')";
     public String clubNameField = "input[name='name']";
-    public String landlineField = "input[name='phone_number']";
     public String mobileNumberField = "input[name='mobile_number']";
-    public String addressField = "input[name='address']";
     public String aboutClubField = "textarea[name='about_club']";
     public String amenitiesFields = "input[type='checkbox']";
     public String clubLogoField = "#clubLogo";
@@ -21,7 +19,6 @@ public class ClubPage {
     public String selectWorkingDaysDropdown = ".react-select__dropdown-indicator";
     public String selectWorkingDays = "All days";
     public String selectHourFrom = "div.react-select__indicators >> svg[viewBox='0 0 16 16']";
-    public String selectHourTo = "svg[viewBox='0 0 16 16']";
     public String accountHolderNameField = "input[name='account_holder_name']";
     public String bankNameField = "input[name='bank_name']";
     public String accountNumberField = "input[name='account_number']";
@@ -46,11 +43,6 @@ public class ClubPage {
 
     public ClubPage fillClubName(String clubName) {
         page.locator(clubNameField).nth(1).fill(clubName);
-        return this;
-    }
-
-    public ClubPage fillLandline(String landline) {
-        page.locator(landlineField).fill(landline);
         return this;
     }
 
@@ -141,7 +133,7 @@ public class ClubPage {
         page.locator(saveButton).last().click();
     }
 
-    public Locator getSuccessfullMessageLocator(){
+    public Locator getSuccessfullMessageLocator() {
         return page.getByText(clubCreateSuccessMessage);
     }
 }

@@ -26,6 +26,8 @@ public class ClubPage {
     public String swiftCodeField = "input[name='swift_code']";
     public String saveButton = "button[type='submit']:has-text('Save')";
     public String clubCreateSuccessMessage = "Club has been added successfully";
+    public String mapIcon = "img[src='/static/media/AddressInputimage.e846467521100c215175898f6cc6e147.svg']";
+    public String searchLocationField = "#autocomplete";
 
     public ClubPage(Page page) {
         this.page = page;
@@ -52,8 +54,8 @@ public class ClubPage {
     }
 
     public ClubPage fillAddress() {
-        page.locator("img[src='/static/media/AddressInputimage.e846467521100c215175898f6cc6e147.svg']").nth(1).click();
-        page.locator("#autocomplete").fill("Arab Emirates");
+        page.locator(mapIcon).nth(1).click();
+        page.locator(searchLocationField).fill("Arab Emirates");
         page.keyboard().press("ArrowDown");
         page.keyboard().press("Enter");
         page.locator("text='Close'").click();

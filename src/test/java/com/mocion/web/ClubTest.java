@@ -140,6 +140,9 @@ public class ClubTest extends BaseTest {
         String formattedNumber = String.format("%03d", randomNumber);
         String clubName = "club_test_" + formattedNumber;
 
+        // Grant location permission
+        page.context().grantPermissions(List.of("geolocation"));
+
         userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
@@ -157,6 +160,9 @@ public class ClubTest extends BaseTest {
         clubPage = new ClubPage(page);
         loginPage = new LoginPage(page);
 
+        // Grant location permission
+        page.context().grantPermissions(List.of("geolocation"));
+
         userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
@@ -171,6 +177,9 @@ public class ClubTest extends BaseTest {
     public void verify_club_activation_should_succeed() {
         clubPage = new ClubPage(page);
         loginPage = new LoginPage(page);
+
+        // Grant location permission
+        page.context().grantPermissions(List.of("geolocation"));
 
         userLogin();
         clubPage

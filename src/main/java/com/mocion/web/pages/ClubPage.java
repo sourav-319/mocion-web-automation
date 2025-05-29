@@ -42,8 +42,10 @@ public class ClubPage {
     public String numberOfMaximumBookingsDay = "input[name='maximum_bookings_day']";
     public String duplicateClub = "button:has-text('Duplicate Club')";
     public String clubDeactivateText = "button:has-text('Deactivate club')";
+    public String clubActivateText = "button:has-text('Activate club')";
     public String yesToConfirmationTabButton = "button:has-text('Yes')";
     public String clubDeactivationMessageLocator = "Club has been Deactivated successfully";
+    public String clubActivationMessageLocator = "Club has been Activated successfully";
 
     public ClubPage(Page page) {
         this.page = page;
@@ -74,9 +76,13 @@ public class ClubPage {
         return this;
     }
 
-    public ClubPage clickYesToConfirmationTab() {
-        page.locator(yesToConfirmationTabButton).click();
+    public ClubPage clickToActivateClub() {
+        page.locator(clubActivateText).click();
         return this;
+    }
+
+    public void clickYesToConfirmationTab() {
+        page.locator(yesToConfirmationTabButton).click();
     }
 
     public ClubPage fillClubName(String clubName) {

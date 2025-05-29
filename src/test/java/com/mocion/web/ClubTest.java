@@ -167,6 +167,21 @@ public class ClubTest extends BaseTest {
         assertThat(clubPage.clubDeactivateSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Club activation should successful")
+    public void verify_club_activation_should_succeed() {
+        clubPage = new ClubPage(page);
+        loginPage = new LoginPage(page);
+
+        userLogin();
+        clubPage
+                .clickOrganizationFromLeftNavigation()
+                .clickMenuIcon()
+                .clickToActivateClub()
+                .clickYesToConfirmationTab();
+
+        assertThat(clubPage.clubDeactivateSuccessMessageLocator()).isVisible();
+    }
+
     private void userLogin() {
         loginPage = new LoginPage(page);
 

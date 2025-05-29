@@ -334,4 +334,8 @@ public class ClubPage {
     public Locator clubDeactivateSuccessMessageLocator() {
         return page.getByText(clubDeactivationMessageLocator);
     }
+
+    public Locator clubActivateSuccessMessageLocator() {
+        return page.getByText(clubActivationMessageLocator);
+    }
 }

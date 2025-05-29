@@ -28,6 +28,18 @@ public class ClubPage {
     public String clubCreateSuccessMessage = "Club has been added successfully";
     public String mapIcon = "img[src='/static/media/AddressInputimage.e846467521100c215175898f6cc6e147.svg']";
     public String searchLocationField = "#autocomplete";
+    public String menuIcon = "div.transition.duration-300.z-10.cursor-pointer >> svg[viewBox='0 0 24 24']";
+    public String editClub = "text='Edit Club'";
+    public String numberOfActiveBookingsField = "input[name='number_of_active_bookings']";
+    public String addressField = "input[name='address']";
+    public String clearClubImage = "img[alt='remove-image']";
+    public String clearClubLogo = "text='Remove Logo'";
+    public String cancellationPolicyHoursField = "input[name='cancellation_policy_hours']";
+    public String bookingAheadLimitDaysField = "input[name='book_ahead_limit_days']";
+    public String clubSchedule = "h3:has-text('Club schedule')";
+    public String clubEditSuccessMessage = "Club has been edited successfully";
+    public String numberOfMaximumBookingsDay = "input[name='maximum_bookings_day']";
+    public String addWorkingHours = "img[alt='add']";
 
     public ClubPage(Page page) {
         this.page = page;
@@ -48,8 +60,23 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage editClubName(String clubName) {
+        page.locator(clubNameField).fill(clubName);
+        return this;
+    }
+
+    public ClubPage clearClubNameField() {
+        page.locator(clubNameField).clear();
+        return this;
+    }
+
     public ClubPage fillMobileNumber(String mobileNumber) {
         page.locator(mobileNumberField).fill(mobileNumber);
+        return this;
+    }
+
+    public ClubPage clearMobileNumberField() {
+        page.locator(mobileNumberField).clear();
         return this;
     }
 
@@ -62,8 +89,27 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage editAddress() {
+        page.locator(mapIcon).click();
+        page.locator(searchLocationField).fill("Arab Emirates");
+        page.keyboard().press("ArrowDown");
+        page.keyboard().press("Enter");
+        page.locator("text='Close'").click();
+        return this;
+    }
+
+    public ClubPage clearAddressField() {
+        page.locator(addressField).clear();
+        return this;
+    }
+
     public ClubPage fillAboutClub(String aboutClub) {
         page.locator(aboutClubField).fill(aboutClub);
+        return this;
+    }
+
+    public ClubPage clearAboutClubField() {
+        page.locator(aboutClubField).clear();
         return this;
     }
 
@@ -78,14 +124,69 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage clearClubLogo() {
+        page.locator(clearClubLogo).click();
+        return this;
+    }
+
     public ClubPage uploadClubImage() {
         Locator clubImage = page.locator(clubImageField);
         clubImage.setInputFiles(Paths.get("src/main/resources/club_image.png"));
         return this;
     }
 
+    public ClubPage clearClubImage() {
+        page.locator(clearClubImage).click();
+        return this;
+    }
+
+    public ClubPage fillCancellationPolicyHours(String policyHours) {
+        page.locator(cancellationPolicyHoursField).fill(policyHours);
+        return this;
+    }
+
+    public ClubPage clearCancellationPolicyHoursField() {
+        page.locator(cancellationPolicyHoursField).clear();
+        return this;
+    }
+
+    public ClubPage fillBookAheadLimitDays(String aheadLimitDays) {
+        page.locator(bookingAheadLimitDaysField).fill(aheadLimitDays);
+        return this;
+    }
+
+    public ClubPage clearBookAheadLimitDaysField() {
+        page.locator(bookingAheadLimitDaysField).clear();
+        return this;
+    }
+
+    public ClubPage fillMaximumBookingsDayField(String maximumBookingsDay) {
+        page.locator(numberOfMaximumBookingsDay).fill(maximumBookingsDay);
+        return this;
+    }
+
+    public ClubPage clearMaximumBookingsDayField() {
+        page.locator(numberOfMaximumBookingsDay).clear();
+        return this;
+    }
+
+    public ClubPage fillNumberOfActiveBookings(String numberOfActiveBookings) {
+        page.locator(numberOfActiveBookingsField).fill(numberOfActiveBookings);
+        return this;
+    }
+
+    public ClubPage clearNumberOfActiveBookingsField() {
+        page.locator(numberOfActiveBookingsField).clear();
+        return this;
+    }
+
     public ClubPage clickWorkingDaysDropdown() {
         page.locator(selectWorkingDaysDropdown).nth(1).click();
+        return this;
+    }
+
+    public ClubPage editWorkingDays() {
+        page.locator(selectWorkingDaysDropdown).click();
         return this;
     }
 
@@ -100,9 +201,19 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage clearHourFrom() {
+        page.locator(selectHourFrom).nth(0).clear();
+        return this;
+    }
+
     public ClubPage selectHourTo() {
         page.locator(selectHourFrom).nth(1).click();
         page.getByText("12:30 AM").click();
+        return this;
+    }
+
+    public ClubPage clearHourTo() {
+        page.locator(selectHourFrom).nth(1).clear();
         return this;
     }
 
@@ -111,8 +222,18 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage clearAccountHolderNameField() {
+        page.locator(accountHolderNameField).clear();
+        return this;
+    }
+
     public ClubPage fillBankName(String bankName) {
         page.locator(bankNameField).fill(bankName);
+        return this;
+    }
+
+    public ClubPage clearBankNameField() {
+        page.locator(bankNameField).clear();
         return this;
     }
 
@@ -121,8 +242,18 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage clearAccountNumberField() {
+        page.locator(accountNumberField).clear();
+        return this;
+    }
+
     public ClubPage fillIban(String iban) {
         page.locator(ibanField).fill(iban);
+        return this;
+    }
+
+    public ClubPage clearIbanField() {
+        page.locator(ibanField).clear();
         return this;
     }
 
@@ -131,11 +262,39 @@ public class ClubPage {
         return this;
     }
 
+    public void clearSwiftCodeField() {
+        page.locator(swiftCodeField).clear();
+    }
+
     public void clickSaveButton() {
         page.locator(saveButton).last().click();
     }
 
     public Locator getSuccessfullMessageLocator() {
         return page.getByText(clubCreateSuccessMessage);
+    }
+
+    public ClubPage clickMenuIcon() {
+        page.locator(menuIcon).nth(0).click();
+        return this;
+    }
+
+    public ClubPage clickEditClubFromMenu() {
+        page.locator(editClub).click();
+        return this;
+    }
+
+    public ClubPage clickClubSchedule() {
+        page.locator(clubSchedule).click();
+        return this;
+    }
+
+    public ClubPage clickAddWorkingHours() {
+        page.locator(addWorkingHours).click();
+        return this;
+    }
+
+    public Locator clubEditSuccessMessageLocator() {
+        return page.getByText(clubEditSuccessMessage);
     }
 }

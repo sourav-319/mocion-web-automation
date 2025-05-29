@@ -75,11 +75,6 @@ public class ClubPage {
         return this;
     }
 
-    public ClubPage clearMobileNumberField() {
-        page.locator(mobileNumberField).clear();
-        return this;
-    }
-
     public ClubPage fillAddress() {
         page.locator(mapIcon).nth(1).click();
         page.locator(searchLocationField).fill("Arab Emirates");
@@ -201,19 +196,9 @@ public class ClubPage {
         return this;
     }
 
-    public ClubPage clearHourFrom() {
-        page.locator(selectHourFrom).nth(0).clear();
-        return this;
-    }
-
     public ClubPage selectHourTo() {
         page.locator(selectHourFrom).nth(1).click();
         page.getByText("12:30 AM").click();
-        return this;
-    }
-
-    public ClubPage clearHourTo() {
-        page.locator(selectHourFrom).nth(1).clear();
         return this;
     }
 

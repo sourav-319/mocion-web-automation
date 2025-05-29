@@ -14,7 +14,7 @@ public class PlaywrightFactory {
     public Page initBrowser(Properties prop) {
         this.prop = prop;
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(1000));
         context = browser.newContext();
         page = context.newPage();
         return page;

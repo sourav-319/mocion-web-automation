@@ -29,7 +29,7 @@ public class ClubPage {
     public String mapIcon = "img[src='/static/media/AddressInputimage.e846467521100c215175898f6cc6e147.svg']";
     public String searchLocationField = "#autocomplete";
     public String menuIcon = "div.transition.duration-300.z-10.cursor-pointer >> svg[viewBox='0 0 24 24']";
-    public String editClub = "text='Edit Club'";
+    public String editClubText = "text='Edit Club'";
     public String numberOfActiveBookingsField = "input[name='number_of_active_bookings']";
     public String addressField = "input[name='address']";
     public String clearClubImage = "img[alt='remove-image']";
@@ -38,8 +38,14 @@ public class ClubPage {
     public String bookingAheadLimitDaysField = "input[name='book_ahead_limit_days']";
     public String clubSchedule = "h3:has-text('Club schedule')";
     public String clubEditSuccessMessage = "Club has been edited successfully";
+    public String clubDuplicateSuccessMessage = "Club has been duplicated successfully";
     public String numberOfMaximumBookingsDay = "input[name='maximum_bookings_day']";
-    public String addWorkingHours = "img[alt='add']";
+    public String duplicateClub = "button:has-text('Duplicate Club')";
+    public String clubDeactivateText = "button:has-text('Deactivate club')";
+    public String clubActivateText = "button:has-text('Activate club')";
+    public String yesToConfirmationTabButton = "button:has-text('Yes')";
+    public String clubDeactivationMessageLocator = "Club has been Deactivated successfully";
+    public String clubActivationMessageLocator = "Club has been Activated successfully";
 
     public ClubPage(Page page) {
         this.page = page;
@@ -53,6 +59,30 @@ public class ClubPage {
     public ClubPage clickCreateClubButton() {
         page.locator(createClubButton).click();
         return this;
+    }
+
+    public ClubPage clickEditClubFromMenu() {
+        page.locator(editClubText).click();
+        return this;
+    }
+
+    public ClubPage clickDuplicateClub() {
+        page.locator(duplicateClub).click();
+        return this;
+    }
+
+    public ClubPage clickToDeactivateClub() {
+        page.locator(clubDeactivateText).click();
+        return this;
+    }
+
+    public ClubPage clickToActivateClub() {
+        page.locator(clubActivateText).click();
+        return this;
+    }
+
+    public void clickYesToConfirmationTab() {
+        page.locator(yesToConfirmationTabButton).click();
     }
 
     public ClubPage fillClubName(String clubName) {
@@ -110,6 +140,11 @@ public class ClubPage {
 
     public ClubPage selectAmenitiesEquipmentRental() {
         page.locator(amenitiesFields).nth(0).click();
+        return this;
+    }
+
+    public ClubPage editAmenitiesEquipmentRental() {
+        page.locator(amenitiesFields).nth(1).click();
         return this;
     }
 
@@ -180,13 +215,19 @@ public class ClubPage {
         return this;
     }
 
-    public ClubPage editWorkingDays() {
-        page.locator(selectWorkingDaysDropdown).click();
+    public ClubPage editWorkingDaysDropdown() {
+        page.locator(selectWorkingDaysDropdown).nth(0).click();
         return this;
     }
 
     public ClubPage selectWorkingDays() {
         page.getByText(selectWorkingDays).click();
+        return this;
+    }
+
+    public ClubPage editWorkingDays() {
+        page.getByText(selectWorkingDays).nth(1).click();
+        page.getByText(selectWorkingDays).nth(1).click();
         return this;
     }
 
@@ -196,9 +237,21 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage editHourFrom() {
+        page.locator(selectHourFrom).nth(0).click();
+        page.getByText("12:00 AM").nth(1).click();
+        return this;
+    }
+
     public ClubPage selectHourTo() {
         page.locator(selectHourFrom).nth(1).click();
         page.getByText("12:30 AM").click();
+        return this;
+    }
+
+    public ClubPage editHourTo() {
+        page.locator(selectHourFrom).nth(1).click();
+        page.getByText("12:30 AM").nth(1).click();
         return this;
     }
 
@@ -247,25 +300,13 @@ public class ClubPage {
         return this;
     }
 
-    public void clearSwiftCodeField() {
+    public ClubPage clearSwiftCodeField() {
         page.locator(swiftCodeField).clear();
-    }
-
-    public void clickSaveButton() {
-        page.locator(saveButton).last().click();
-    }
-
-    public Locator getSuccessfullMessageLocator() {
-        return page.getByText(clubCreateSuccessMessage);
+        return this;
     }
 
     public ClubPage clickMenuIcon() {
         page.locator(menuIcon).nth(0).click();
-        return this;
-    }
-
-    public ClubPage clickEditClubFromMenu() {
-        page.locator(editClub).click();
         return this;
     }
 
@@ -274,12 +315,27 @@ public class ClubPage {
         return this;
     }
 
-    public ClubPage clickAddWorkingHours() {
-        page.locator(addWorkingHours).click();
-        return this;
+    public void clickSaveButton() {
+        page.locator(saveButton).last().click();
+    }
+
+    public Locator getClubCreateSuccessMessageLocator() {
+        return page.getByText(clubCreateSuccessMessage);
     }
 
     public Locator clubEditSuccessMessageLocator() {
         return page.getByText(clubEditSuccessMessage);
+    }
+
+    public Locator clubDuplicateSuccessMessageLocator() {
+        return page.getByText(clubDuplicateSuccessMessage);
+    }
+
+    public Locator clubDeactivateSuccessMessageLocator() {
+        return page.getByText(clubDeactivationMessageLocator);
+    }
+
+    public Locator clubActivateSuccessMessageLocator() {
+        return page.getByText(clubActivationMessageLocator);
     }
 }

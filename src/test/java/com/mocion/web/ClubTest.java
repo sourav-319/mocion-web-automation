@@ -188,7 +188,7 @@ public class ClubTest extends BaseTest {
                 .clickToActivateClub()
                 .clickYesToConfirmationTab();
 
-        assertThat(clubPage.clubDeactivateSuccessMessageLocator()).isVisible();
+        assertThat(clubPage.clubActivateSuccessMessageLocator()).isVisible();
     }
 
     private void userLogin() {

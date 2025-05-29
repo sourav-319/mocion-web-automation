@@ -29,7 +29,7 @@ public class ClubPage {
     public String mapIcon = "img[src='/static/media/AddressInputimage.e846467521100c215175898f6cc6e147.svg']";
     public String searchLocationField = "#autocomplete";
     public String menuIcon = "div.transition.duration-300.z-10.cursor-pointer >> svg[viewBox='0 0 24 24']";
-    public String editClub = "text='Edit Club'";
+    public String editClubText = "text='Edit Club'";
     public String numberOfActiveBookingsField = "input[name='number_of_active_bookings']";
     public String addressField = "input[name='address']";
     public String clearClubImage = "img[alt='remove-image']";
@@ -38,9 +38,12 @@ public class ClubPage {
     public String bookingAheadLimitDaysField = "input[name='book_ahead_limit_days']";
     public String clubSchedule = "h3:has-text('Club schedule')";
     public String clubEditSuccessMessage = "Club has been edited successfully";
+    public String clubDuplicateSuccessMessage = "Club has been duplicated successfully";
     public String numberOfMaximumBookingsDay = "input[name='maximum_bookings_day']";
-    public String addWorkingHours = "img[alt='add']";
     public String duplicateClub = "button:has-text('Duplicate Club')";
+    public String clubDeactivateText = "button:has-text('Deactivate club')";
+    public String yesToConfirmationTabButton = "button:has-text('Yes')";
+    public String clubDeactivationMessageLocator = "Club has been Deactivated successfully";
 
     public ClubPage(Page page) {
         this.page = page;
@@ -57,12 +60,22 @@ public class ClubPage {
     }
 
     public ClubPage clickEditClubFromMenu() {
-        page.locator(editClub).click();
+        page.locator(editClubText).click();
         return this;
     }
 
     public ClubPage clickDuplicateClub() {
         page.locator(duplicateClub).click();
+        return this;
+    }
+
+    public ClubPage clickToDeactivateClub() {
+        page.locator(clubDeactivateText).click();
+        return this;
+    }
+
+    public ClubPage clickYesToConfirmationTab() {
+        page.locator(yesToConfirmationTabButton).click();
         return this;
     }
 
@@ -306,5 +319,13 @@ public class ClubPage {
 
     public Locator clubEditSuccessMessageLocator() {
         return page.getByText(clubEditSuccessMessage);
+    }
+
+    public Locator clubDuplicateSuccessMessageLocator() {
+        return page.getByText(clubDuplicateSuccessMessage);
+    }
+
+    public Locator clubDeactivateSuccessMessageLocator() {
+        return page.getByText(clubDeactivationMessageLocator);
     }
 }

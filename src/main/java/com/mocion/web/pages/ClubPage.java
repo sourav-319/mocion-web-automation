@@ -330,6 +330,10 @@ public class ClubPage {
         page.locator(searchField).fill(searchKeyword);
     }
 
+    public Locator getSearchFirstRowResultLocator() {
+        return page.locator(searchResultFirstRow).first();
+    }
+
     public String getSearchFirstRowResult() {
         return page.locator(searchResultFirstRow).first().textContent();
     }

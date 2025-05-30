@@ -15,10 +15,27 @@ public class CourtsPage {
     public String courtsSizeDropdownText = "Single";
     public String courtsPrivacyDropdown = ".react-select__dropdown-indicator";
     public String courtsPrivacyDropdownText = "Private";
-    public String courtsDescriptionField = "textarea[name='description']";
+    public String courtsDescriptionField = "textarea[name='bio']";
     public String selectWorkingType = "input[type='radio'][value='full']";
     public String clickSaveButton = "button[type='submit']";
     public String courtsCreateSuccessMessage = "text='Court created successfully'";
+    public String editCourtsText = "text='Edit court'";
+    public String menuIcon = "button:has(svg[viewBox='0 0 24 24'])";
+    public String courtsEditSuccessMessage = "Court updated successfully";
+    public String duplicateCourtText = "text='Duplicate court'";
+    public String duplicateCourtSuccessMessage = "Court created successfully";
+    public String deactivateCourtText = "button:has-text('Deactivate court')";
+    public String activateCourtText = "button:has-text('Deactivate court')";
+    public String yestToConfirmationTab = "button:has-text('Yes')";
+    public String deactivationSuccessMessage = "Court has been deactivated successfully";
+    public String searchFirstRowResult = ".py-4.border-b.text-primary";
+    public String searchField = "input[placeholder='Search']";
+    public String filterDropdown = "div.react-select__dropdown-indicator:has(svg[viewBox='0 0 20 20'])";
+    public String filterIcon = "button:has(svg[viewBox='0 0 32 32'])";
+    public String filterDropdownText = "Indoor";
+    public String dateFilter = "input[type='date']";
+    public String selectDateToday = "Today";
+    public String allCourtText = "All courts";
 
     public CourtsPage(Page page) {
         this.page = page;
@@ -34,8 +51,85 @@ public class CourtsPage {
         return this;
     }
 
+    public CourtsPage clickMenuIcon() {
+        page.locator(menuIcon).nth(0).click();
+        return this;
+    }
+
+    public CourtsPage clickEditCourtButton() {
+        page.locator(editCourtsText).click();
+        return this;
+    }
+
+    public CourtsPage clickDuplicateCourtButton() {
+        page.locator(duplicateCourtText).click();
+        return this;
+    }
+
+    public CourtsPage clickDeactivateCourtButton() {
+        page.locator(deactivateCourtText).click();
+        return this;
+    }
+
+    public CourtsPage clickActivateCourtButton() {
+        page.locator(activateCourtText).click();
+        return this;
+    }
+
+    public void clickYestToConfirmationTab() {
+        page.locator(yestToConfirmationTab).click();
+    }
+
+    public String getSearchFirstRowResult() {
+        return page.locator(searchFirstRowResult).first().textContent();
+    }
+
+    public CourtsPage clearSearchField() {
+        page.locator(searchField).clear();
+        return this;
+    }
+
+    public void fillSearchKeyword(String searchKeyword) {
+        page.locator(searchField).click();
+        page.locator(searchField).fill(searchKeyword);
+    }
+
+    public CourtsPage clickFilterIcon() {
+        page.locator(filterIcon).click();
+        return this;
+    }
+
+    public CourtsPage clickFilterDropdown() {
+        page.locator(filterDropdown).click();
+        return this;
+    }
+
+    public CourtsPage selectFilterOptionIndoor() {
+        page.getByText(filterDropdownText).click();
+        return this;
+    }
+
+    public CourtsPage clickDateField() {
+        page.locator(dateFilter).click();
+        return this;
+    }
+
+    public CourtsPage clickDateForToday() {
+        page.getByText(selectDateToday).click();
+        return this;
+    }
+
+    public void clickOutsideOfFilter() {
+        page.locator(allCourtText).click();
+    }
+
     public CourtsPage fillCourtsName(String courtsName) {
         page.locator(courtsNameField).fill(courtsName);
+        return this;
+    }
+
+    public CourtsPage clearCourtsNameField() {
+        page.locator(courtsNameField).clear();
         return this;
     }
 
@@ -65,12 +159,17 @@ public class CourtsPage {
     }
 
     public CourtsPage selectPrivacy() {
-        page.getByText(courtsPrivacyDropdownText).nth(2).click();
+        page.getByText(courtsPrivacyDropdownText).nth(0).click();
         return this;
     }
 
     public CourtsPage fillCourtDescription(String courtsDescription) {
         page.locator(courtsDescriptionField).fill(courtsDescription);
+        return this;
+    }
+
+    public CourtsPage clearCourtsDescriptionField() {
+        page.locator(courtsDescriptionField).clear();
         return this;
     }
 
@@ -83,7 +182,23 @@ public class CourtsPage {
         page.locator(clickSaveButton).click();
     }
 
-    public Locator getSuccessfullMessageLocator() {
+    public Locator getCourtsCreateSuccessMessageLocator() {
         return page.locator(courtsCreateSuccessMessage);
+    }
+
+    public Locator getCourtsEditSuccessMessageLocator() {
+        return page.locator(courtsEditSuccessMessage);
+    }
+
+    public Locator getCourtsDuplicateSuccessMessageLocator() {
+        return page.locator(duplicateCourtSuccessMessage);
+    }
+
+    public Locator getCourtsDeactivateSuccessMessageLocator() {
+        return page.locator(deactivationSuccessMessage);
+    }
+
+    public Locator getCourtsActivateSuccessMessageLocator() {
+        return page.locator(activateCourtText);
     }
 }

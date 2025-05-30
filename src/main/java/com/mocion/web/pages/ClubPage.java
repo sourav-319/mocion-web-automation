@@ -46,6 +46,8 @@ public class ClubPage {
     public String yesToConfirmationTabButton = "button:has-text('Yes')";
     public String clubDeactivationMessageLocator = "Club has been Deactivated successfully";
     public String clubActivationMessageLocator = "Club has been Activated successfully";
+    public String searchResultFirstRow = ".py-4.border-b.text-primary";
+    public String searchField = "input[placeholder='Search']";
 
     public ClubPage(Page page) {
         this.page = page;
@@ -319,23 +321,36 @@ public class ClubPage {
         page.locator(saveButton).last().click();
     }
 
+    public ClubPage clearSearchField() {
+        page.locator(searchField).click();
+        return this;
+    }
+
+    public void fillSearchKeyword(String searchKeyword) {
+        page.locator(searchField).fill(searchKeyword);
+    }
+
+    public String getSearchFirstRowResult() {
+        return page.locator(searchResultFirstRow).first().textContent();
+    }
+
     public Locator getClubCreateSuccessMessageLocator() {
         return page.getByText(clubCreateSuccessMessage);
     }
 
-    public Locator clubEditSuccessMessageLocator() {
+    public Locator getClubEditSuccessMessageLocator() {
         return page.getByText(clubEditSuccessMessage);
     }
 
-    public Locator clubDuplicateSuccessMessageLocator() {
+    public Locator getClubDuplicateSuccessMessageLocator() {
         return page.getByText(clubDuplicateSuccessMessage);
     }
 
-    public Locator clubDeactivateSuccessMessageLocator() {
+    public Locator getClubDeactivateSuccessMessageLocator() {
         return page.getByText(clubDeactivationMessageLocator);
     }
 
-    public Locator clubActivateSuccessMessageLocator() {
+    public Locator getClubActivateSuccessMessageLocator() {
         return page.getByText(clubActivationMessageLocator);
     }
 }

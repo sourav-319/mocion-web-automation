@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class ClubTest extends BaseTest {
     public LoginPage loginPage;
@@ -26,7 +27,6 @@ public class ClubTest extends BaseTest {
 
         random = new Random();
         clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -76,7 +76,6 @@ public class ClubTest extends BaseTest {
 
         random = new Random();
         clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -127,14 +126,13 @@ public class ClubTest extends BaseTest {
                 .editHourTo()
                 .clickSaveButton();
 
-        assertThat(clubPage.clubEditSuccessMessageLocator()).isVisible();
+        assertThat(clubPage.getClubEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Club duplication should successful")
     public void verify_club_duplication_should_succeed() {
         random = new Random();
         clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -148,17 +146,17 @@ public class ClubTest extends BaseTest {
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
                 .clickDuplicateClub()
+                .clearClubNameField()
                 .fillClubName(clubName)
                 .selectAmenitiesEquipmentRental()
                 .clickSaveButton();
 
-        assertThat(clubPage.clubDuplicateSuccessMessageLocator()).isVisible();
+        assertThat(clubPage.getClubDuplicateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Club deactivation should successful")
     public void verify_club_deactivation_should_succeed() {
         clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
@@ -170,13 +168,12 @@ public class ClubTest extends BaseTest {
                 .clickToDeactivateClub()
                 .clickYesToConfirmationTab();
 
-        assertThat(clubPage.clubDeactivateSuccessMessageLocator()).isVisible();
+        assertThat(clubPage.getClubDeactivateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Club activation should successful")
     public void verify_club_activation_should_succeed() {
         clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
@@ -188,7 +185,21 @@ public class ClubTest extends BaseTest {
                 .clickToActivateClub()
                 .clickYesToConfirmationTab();
 
-        assertThat(clubPage.clubActivateSuccessMessageLocator()).isVisible();
+        assertThat(clubPage.getClubActivateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Club searching should successful")
+    public void verify_club_search_should_succeed() {
+        String searchKeyword = "test_club";
+        clubPage = new ClubPage(page);
+
+        userLogin();
+        clubPage
+                .clickOrganizationFromLeftNavigation()
+                .clearSearchField()
+                .fillSearchKeyword(searchKeyword);
+
+        assertTrue(clubPage.getSearchFirstRowResult().contains(searchKeyword));
     }
 
     private void userLogin() {

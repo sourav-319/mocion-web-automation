@@ -13,8 +13,7 @@ public class PlaywrightFactory {
 
     public Page newPage() {
         BrowserContext context = browser.newContext();
-        Page page = context.newPage();
-        return page;
+        return context.newPage();
     }
 
     public void tearDown() {

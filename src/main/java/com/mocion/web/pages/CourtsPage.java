@@ -14,7 +14,7 @@ public class CourtsPage {
     public String courtsSizeDropdown = ".react-select__dropdown-indicator";
     public String courtsSizeDropdownText = "Single";
     public String courtsPrivacyDropdown = ".react-select__dropdown-indicator";
-    public String courtsPrivacyDropdownText = "Private";
+    public String courtsPrivacyDropdownText = "text='Private'";
     public String courtsDescriptionField = "textarea[name='description']";
     public String editCourtsDescriptionField = "textarea[name='bio']";
     public String selectWorkingType = "input[type='radio'][value='full']";
@@ -191,7 +191,7 @@ public class CourtsPage {
     }
 
     public CourtsPage selectPrivacy() {
-        page.getByText(courtsPrivacyDropdownText).nth(0).click();
+        page.locator(courtsPrivacyDropdownText).click();
         return this;
     }
 

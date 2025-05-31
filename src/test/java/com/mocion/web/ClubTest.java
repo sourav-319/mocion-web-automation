@@ -15,8 +15,8 @@ public class ClubTest extends BaseTest {
     public ClubPage clubPage;
     public Random random;
 
-    @Test(description = "Club creation should successful")
-    public void verify_club_creation_should_succeed() {
+    @Test(description = "Club create should successful")
+    public void verify_club_create_should_succeed() throws InterruptedException {
         String landline = "+971 111 111 111";
         String aboutClub = "test_club";
         String accountHolderName = "test_account_holder";
@@ -27,6 +27,7 @@ public class ClubTest extends BaseTest {
 
         random = new Random();
         clubPage = new ClubPage(page);
+        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -35,7 +36,8 @@ public class ClubTest extends BaseTest {
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickCreateClubButton()
@@ -61,7 +63,7 @@ public class ClubTest extends BaseTest {
     }
 
     @Test(description = "Club edit should successful")
-    public void verify_club_edit_should_succeed() {
+    public void verify_club_edit_should_succeed() throws InterruptedException {
         String landline = "+971 111 111 111";
         String aboutClub = "test_club";
         String accountHolderName = "test_account_holder";
@@ -76,6 +78,7 @@ public class ClubTest extends BaseTest {
 
         random = new Random();
         clubPage = new ClubPage(page);
+        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -84,7 +87,8 @@ public class ClubTest extends BaseTest {
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
@@ -129,10 +133,11 @@ public class ClubTest extends BaseTest {
         assertThat(clubPage.getClubEditSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Club duplication should successful")
-    public void verify_club_duplication_should_succeed() {
+    @Test(description = "Club duplicate should successful")
+    public void verify_club_duplicate_should_succeed() throws InterruptedException {
         random = new Random();
         clubPage = new ClubPage(page);
+        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -141,7 +146,8 @@ public class ClubTest extends BaseTest {
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
@@ -154,14 +160,16 @@ public class ClubTest extends BaseTest {
         assertThat(clubPage.getClubDuplicateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Club deactivation should successful")
-    public void verify_club_deactivation_should_succeed() {
+    @Test(description = "Club deactivate should successful")
+    public void verify_club_deactivate_should_succeed() throws InterruptedException {
         clubPage = new ClubPage(page);
+        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
@@ -171,14 +179,16 @@ public class ClubTest extends BaseTest {
         assertThat(clubPage.getClubDeactivateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Club activation should successful")
-    public void verify_club_activation_should_succeed() {
+    @Test(description = "Club activate should successful")
+    public void verify_club_activate_should_succeed() throws InterruptedException {
         clubPage = new ClubPage(page);
+        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
@@ -188,15 +198,17 @@ public class ClubTest extends BaseTest {
         assertThat(clubPage.getClubActivateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Club searching should successful")
-    public void verify_club_search_should_succeed() {
+    @Test(description = "Club search should successful")
+    public void verify_club_search_should_succeed() throws InterruptedException {
         String searchKeyword = "test_club";
         clubPage = new ClubPage(page);
+        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clearSearchField()
@@ -207,15 +219,5 @@ public class ClubTest extends BaseTest {
         } else {
             System.out.println("Club search result not found");
         }
-    }
-
-    private void userLogin() {
-        loginPage = new LoginPage(page);
-
-        page.navigate(prop.getProperty("baseUrl"));
-        loginPage
-                .fillUserEmail(prop.getProperty("userEmail"))
-                .fillUserPassword(prop.getProperty("userPassword"))
-                .clickLoginBtn();
     }
 }

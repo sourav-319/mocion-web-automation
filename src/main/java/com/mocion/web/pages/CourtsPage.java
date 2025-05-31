@@ -117,7 +117,7 @@ public class CourtsPage {
     }
 
     public CourtsPage selectCourtPrivacy() {
-        page.getByText(courtPrivacy).click();
+        page.getByText(courtPrivacy).nth(2).click();
         return this;
     }
 
@@ -196,7 +196,7 @@ public class CourtsPage {
     }
 
     public CourtsPage editPrivacy() {
-        page.getByText(courtsPrivacyDropdownText).nth(1).click();
+        page.locator(courtsPrivacyDropdownText).nth(1).click();
         return this;
     }
 

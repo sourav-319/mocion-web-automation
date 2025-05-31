@@ -131,6 +131,7 @@ public class CourtsTest extends BaseTest {
     @Test(description = "Courts activate should successful")
     public void verify_courts_activate_should_succeed() throws InterruptedException {
         courtsPage = new CourtsPage(page);
+        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
@@ -149,7 +150,9 @@ public class CourtsTest extends BaseTest {
     @Test(description = "Courts search should successful")
     public void verify_courts_search_should_succeed() throws InterruptedException {
         String searchKeyword = "test_courts";
+
         courtsPage = new CourtsPage(page);
+        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
@@ -175,7 +178,9 @@ public class CourtsTest extends BaseTest {
         String dateFrom = "2025-05-31";
         String dateTo = "2026-05-31";
         String courtDescription = "test_courts_description";
+
         courtsPage = new CourtsPage(page);
+        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));

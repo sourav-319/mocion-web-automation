@@ -152,7 +152,7 @@ public class ClubTest extends BaseTest {
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
                 .clickDuplicateClub()
-                .clearClubNameField()
+                .clearDuplicateClubNameField()
                 .fillClubName(clubName)
                 .selectAmenitiesEquipmentRental()
                 .clickSaveButton();

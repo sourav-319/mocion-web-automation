@@ -102,6 +102,11 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage clearDuplicateClubNameField() {
+        page.locator(clubNameField).nth(1).clear();
+        return this;
+    }
+
     public ClubPage fillMobileNumber(String mobileNumber) {
         page.locator(mobileNumberField).fill(mobileNumber);
         return this;

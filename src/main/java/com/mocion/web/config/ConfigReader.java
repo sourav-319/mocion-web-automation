@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigReader {
-    private static final Properties prop = new Properties();
+    public static final Properties prop = new Properties();
 
     public static Properties init() {
         try (FileInputStream fis = new FileInputStream(Constants.CONFIG_PATH)) {

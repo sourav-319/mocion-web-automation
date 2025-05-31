@@ -1,10 +1,36 @@
-<suite name="Mocion Web Automation Suite" verbose="1" parallel="methods" thread-count="2">
+<suite name="Mocion Web Automation Suite" verbose="1" parallel="false">
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
-    <test name="Mocion Web Automation Tests">
-        <packages>
-            <package name="com.mocion.web"/>
-        </packages>
+
+    <test name="Club Tests" preserve-order="true">
+        <classes>
+            <class name="com.mocion.web.ClubTest">
+                <methods>
+                    <include name="verify_club_create_should_succeed"/>
+                    <include name="verify_club_edit_should_succeed"/>
+                    <include name="verify_club_duplicate_should_succeed"/>
+                    <include name="verify_club_deactivate_should_succeed"/>
+                    <include name="verify_club_activate_should_succeed"/>
+                    <include name="verify_club_search_should_succeed"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Courts Tests" preserve-order="true">
+        <classes>
+            <class name="com.mocion.web.CourtsTest">
+                <methods>
+                    <include name="verify_courts_create_should_succeed"/>
+                    <include name="verify_courts_edit_should_succeed"/>
+                    <include name="verify_courts_duplicate_should_succeed"/>
+                    <include name="verify_courts_deactivate_should_succeed"/>
+                    <include name="verify_courts_activate_should_succeed"/>
+                    <include name="verify_courts_search_should_succeed"/>
+                    <include name="verify_courts_filter_should_succeed"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>

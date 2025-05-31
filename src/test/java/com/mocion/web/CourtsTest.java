@@ -15,10 +15,11 @@ public class CourtsTest extends BaseTest {
     public CourtsPage courtsPage;
     public Random random;
 
-    @Test(description = "Valid courts creation should successful")
-    public void verify_court_creation_should_succeed() {
+    @Test(description = "Courts create should successful")
+    public void verify_courts_create_should_succeed() throws InterruptedException {
         random = new Random();
         courtsPage = new CourtsPage(page);
+        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -28,7 +29,8 @@ public class CourtsTest extends BaseTest {
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickCreateCourtsButton()
@@ -47,9 +49,10 @@ public class CourtsTest extends BaseTest {
     }
 
     @Test(description = "Courts edit should successful")
-    public void verify_court_edit_should_succeed() {
+    public void verify_courts_edit_should_succeed() throws InterruptedException {
         random = new Random();
         courtsPage = new CourtsPage(page);
+        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -59,7 +62,8 @@ public class CourtsTest extends BaseTest {
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickMenuIcon()
@@ -79,10 +83,11 @@ public class CourtsTest extends BaseTest {
         assertThat(courtsPage.getCourtsEditSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Courts duplication should successful")
-    public void verify_court_duplicate_should_succeed() {
+    @Test(description = "Courts duplicate should successful")
+    public void verify_courts_duplicate_should_succeed() throws InterruptedException {
         random = new Random();
         courtsPage = new CourtsPage(page);
+        loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
@@ -91,7 +96,8 @@ public class CourtsTest extends BaseTest {
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickMenuIcon()
@@ -103,14 +109,16 @@ public class CourtsTest extends BaseTest {
         assertThat(courtsPage.getCourtsDuplicateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Courts deactivation should successful")
-    public void verify_court_deactivate_should_succeed() {
+    @Test(description = "Courts deactivate should successful")
+    public void verify_courts_deactivate_should_succeed() throws InterruptedException {
         courtsPage = new CourtsPage(page);
+        loginPage = new LoginPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickMenuIcon()
@@ -120,14 +128,15 @@ public class CourtsTest extends BaseTest {
         assertThat(courtsPage.getCourtsDeactivateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Courts activation should successful")
-    public void verify_court_activate_should_succeed() {
+    @Test(description = "Courts activate should successful")
+    public void verify_courts_activate_should_succeed() throws InterruptedException {
         courtsPage = new CourtsPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickMenuIcon()
@@ -137,15 +146,16 @@ public class CourtsTest extends BaseTest {
         assertThat(courtsPage.getCourtsActivateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Courts searching should successful")
-    public void verify_court_search_should_succeed() throws InterruptedException {
+    @Test(description = "Courts search should successful")
+    public void verify_courts_search_should_succeed() throws InterruptedException {
         String searchKeyword = "test_courts";
         courtsPage = new CourtsPage(page);
 
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clearSearchField()
@@ -155,12 +165,12 @@ public class CourtsTest extends BaseTest {
         if (courtsPage.getFirstRowSearchResultLocator().isVisible()) {
             assertTrue(courtsPage.getFirstRowSearchResult().contains(searchKeyword));
         } else {
-            System.out.println("Court search result not found");
+            System.out.println("Courts search result not found");
         }
     }
 
     @Test(description = "Courts filter should successful")
-    public void verify_court_filter_should_succeed() {
+    public void verify_courts_filter_should_succeed() throws InterruptedException {
         String searchKeyword = "test_courts";
         String dateFrom = "2025-05-31";
         String dateTo = "2026-05-31";
@@ -170,7 +180,8 @@ public class CourtsTest extends BaseTest {
         // Grant location permission
         page.context().grantPermissions(List.of("geolocation"));
 
-        userLogin();
+        loginPage
+                .userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickFilterIcon()
@@ -186,17 +197,7 @@ public class CourtsTest extends BaseTest {
         if (courtsPage.getFirstRowSearchResultLocator().isVisible()) {
             assertTrue(courtsPage.getFirstRowSearchResult().contains(searchKeyword));
         } else {
-            System.out.println("Court filter result not found");
+            System.out.println("Courts filter result not found");
         }
-    }
-
-    private void userLogin() {
-        loginPage = new LoginPage(page);
-
-        page.navigate(prop.getProperty("baseUrl"));
-        loginPage
-                .fillUserEmail(prop.getProperty("userEmail"))
-                .fillUserPassword(prop.getProperty("userPassword"))
-                .clickLoginBtn();
     }
 }

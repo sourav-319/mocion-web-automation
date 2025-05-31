@@ -2,6 +2,8 @@ package com.mocion.web.pages;
 
 import com.microsoft.playwright.Page;
 
+import static com.mocion.web.config.ConfigReader.prop;
+
 public class LoginPage {
     private final Page page;
 
@@ -25,5 +27,12 @@ public class LoginPage {
 
     public void clickLoginBtn() {
         page.click(loginBtn);
+    }
+
+    public void userLogin() {
+        page.navigate(prop.getProperty("baseUrl"));
+        fillUserEmail(prop.getProperty("userEmail"));
+        fillUserPassword(prop.getProperty("userPassword"));
+        clickLoginBtn();
     }
 }

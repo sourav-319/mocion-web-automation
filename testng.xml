@@ -26,6 +26,18 @@
                 </methods>
             </class>
 
+            <class name="com.mocion.web.PriceTest">
+                <methods>
+                    <include name="Price_create_should_succeed"/>
+                    <include name="verify_configure_price_should_succeed"/>
+                    <include name="verify_price_duplicate_should_succeed"/>
+                    <include name="verify_price_deactivate_should_succeed"/>
+                    <include name="verify_price_activate_should_succeed"/>
+                    <include name="verify_price_delete_should_succeed"/>
+                    <include name="verify_price_filter_should_succeed"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 </suite>

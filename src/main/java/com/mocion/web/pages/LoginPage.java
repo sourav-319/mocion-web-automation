@@ -15,12 +15,14 @@ public class LoginPage {
         this.page = page;
     }
 
-    public void fillUserEmail(String email) {
+    public LoginPage fillUserEmail(String email) {
         page.locator(userEmailField).fill(email);
+        return this;
     }
 
-    public void fillUserPassword(String password) {
+    public LoginPage fillUserPassword(String password) {
         page.locator(passwordField).fill(password);
+        return this;
     }
 
     public void clickLoginBtn() {

@@ -1,4 +1,4 @@
-package com.mocion.web;
+package com.mocion.test;
 
 import com.mocion.web.pages.LoginPage;
 import com.mocion.web.pages.PricePage;

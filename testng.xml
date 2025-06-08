@@ -3,7 +3,7 @@
     <test name="Ordered Test Run" preserve-order="true">
         <classes>
 
-            <class name="com.mocion.web.ClubTest">
+            <class name="com.mocion.test.ClubTest">
                 <methods>
                     <include name="verify_club_create_should_succeed"/>
                     <include name="verify_club_edit_should_succeed"/>
@@ -14,7 +14,7 @@
                 </methods>
             </class>
 
-            <class name="com.mocion.web.CourtsTest">
+            <class name="com.mocion.test.CourtsTest">
                 <methods>
                     <include name="verify_courts_create_should_succeed"/>
                     <include name="verify_courts_edit_should_succeed"/>
@@ -26,7 +26,7 @@
                 </methods>
             </class>
 
-            <class name="com.mocion.web.PriceTest">
+            <class name="com.mocion.test.PriceTest">
                 <methods>
                     <include name="Price_create_should_succeed"/>
                     <include name="verify_configure_price_should_succeed"/>

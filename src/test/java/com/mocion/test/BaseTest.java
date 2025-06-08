@@ -1,4 +1,4 @@
-package com.mocion.web;
+package com.mocion.test;
 
 import com.microsoft.playwright.Page;
 import com.mocion.web.config.ConfigReader;

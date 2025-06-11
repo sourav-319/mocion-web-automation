@@ -16,13 +16,13 @@ public class BookingPage {
     public String clickCourtNameDropdown = ".react-select__control";
     public String notesField = "textarea[name='notes']";
     public String paymentMethodDropdown = ".react-select__control";
-    public String ownerPaymentMethod = "text='Mobile app'";
     public String playerNameDropdown = ".react-select__control";
     public String playerMinLevel = "input[name='min_level']";
     public String playerMaxLevel = "input[name='max_level']";
     public String genderMale = ".undefined.accent-primary";
     public String bookingCreateSuccessMessage = "text='Successful.'";
-    public String playerOnePaymentMethod = "text='Payment Link'";
+    public String ownerPaymentMethod = "text='Mobile app'";
+    public String playerOnePaymentMethod = "text='Cash (IN club)'";
 
     public BookingPage(Page page) {
         this.page = page;

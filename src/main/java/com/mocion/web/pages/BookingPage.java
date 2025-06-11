@@ -105,33 +105,9 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage selectPlayerTwoName() {
-        page.locator(playerNameDropdown).nth(6).click();
-        page.keyboard().press("Enter");
-        return this;
-    }
-
-    public BookingPage selectPlayerThreeName() {
-        page.locator(playerNameDropdown).nth(8).click();
-        page.keyboard().press("Enter");
-        return this;
-    }
-
     public BookingPage selectPlayerOnePaymentMethod() {
         page.locator(paymentMethodDropdown).nth(5).click();
         page.locator(playerOnePaymentMethod).click();
-        return this;
-    }
-
-    public BookingPage selectPlayerTwoPaymentMethod() {
-        page.locator(paymentMethodDropdown).nth(7).click();
-        page.locator(playerTwoPaymentMethod).click();
-        return this;
-    }
-
-    public BookingPage selectPlayerThreePaymentMethod() {
-        page.locator(paymentMethodDropdown).nth(9).click();
-        page.locator(playerThreePaymentMethod).click();
         return this;
     }
 

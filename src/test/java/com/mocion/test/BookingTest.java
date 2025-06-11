@@ -42,10 +42,6 @@ public class BookingTest extends BaseTest {
                 .selectOwnerPaymentMethod()
                 .selectPlayerOneName()
                 .selectPlayerOnePaymentMethod()
-                .selectPlayerTwoName()
-                .selectPlayerTwoPaymentMethod()
-                .selectPlayerThreeName()
-                .selectPlayerThreePaymentMethod()
                 .clickSavePublicMatchButton();
 
         assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();

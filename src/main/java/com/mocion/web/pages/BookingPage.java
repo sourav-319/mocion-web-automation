@@ -15,14 +15,14 @@ public class BookingPage {
     public String saveButton = "role=button[name='Save']";
     public String clickCourtNameDropdown = ".react-select__control";
     public String notesField = "textarea[name='notes']";
-    public String selectCourtName = "text='Court 1'";
     public String paymentMethodDropdown = ".react-select__control";
-    public String paymentMethod = "text='Cash'";
     public String playerNameDropdown = ".react-select__control";
     public String playerMinLevel = "input[name='min_level']";
     public String playerMaxLevel = "input[name='max_level']";
     public String genderMale = ".undefined.accent-primary";
     public String bookingCreateSuccessMessage = "text='Successful.'";
+    public String ownerPaymentMethod = "text='Mobile app'";
+    public String playerOnePaymentMethod = "text='Cash (IN club)'";
 
     public BookingPage(Page page) {
         this.page = page;
@@ -54,8 +54,8 @@ public class BookingPage {
     }
 
     public BookingPage selectSchedule() {
-        page.locator(selectSchedule).nth(3).click();
-        page.locator(selectSchedule).nth(3).click();
+        page.locator(selectSchedule).nth(4).click();
+        page.locator(selectSchedule).nth(4).click();
         return this;
     }
 
@@ -64,13 +64,9 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage clickCourtNameDropdown() {
-        page.locator(clickCourtNameDropdown).nth(1).click();
-        return this;
-    }
-
     public BookingPage selectCourtName() {
-        page.locator(selectCourtName).nth(0).click();
+        page.locator(clickCourtNameDropdown).nth(1).click();
+        page.keyboard().press("Enter");
         return this;
     }
 
@@ -95,38 +91,30 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage clickOwnerPaymentMethodDropdown() {
-        page.locator(paymentMethodDropdown).nth(3).click();
-        return this;
-    }
-
     public BookingPage selectOwnerPaymentMethod() {
-        page.locator(paymentMethod).click();
+        page.locator(paymentMethodDropdown).nth(3).click();
+        page.locator(ownerPaymentMethod).click();
         return this;
     }
 
-    public BookingPage selectPlayerName() {
+    public BookingPage selectPlayerOneName() {
         page.locator(playerNameDropdown).nth(4).click();
         page.keyboard().press("Enter");
         return this;
     }
 
-    public BookingPage selectGenderMale() {
-        page.locator(genderMale).nth(0).click();
-        return this;
-    }
-
-    public BookingPage clickPlayerPaymentMethodDropdown() {
+    public BookingPage selectPlayerOnePaymentMethod() {
         page.locator(paymentMethodDropdown).nth(5).click();
+        page.locator(playerOnePaymentMethod).click();
         return this;
     }
 
-    public BookingPage selectPlayerPaymentMethod() {
-        page.locator(paymentMethod).nth(1).click();
+    public BookingPage selectGenderMixed() {
+        page.locator(genderMale).nth(2).click();
         return this;
     }
 
-    public void clickSavePrivateMatchButton() {
+    public void clickSavePublicMatchButton() {
         page.locator(saveButton).click();
     }
 

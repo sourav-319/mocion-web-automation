@@ -14,10 +14,10 @@ public class BookingTest extends BaseTest {
 
     @Test(description = "Public match booking create should successful")
     public void verify_public_match_booking_create_should_succeed() throws InterruptedException {
-        String clubName = "Farah123";
+        String clubName = "club_test_007";
         String notes = "test_note";
-        String minLevel = "1";
-        String maxLevel = "5";
+        String minLevel = "0";
+        String maxLevel = "1";
 
         bookingPage = new BookingPage(page);
 
@@ -33,19 +33,16 @@ public class BookingTest extends BaseTest {
                 .clickCheckScheduleButton()
                 .selectSchedule()
                 .clickSaveButton()
-                .clickCourtNameDropdown()
                 .selectCourtName()
                 .fillPlayerMinLevel(minLevel)
                 .fillPlayerMaxLevel(maxLevel)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .fillNotes(notes)
                 .selectOwnerName()
-                .clickOwnerPaymentMethodDropdown()
                 .selectOwnerPaymentMethod()
-                .selectPlayerName()
-                .clickPlayerPaymentMethodDropdown()
-                .selectPlayerPaymentMethod()
-                .clickSavePrivateMatchButton();
+                .selectPlayerOneName()
+                .selectPlayerOnePaymentMethod()
+                .clickSavePublicMatchButton();
 
         assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
     }
@@ -54,8 +51,8 @@ public class BookingTest extends BaseTest {
         loginPage = new LoginPage(page);
         page.navigate(prop.getProperty("baseUrl"));
         loginPage
-                .fillUserEmail(prop.getProperty("userEmail_2"))
-                .fillUserPassword(prop.getProperty("userPassword_2"))
+                .fillUserEmail(prop.getProperty("userEmail"))
+                .fillUserPassword(prop.getProperty("userPassword"))
                 .clickLoginBtn();
     }
 }

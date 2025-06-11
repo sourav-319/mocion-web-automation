@@ -23,8 +23,6 @@ public class BookingPage {
     public String genderMale = ".undefined.accent-primary";
     public String bookingCreateSuccessMessage = "text='Successful.'";
     public String playerOnePaymentMethod = "text='Payment Link'";
-    public String playerTwoPaymentMethod = "text='Cash (IN club)'";
-    public String playerThreePaymentMethod = "text='Credit/Debit card (In club)'";
 
     public BookingPage(Page page) {
         this.page = page;

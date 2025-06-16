@@ -14,7 +14,7 @@ public class BookingTest extends BaseTest {
 
     @Test(description = "Public match booking create should successful")
     public void verify_public_match_booking_create_should_succeed() throws InterruptedException {
-        String clubName = "club_test_007";
+        String clubName = "Farah123";
         String notes = "test_note";
         String minLevel = "0";
         String maxLevel = "1";
@@ -42,6 +42,10 @@ public class BookingTest extends BaseTest {
                 .selectOwnerPaymentMethod()
                 .selectPlayerOneName()
                 .selectPlayerOnePaymentMethod()
+                .selectPlayerTwoName()
+                .selectPlayerTwoPaymentMethod()
+                .selectPlayerThreeName()
+                .selectPlayerThreePaymentMethod()
                 .clickSavePublicMatchButton();
 
         assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
@@ -51,8 +55,8 @@ public class BookingTest extends BaseTest {
         loginPage = new LoginPage(page);
         page.navigate(prop.getProperty("baseUrl"));
         loginPage
-                .fillUserEmail(prop.getProperty("userEmail"))
-                .fillUserPassword(prop.getProperty("userPassword"))
+                .fillUserEmail(prop.getProperty("userEmail_2"))
+                .fillUserPassword(prop.getProperty("userPassword_2"))
                 .clickLoginBtn();
     }
 }

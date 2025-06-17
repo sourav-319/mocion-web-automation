@@ -22,9 +22,16 @@ public class BookingPage {
     public String genderMale = ".undefined.accent-primary";
     public String bookingCreateSuccessMessage = "text='Successful.'";
     public String ownerPaymentMethod = "text='Cash'";
-    public String playerOnePaymentMethod = "text='In app'";
-    public String playerTwoPaymentMethod = "text='Credit/Debit card'";
-    public String playerThreePaymentMethod = "text='Bank transfer'";
+    public String playerOnePaymentMethod = "text='Credit/Debit card'";
+    public String playerTwoPaymentMethod = "text='Bank transfer'";
+    public String playerThreePaymentMethod = "text='In app'";
+    public String bookingCreateCloseIcon = "button img[alt='Close']";
+    public String menuIcon = "div.mx-auto.cursor-pointer";
+    public String cancelBookingText = "text='Cancel Booking'";
+    public String bookingCancelSuccessMessage = "text='Booking canceled successfully'";
+    public String cancelWithRefundButton = "button.bg-primary >> text=Cancel with refund";
+    public String cancelWithoutRefundButton = "button.bg-primary >> text=Cancel without refund";
+    public String paymentStatus = ".grid.place-content-center.text-white";
 
     public BookingPage(Page page) {
         this.page = page;
@@ -56,8 +63,8 @@ public class BookingPage {
     }
 
     public BookingPage selectSchedule() {
-        page.locator(selectSchedule).nth(4).click();
-        page.locator(selectSchedule).nth(4).click();
+        page.locator(selectSchedule).nth(5).click();
+        page.locator(selectSchedule).nth(5).click();
         return this;
     }
 
@@ -135,16 +142,53 @@ public class BookingPage {
         return this;
     }
 
+    public BookingPage selectPlayerThreePaymentMethodAsCash() {
+        page.locator(paymentMethodDropdown).nth(9).click();
+        page.locator(ownerPaymentMethod).nth(1).click();
+        return this;
+    }
+
     public BookingPage selectGenderMixed() {
         page.locator(genderMale).nth(2).click();
         return this;
     }
 
-    public void clickSavePublicMatchButton() {
+    public BookingPage clickSavePublicMatchButton() {
         page.locator(saveButton).click();
+        return this;
+    }
+
+    public void clickCloseIcon() {
+        page.locator(bookingCreateCloseIcon).click();
+    }
+
+    public void clickCancelWithRefundButton() {
+        page.locator(cancelWithRefundButton).click();
+    }
+
+    public BookingPage clickCancelBooking() {
+        page.locator(cancelBookingText).click();
+        return this;
+    }
+
+    public BookingPage clickMenuIcon() {
+        page.locator(menuIcon).nth(0).click();
+        return this;
+    }
+
+    public void clickCancelWithoutRefundButton() {
+        page.locator(cancelWithoutRefundButton).click();
     }
 
     public Locator bookingCreateSuccessMessageLocator() {
         return page.locator(bookingCreateSuccessMessage);
+    }
+
+    public Locator bookingCancelSuccessMessageLocator() {
+        return page.locator(bookingCancelSuccessMessage);
+    }
+
+    public String getPaymentStatus() {
+        return page.locator(paymentStatus).nth(0).textContent();
     }
 }

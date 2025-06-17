@@ -31,7 +31,7 @@ public class BookingPage {
     public String bookingCancelSuccessMessage = "text='Booking canceled successfully'";
     public String cancelWithRefundButton = "text='Cancel with refund'";
     public String cancelWithoutRefundButton = "text='Cancel without refund'";
-    public String paymentStatus = ".grid.place-content-center.text-white";
+    public String paymentStatus = ".grid.px-4.py-2.rounded-3xl.text-primary";
 
     public BookingPage(Page page) {
         this.page = page;

@@ -29,8 +29,8 @@ public class BookingPage {
     public String menuIcon = "div.mx-auto.cursor-pointer";
     public String cancelBookingText = "text='Cancel Booking'";
     public String bookingCancelSuccessMessage = "text='Booking canceled successfully'";
-    public String cancelWithRefundButton = "button.bg-primary >> text=Cancel with refund";
-    public String cancelWithoutRefundButton = "button.bg-primary >> text=Cancel without refund";
+    public String cancelWithRefundButton = "text='Cancel with refund'";
+    public String cancelWithoutRefundButton = "text='Cancel without refund'";
     public String paymentStatus = ".grid.place-content-center.text-white";
 
     public BookingPage(Page page) {
@@ -63,8 +63,8 @@ public class BookingPage {
     }
 
     public BookingPage selectSchedule() {
-        page.locator(selectSchedule).nth(5).click();
-        page.locator(selectSchedule).nth(5).click();
+        page.locator(selectSchedule).nth(2).click();
+        page.locator(selectSchedule).nth(2).click();
         return this;
     }
 

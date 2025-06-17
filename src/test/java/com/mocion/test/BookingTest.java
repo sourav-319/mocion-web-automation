@@ -54,8 +54,8 @@ public class BookingTest extends BaseTest {
         assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Cancel booking with refund should successful")
-    public void verify_cancel_booking_with_refund_should_succeed() throws InterruptedException {
+    @Test(description = "Cancel public match booking with refund should successful")
+    public void verify_cancel_public_match_booking_with_refund_should_succeed() throws InterruptedException {
         String clubName = "Farah123";
         String notes = "test_note";
         String minLevel = "0";
@@ -98,8 +98,8 @@ public class BookingTest extends BaseTest {
         assertThat(bookingPage.bookingCancelSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Cancel booking without refund should successful")
-    public void verify_cancel_booking_without_refund_should_succeed() throws InterruptedException {
+    @Test(description = "Cancel public match booking without refund should successful")
+    public void verify_cancel_public_match_booking_without_refund_should_succeed() throws InterruptedException {
         String clubName = "Farah123";
         String notes = "test_note";
         String minLevel = "0";
@@ -142,8 +142,8 @@ public class BookingTest extends BaseTest {
         assertThat(bookingPage.bookingCancelSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Booking payment status should display paid when all player payments are paid should successful")
-    public void verify_booking_payment_status_should_display_paid_when_all_player_payments_are_paid_should_succeed() throws InterruptedException {
+    @Test(description = "Public match booking payment status should be paid when all player payments are paid should successful")
+    public void verify_public_match_booking_payment_status_should_be_paid_when_all_player_payments_are_paid_should_succeed() throws InterruptedException {
         String clubName = "Farah123";
         String notes = "test_note";
         String minLevel = "0";

@@ -136,6 +136,12 @@ public class BookingPage {
         return this;
     }
 
+    public BookingPage selectPlayerTwoPaymentMethodAsInApp() {
+        page.locator(paymentMethodDropdown).nth(7).click();
+        page.locator(playerThreePaymentMethod).click();
+        return this;
+    }
+
     public BookingPage selectPlayerThreePaymentMethod() {
         page.locator(paymentMethodDropdown).nth(9).click();
         page.locator(playerThreePaymentMethod).click();

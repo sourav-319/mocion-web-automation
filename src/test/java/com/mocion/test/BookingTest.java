@@ -126,8 +126,8 @@ public class BookingTest extends BaseTest {
                 .fillNotes(notes)
                 .selectOwnerName()
                 .selectOwnerPaymentMethod()
-                .selectPlayerTwoName()
-                .selectPlayerTwoPaymentMethodAsInApp()
+                .selectPlayerOneName()
+                .selectPlayerOnePaymentMethodAsInApp()
                 .clickSavePublicMatchButton()
                 .clickCloseIcon();
         bookingPage

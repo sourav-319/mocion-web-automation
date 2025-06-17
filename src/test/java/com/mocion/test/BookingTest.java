@@ -84,6 +84,7 @@ public class BookingTest extends BaseTest {
                 .selectOwnerPaymentMethod()
                 .selectPlayerOneName()
                 .selectPlayerOnePaymentMethod()
+                .clickSavePublicMatchButton()
                 .clickCloseIcon();
         bookingPage
                 .clickMenuIcon()
@@ -127,6 +128,7 @@ public class BookingTest extends BaseTest {
                 .selectOwnerPaymentMethod()
                 .selectPlayerThreeName()
                 .selectPlayerThreePaymentMethod()
+                .clickSavePublicMatchButton()
                 .clickCloseIcon();
         bookingPage
                 .clickMenuIcon()

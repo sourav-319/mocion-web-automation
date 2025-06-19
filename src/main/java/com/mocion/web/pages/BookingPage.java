@@ -32,6 +32,12 @@ public class BookingPage {
     public String cancelWithRefundButton = "text='Cancel with refund'";
     public String cancelWithoutRefundButton = "text='Cancel without refund'";
     public String paymentStatus = ".grid.px-4.py-2.rounded-3xl.text-primary";
+    public String privateMatchText = "text='Private match'";
+    public String friendlyGameTypeRadioButton = "input[type='radio'][value='friendly']";
+    public String competitiveGameTypeRadioButton = "input[type='radio'][value='competitive']";
+    public String priceTypeFull = "div.flex-1.p-2.text-center.rounded-lg";
+    public String ownerPriceField = "input.bg-white.border.rounded-lg.p-3";
+    public String savePrivateMatchButton = "button.bg-primary.text-white.rounded-full";
 
     public BookingPage(Page page) {
         this.page = page;
@@ -62,9 +68,14 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage selectSchedule() {
-        page.locator(selectSchedule).nth(2).click();
-        page.locator(selectSchedule).nth(2).click();
+    public BookingPage selectSchedule(int scheduleIndex) {
+        page.locator(selectSchedule).nth(scheduleIndex).click();
+        page.locator(selectSchedule).nth(scheduleIndex).click();
+        return this;
+    }
+
+    public BookingPage clickPrivateMatch() {
+        page.locator(privateMatchText).click();
         return this;
     }
 
@@ -94,38 +105,38 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage selectOwnerName() {
-        page.locator(clickCourtNameDropdown).nth(2).click();
+    public BookingPage selectOwnerName(int ownerNameIndex) {
+        page.locator(clickCourtNameDropdown).nth(ownerNameIndex).click();
         page.keyboard().press("Enter");
         return this;
     }
 
-    public BookingPage selectOwnerPaymentMethod() {
-        page.locator(paymentMethodDropdown).nth(3).click();
+    public BookingPage selectOwnerPaymentMethod(int ownerPaymentMethodIndex) {
+        page.locator(paymentMethodDropdown).nth(ownerPaymentMethodIndex).click();
         page.locator(ownerPaymentMethod).click();
         return this;
     }
 
-    public BookingPage selectPlayerOneName() {
-        page.locator(playerNameDropdown).nth(4).click();
+    public BookingPage selectPlayerOneName(int playerOneNameIndex) {
+        page.locator(playerNameDropdown).nth(playerOneNameIndex).click();
         page.keyboard().press("Enter");
         return this;
     }
 
-    public BookingPage selectPlayerTwoName() {
-        page.locator(playerNameDropdown).nth(6).click();
+    public BookingPage selectPlayerTwoName(int playerTwoNameIndex) {
+        page.locator(playerNameDropdown).nth(playerTwoNameIndex).click();
         page.keyboard().press("Enter");
         return this;
     }
 
-    public BookingPage selectPlayerThreeName() {
-        page.locator(playerNameDropdown).nth(8).click();
+    public BookingPage selectPlayerThreeName(int playerThreeNameIndex) {
+        page.locator(playerNameDropdown).nth(playerThreeNameIndex).click();
         page.keyboard().press("Enter");
         return this;
     }
 
-    public BookingPage selectPlayerOnePaymentMethod() {
-        page.locator(paymentMethodDropdown).nth(5).click();
+    public BookingPage selectPlayerOnePaymentMethod(int playerOnePaymentMethodIndex) {
+        page.locator(paymentMethodDropdown).nth(playerOnePaymentMethodIndex).click();
         page.locator(playerOnePaymentMethod).click();
         return this;
     }
@@ -136,14 +147,14 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage selectPlayerTwoPaymentMethod() {
-        page.locator(paymentMethodDropdown).nth(7).click();
+    public BookingPage selectPlayerTwoPaymentMethod(int playerTwoPaymentMethodIndex) {
+        page.locator(paymentMethodDropdown).nth(playerTwoPaymentMethodIndex).click();
         page.locator(playerTwoPaymentMethod).click();
         return this;
     }
 
-    public BookingPage selectPlayerThreePaymentMethod() {
-        page.locator(paymentMethodDropdown).nth(9).click();
+    public BookingPage selectPlayerThreePaymentMethod(int playerThreePaymentMethodIndex) {
+        page.locator(paymentMethodDropdown).nth(playerThreePaymentMethodIndex).click();
         page.locator(playerThreePaymentMethod).click();
         return this;
     }
@@ -182,6 +193,54 @@ public class BookingPage {
         return this;
     }
 
+    public BookingPage selectGameTypeFriendly() {
+        page.locator(friendlyGameTypeRadioButton).click();
+        return this;
+    }
+
+    public BookingPage selectGameTypeCompetitive() {
+        page.locator(competitiveGameTypeRadioButton).nth(0).click();
+        return this;
+    }
+
+    public BookingPage selectPriceFull() {
+        page.locator(priceTypeFull).nth(0).click();
+        return this;
+    }
+
+    public BookingPage selectPriceSplit() {
+        page.locator(priceTypeFull).nth(1).click();
+        return this;
+    }
+
+    public BookingPage fillOwnerPrice(String ownerPrice) {
+        page.locator(ownerPriceField).nth(2).fill(ownerPrice);
+        return this;
+    }
+
+    public BookingPage fillPlayerOnePrice(String ownerPrice) {
+        page.locator(ownerPriceField).nth(3).fill(ownerPrice);
+        return this;
+    }
+
+    public BookingPage fillPlayerTwoPrice(String ownerPrice) {
+        page.locator(ownerPriceField).nth(4).fill(ownerPrice);
+        return this;
+    }
+
+    public BookingPage fillPlayerThreePrice(String ownerPrice) {
+        page.locator(ownerPriceField).nth(5).fill(ownerPrice);
+        return this;
+    }
+
+    public void clickSavePrivateMatchButton() {
+        page.locator(savePrivateMatchButton).click();
+    }
+
+    public String getPaymentStatus() {
+        return page.locator(paymentStatus).nth(0).textContent();
+    }
+
     public void clickCancelWithoutRefundButton() {
         page.locator(cancelWithoutRefundButton).click();
     }
@@ -192,9 +251,5 @@ public class BookingPage {
 
     public Locator bookingCancelSuccessMessageLocator() {
         return page.locator(bookingCancelSuccessMessage);
-    }
-
-    public String getPaymentStatus() {
-        return page.locator(paymentStatus).nth(0).textContent();
     }
 }

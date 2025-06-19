@@ -34,21 +34,21 @@ public class BookingTest extends BaseTest {
                 .clickCreateButton()
                 .clickPublicMatch()
                 .clickCheckScheduleButton()
-                .selectSchedule()
+                .selectSchedule(2)
                 .clickSaveButton()
                 .selectCourtName()
                 .fillPlayerMinLevel(minLevel)
                 .fillPlayerMaxLevel(maxLevel)
                 .selectGenderMixed()
                 .fillNotes(notes)
-                .selectOwnerName()
-                .selectOwnerPaymentMethod()
-                .selectPlayerOneName()
-                .selectPlayerOnePaymentMethod()
-                .selectPlayerTwoName()
-                .selectPlayerTwoPaymentMethod()
-                .selectPlayerThreeName()
-                .selectPlayerThreePaymentMethod()
+                .selectOwnerName(2)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .selectPlayerOnePaymentMethod(5)
+                .selectPlayerTwoName(6)
+                .selectPlayerTwoPaymentMethod(7)
+                .selectPlayerThreeName(8)
+                .selectPlayerThreePaymentMethod(9)
                 .clickSavePublicMatchButton();
 
         assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
@@ -73,17 +73,17 @@ public class BookingTest extends BaseTest {
                 .clickCreateButton()
                 .clickPublicMatch()
                 .clickCheckScheduleButton()
-                .selectSchedule()
+                .selectSchedule(2)
                 .clickSaveButton()
                 .selectCourtName()
                 .fillPlayerMinLevel(minLevel)
                 .fillPlayerMaxLevel(maxLevel)
                 .selectGenderMixed()
                 .fillNotes(notes)
-                .selectOwnerName()
-                .selectOwnerPaymentMethod()
-                .selectPlayerOneName()
-                .selectPlayerOnePaymentMethod()
+                .selectOwnerName(2)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .selectPlayerOnePaymentMethod(5)
                 .clickSavePublicMatchButton()
                 .clickCloseIcon();
         bookingPage
@@ -117,16 +117,16 @@ public class BookingTest extends BaseTest {
                 .clickCreateButton()
                 .clickPublicMatch()
                 .clickCheckScheduleButton()
-                .selectSchedule()
+                .selectSchedule(2)
                 .clickSaveButton()
                 .selectCourtName()
                 .fillPlayerMinLevel(minLevel)
                 .fillPlayerMaxLevel(maxLevel)
                 .selectGenderMixed()
                 .fillNotes(notes)
-                .selectOwnerName()
-                .selectOwnerPaymentMethod()
-                .selectPlayerOneName()
+                .selectOwnerName(2)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
                 .selectPlayerOnePaymentMethodAsInApp()
                 .clickSavePublicMatchButton()
                 .clickCloseIcon();
@@ -161,25 +161,183 @@ public class BookingTest extends BaseTest {
                 .clickCreateButton()
                 .clickPublicMatch()
                 .clickCheckScheduleButton()
-                .selectSchedule()
+                .selectSchedule(2)
                 .clickSaveButton()
                 .selectCourtName()
                 .fillPlayerMinLevel(minLevel)
                 .fillPlayerMaxLevel(maxLevel)
                 .selectGenderMixed()
                 .fillNotes(notes)
-                .selectOwnerName()
-                .selectOwnerPaymentMethod()
-                .selectPlayerOneName()
-                .selectPlayerOnePaymentMethod()
-                .selectPlayerTwoName()
-                .selectPlayerTwoPaymentMethod()
-                .selectPlayerThreeName()
+                .selectOwnerName(2)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .selectPlayerOnePaymentMethod(5)
+                .selectPlayerTwoName(6)
+                .selectPlayerTwoPaymentMethod(7)
+                .selectPlayerThreeName(8)
                 .selectPlayerThreePaymentMethodAsCash()
                 .clickSavePublicMatchButton()
                 .clickCloseIcon();
 
         Assert.assertTrue(bookingPage.getPaymentStatus().contains("Paid"));
+    }
+
+    @Test(description = "Friendly private match booking create with full price should succeed")
+    public void verify_friendly_private_match_booking_create_with_full_price_should_succeed() throws InterruptedException {
+        String clubName = "Farah123";
+        String notes = "test_note";
+        String ownerPrice = "10";
+
+        bookingPage = new BookingPage(page);
+
+        // Grant location permission
+        page.context().grantPermissions(List.of("geolocation"));
+
+        userLogin();
+        bookingPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(clubName)
+                .clickCreateButton()
+                .clickPrivateMatch()
+                .clickCheckScheduleButton()
+                .selectSchedule(2)
+                .clickSaveButton()
+                .selectCourtName()
+                .selectGameTypeFriendly()
+                .fillNotes(notes)
+                .selectPriceFull()
+                .selectOwnerName(2)
+                .fillOwnerPrice(ownerPrice)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .selectPlayerTwoName(5)
+                .selectPlayerThreeName(6)
+                .clickSavePrivateMatchButton();
+
+        assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Friendly private match booking create with split price should successful")
+    public void verify_friendly_private_match_booking_create_with_split_price_should_succeed() throws InterruptedException {
+        String clubName = "Farah123";
+        String notes = "test_note";
+        String ownerPrice = "10";
+        String playerOnePrice = "10";
+        String playerTwoPrice = "10";
+        String playerThreePrice = "10";
+
+        bookingPage = new BookingPage(page);
+
+        // Grant location permission
+        page.context().grantPermissions(List.of("geolocation"));
+
+        userLogin();
+        bookingPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(clubName)
+                .clickCreateButton()
+                .clickPrivateMatch()
+                .clickCheckScheduleButton()
+                .selectSchedule(2)
+                .clickSaveButton()
+                .selectCourtName()
+                .selectGameTypeFriendly()
+                .fillNotes(notes)
+                .selectPriceSplit()
+                .selectOwnerName(2)
+                .fillOwnerPrice(ownerPrice)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .fillPlayerOnePrice(playerOnePrice)
+                .selectPlayerOnePaymentMethod(5)
+                .selectPlayerTwoName(6)
+                .fillPlayerTwoPrice(playerTwoPrice)
+                .selectPlayerTwoPaymentMethod(7)
+                .selectPlayerThreeName(8)
+                .fillPlayerThreePrice(playerThreePrice)
+                .selectPlayerThreePaymentMethod(9)
+                .clickSavePrivateMatchButton();
+
+        assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Competitive private match booking create with full price should successful")
+    public void verify_competitive_private_match_booking_create_with_full_price_should_succeed() throws InterruptedException {
+        String clubName = "Farah123";
+        String notes = "test_note";
+        String ownerPrice = "10";
+
+        bookingPage = new BookingPage(page);
+
+        // Grant location permission
+        page.context().grantPermissions(List.of("geolocation"));
+
+        userLogin();
+        bookingPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(clubName)
+                .clickCreateButton()
+                .clickPrivateMatch()
+                .clickCheckScheduleButton()
+                .selectSchedule(2)
+                .clickSaveButton()
+                .selectCourtName()
+                .selectGameTypeCompetitive()
+                .fillNotes(notes)
+                .selectPriceFull()
+                .selectOwnerName(2)
+                .fillOwnerPrice(ownerPrice)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .selectPlayerTwoName(5)
+                .selectPlayerThreeName(6)
+                .clickSavePrivateMatchButton();
+
+        assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Competitive private match booking create with split price should successful")
+    public void verify_competitive_private_match_booking_create_with_split_price_should_succeed() throws InterruptedException {
+        String clubName = "Farah123";
+        String notes = "test_note";
+        String ownerPrice = "10";
+        String playerOnePrice = "10";
+        String playerTwoPrice = "10";
+        String playerThreePrice = "10";
+
+        bookingPage = new BookingPage(page);
+
+        // Grant location permission
+        page.context().grantPermissions(List.of("geolocation"));
+
+        userLogin();
+        bookingPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(clubName)
+                .clickCreateButton()
+                .clickPrivateMatch()
+                .clickCheckScheduleButton()
+                .selectSchedule(2)
+                .clickSaveButton()
+                .selectCourtName()
+                .selectGameTypeCompetitive()
+                .fillNotes(notes)
+                .selectPriceSplit()
+                .selectOwnerName(2)
+                .fillOwnerPrice(ownerPrice)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .fillPlayerOnePrice(playerOnePrice)
+                .selectPlayerOnePaymentMethod(5)
+                .selectPlayerTwoName(6)
+                .fillPlayerTwoPrice(playerTwoPrice)
+                .selectPlayerTwoPaymentMethod(7)
+                .selectPlayerThreeName(8)
+                .fillPlayerThreePrice(playerThreePrice)
+                .selectPlayerThreePaymentMethod(9)
+                .clickSavePrivateMatchButton();
+
+        assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
     }
 
     private void userLogin() {

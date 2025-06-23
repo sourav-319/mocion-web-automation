@@ -34,7 +34,7 @@ public class TournamentsPage {
     public String pricePerPlayerField = "input[name='price_per_player']";
     public String genderMale = "input[type='radio'][value='Male']";
     public String eventTypeCompetitive = "input[type='radio'][value='competitive']";
-    public String eventTypeFriendly = "input[type='radio'][value='Friendly']";
+    public String eventTypeFriendly = "input[type='radio'][value='friendly']";
     public String eventTypePrivate = "input[type='radio'][value='private']";
     public String eventTypePublic = "input[type='radio'][value='public']";
 

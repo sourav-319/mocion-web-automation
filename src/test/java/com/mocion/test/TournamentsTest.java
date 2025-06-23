@@ -21,7 +21,7 @@ public class TournamentsTest extends BaseTest {
     private static final String MAX_PLAYER_LEVEL = "5";
     private static final String TERMS_AND_CONDITIONS = "test_terms_and_conditions";
     private static final String PRICE_PER_PLAYER = "10";
-    private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+    private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday");
 
     @Test(description = "Private competitive knockout tournament create with single player should successful")
     public void verify_private_competitive_knockout_tournament_create_with_single_player_should_succeed() throws InterruptedException {
@@ -209,6 +209,54 @@ public class TournamentsTest extends BaseTest {
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
                 .selectMultipleCourts(0, 9)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Private friendly knockout tournament create with double player should successful")
+    public void verify_private_friendly_knockout_tournament_create_with_double_player_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMale()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeDouble()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 

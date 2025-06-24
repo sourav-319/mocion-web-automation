@@ -45,7 +45,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeCompetitive()
                 .selectTournamentStyleKnockouts()
                 .selectPlayerJoiningTypeSingle()
@@ -64,7 +64,7 @@ public class TournamentsTest extends BaseTest {
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 2)
+                .selectMultipleCourts(0, 3)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -93,7 +93,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeCompetitive()
                 .selectTournamentStyleKnockouts()
                 .selectPlayerJoiningTypeDouble()
@@ -112,7 +112,7 @@ public class TournamentsTest extends BaseTest {
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 2)
+                .selectMultipleCourts(0, 3)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -141,7 +141,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeCompetitive()
                 .selectTournamentStyleRound()
                 .selectPlayerJoiningTypeBoth()
@@ -189,7 +189,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeCompetitive()
                 .selectTournamentStyleRound()
                 .selectPlayerJoiningTypeSingle()
@@ -237,7 +237,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeFriendly()
                 .selectTournamentStyleKnockouts()
                 .selectPlayerJoiningTypeDouble()
@@ -285,7 +285,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeFriendly()
                 .selectTournamentStyleKnockouts()
                 .selectPlayerJoiningTypeBoth()
@@ -333,7 +333,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeFriendly()
                 .selectTournamentStyleRound()
                 .selectPlayerJoiningTypeSingle()
@@ -381,7 +381,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeFriendly()
                 .selectTournamentStyleRound()
                 .selectPlayerJoiningTypeBoth()
@@ -429,7 +429,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeFriendly()
                 .selectTournamentStyleRound()
                 .selectPlayerJoiningTypeBoth()
@@ -477,7 +477,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeCompetitive()
                 .selectTournamentStyleKnockouts()
                 .selectPlayerJoiningTypeBoth()
@@ -525,7 +525,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeCompetitive()
                 .selectTournamentStyleRound()
                 .selectPlayerJoiningTypeDouble()
@@ -573,7 +573,7 @@ public class TournamentsTest extends BaseTest {
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMale()
+                .selectGenderMixed()
                 .selectEventTypeFriendly()
                 .selectTournamentStyleKnockouts()
                 .selectPlayerJoiningTypeSingle()
@@ -595,6 +595,206 @@ public class TournamentsTest extends BaseTest {
                 .selectMultipleCourts(0, 3)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Tournament edit with all required editable fields should successful")
+    public void verify_tournament_edit_with_all_required_editable_fields_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMixed()
+                .selectEventTypeCompetitive()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeSingle()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        List<String> editData = generateTournamentData();
+
+        tournamentsPage
+                .clickMenuIcon()
+                .clickEditTournaments()
+                .clearTournamentNameField()
+                .fillTournamentName(editData.getFirst())
+                .TournamentDescriptionField()
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .clickNextButton();
+
+        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
+
+        tournamentsPage
+                .clickSaveAndPublishButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Tournament edit with all optional editable fields should successful")
+    public void verify_tournament_edit_with_all_optional_editable_fields_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMixed()
+                .selectEventTypeCompetitive()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeSingle()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        List<String> editData = generateTournamentData();
+
+        tournamentsPage
+                .clickMenuIcon()
+                .clickEditTournaments()
+                .clearOrganizationNameField()
+                .fillOrganizationName(editData.get(1))
+                .clearSponsorField()
+                .fillSponsor(editData.get(2))
+                .clearPrizeField()
+                .fillPrize(editData.get(3))
+                .clickNextButton();
+
+        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
+
+        tournamentsPage
+                .clickSaveAndPublishButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Tournament edit with all editable fields should successful")
+    public void verify_tournament_edit_with_all_editable_fields_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMixed()
+                .selectEventTypeCompetitive()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeSingle()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        List<String> editData = generateTournamentData();
+
+        tournamentsPage
+                .clickMenuIcon()
+                .clickEditTournaments()
+                .clearTournamentNameField()
+                .fillTournamentName(editData.get(0))
+                .clearOrganizationNameField()
+                .fillOrganizationName(editData.get(1))
+                .TournamentDescriptionField()
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .clearSponsorField()
+                .fillSponsor(editData.get(2))
+                .clearPrizeField()
+                .fillPrize(editData.get(3))
+                .clickNextButton();
+
+        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
+
+        tournamentsPage
+                .clickSaveAndPublishButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }

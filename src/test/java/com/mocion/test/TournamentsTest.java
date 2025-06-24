@@ -263,6 +263,342 @@ public class TournamentsTest extends BaseTest {
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Public friendly knockout tournament create with both player should successful")
+    public void verify_public_friendly_knockout_tournament_create_with_both_player_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMale()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeBoth()
+                .selectEventTypePublic()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Private friendly round tournament create with single player should successful")
+    public void verify_private_friendly_round_tournament_create_with_single_player_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMale()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleRound()
+                .selectPlayerJoiningTypeSingle()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 9)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public friendly round tournament create with double player should successful")
+    public void verify_public_friendly_round_tournament_create_with_double_player_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMale()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleRound()
+                .selectPlayerJoiningTypeBoth()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 9)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Private friendly round tournament create with both player should successful")
+    public void verify_private_friendly_round_tournament_create_with_both_player_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMale()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleRound()
+                .selectPlayerJoiningTypeBoth()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 9)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public competitive knockout tournament create with both player should successful")
+    public void verify_public_competitive_knockout_tournament_create_with_both_player_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMale()
+                .selectEventTypeCompetitive()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeBoth()
+                .selectEventTypePublic()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Private competitive round tournament create with double player should successful")
+    public void verify_private_competitive_round_tournament_create_with_double_player_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMale()
+                .selectEventTypeCompetitive()
+                .selectTournamentStyleRound()
+                .selectPlayerJoiningTypeDouble()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 9)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public friendly knockout tournament create with single player should successful")
+    public void verify_public_friendly_knockout_tournament_create_with_single_player_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMale()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeSingle()
+                .selectEventTypePublic()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
     private List<String> generateTournamentData() {
         random = new Random();
         String id = String.format("%03d", random.nextInt(999) + 1);

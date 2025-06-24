@@ -12,8 +12,10 @@ public class TournamentsPage {
 
     public String bookingText = "text='Booking'";
     public String clubNameDropdown = "select[title='Club name here']";
+    public String menuIcon = "button[class*='flex']:has(svg)";
     public String createButton = "role=button[name='Create']";
     public String tournamentsText = "text='Tournaments'";
+    public String editTournamentsText = "text='Edit tournaments'";
     public String nameInputField = "input[name='name']";
     public String organizationNameField = "input[name='organizer_name']";
     public String tournamentDescriptionField = "input[name='description']";
@@ -32,7 +34,7 @@ public class TournamentsPage {
     public String termsAndConditionsField = "input[name='terms_and_conditions']";
     public String nextButton = "button.bg-primary.text-white.rounded-full";
     public String pricePerPlayerField = "input[name='price_per_player']";
-    public String genderMale = "input[type='radio'][value='Male']";
+    public String genderMixed = "input[type='radio'][value='Mixed']";
     public String eventTypeCompetitive = "input[type='radio'][value='competitive']";
     public String eventTypeFriendly = "input[type='radio'][value='friendly']";
     public String eventTypePrivate = "input[type='radio'][value='private']";
@@ -52,6 +54,7 @@ public class TournamentsPage {
     public String checkAvailabilityButton = "button:text('Check court availibility')";
     public String okButton = "//button[text()='Ok']";
     public String tournamentCreateSuccessMessage = "text='Successful.'";
+    public String tournamentEditSuccessMessage = "text='tournament has been updated successfully'";
 
     public TournamentsPage(Page page) {
         this.page = page;
@@ -67,6 +70,11 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage clickMenuIcon() {
+        page.locator(menuIcon).nth(4).click();
+        return this;
+    }
+
     public TournamentsPage clickCreateButton() {
         page.locator(createButton).click();
         return this;
@@ -77,8 +85,23 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage clickEditTournaments() {
+        page.locator(editTournamentsText).click();
+        return this;
+    }
+
+    public TournamentsPage clearTournamentNameField() {
+        page.locator(nameInputField).clear();
+        return this;
+    }
+
     public TournamentsPage fillTournamentName(String tournamentName) {
         page.locator(nameInputField).fill(tournamentName);
+        return this;
+    }
+
+    public TournamentsPage clearOrganizationNameField() {
+        page.locator(organizationNameField).clear();
         return this;
     }
 
@@ -87,8 +110,18 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage TournamentDescriptionField() {
+        page.locator(tournamentDescriptionField).clear();
+        return this;
+    }
+
     public TournamentsPage fillTournamentDescription(String tournamentDescription) {
         page.locator(tournamentDescriptionField).fill(tournamentDescription);
+        return this;
+    }
+
+    public TournamentsPage clearSponsorField() {
+        page.locator(sponsorField).clear();
         return this;
     }
 
@@ -100,6 +133,11 @@ public class TournamentsPage {
     public TournamentsPage uploadSponsorLogo() {
         Locator sponsorLogo = page.locator(sponsorLogoField);
         sponsorLogo.setInputFiles(Paths.get("src/main/resources/club_image.png"));
+        return this;
+    }
+
+    public TournamentsPage clearPrizeField() {
+        page.locator(prizeField).clear();
         return this;
     }
 
@@ -165,8 +203,8 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage selectGenderMale() {
-        page.locator(genderMale).click();
+    public TournamentsPage selectGenderMixed() {
+        page.locator(genderMixed).click();
         return this;
     }
 
@@ -285,5 +323,9 @@ public class TournamentsPage {
 
     public Locator tournamentCreateSuccessMessageLocator() {
         return page.locator(tournamentCreateSuccessMessage);
+    }
+
+    public Locator tournamentEditSuccessMessageLocator() {
+        return page.locator(tournamentEditSuccessMessage);
     }
 }

@@ -314,7 +314,7 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectStartTime() {
-        page.locator(startTime).fill("00:00");
+        page.locator(startTime).fill("06:00");
         return this;
     }
 
@@ -362,12 +362,14 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectPlayerName() {
-        page.selectOption(addPlayerNameDropdown, playerName);
+        page.locator(addPlayerNameDropdown).click();
+        page.locator(playerName).click();
         return this;
     }
 
     public TournamentsPage selectPaymentMethod() {
-        page.selectOption(paymentMethodDropdown, paymentMethod);
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethod).click();
         return this;
     }
 

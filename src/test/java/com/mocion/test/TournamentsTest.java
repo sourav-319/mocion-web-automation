@@ -21,7 +21,7 @@ public class TournamentsTest extends BaseTest {
     private static final String MAX_PLAYER_LEVEL = "5";
     private static final String TERMS_AND_CONDITIONS = "test_terms_and_conditions";
     private static final String PRICE_PER_PLAYER = "10";
-    private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+    private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
 
     @Test(description = "Private competitive knockout tournament create with single player should successful")
     public void verify_private_competitive_knockout_tournament_create_with_single_player_should_succeed() throws InterruptedException {

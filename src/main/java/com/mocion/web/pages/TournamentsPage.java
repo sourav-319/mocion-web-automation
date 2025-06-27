@@ -26,7 +26,7 @@ public class TournamentsPage {
     public String prizeField = "input[name='prize_ids.0.name']";
     public String tournamentImageField = "input#trn_image_upload";
     public String numberOfPlayerDropdown = ".react-select__dropdown-indicator";
-    public String addPlayerNameDropdown = ".react-select.__dropdown-indicator";
+    public String addPlayerNameDropdown = "div.react-select.__dropdown-indicator";
     public String addPaymentMethodDropdown = ".react-select w-full__indicators";
     public String minPlayerLevelField = "input[name='min_players_level']";
     public String maxPlayerLevelField = "input[name='max_players_level']";

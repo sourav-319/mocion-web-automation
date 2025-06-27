@@ -870,6 +870,7 @@ public class TournamentsTest extends BaseTest {
                 .clickDuplicate()
                 .clickNextButton();
         tournamentsPage
+                .clickCourtAvailabilityButton()
                 .selectMultipleCourts(0, 3)
                 .clickSaveAndPublishButton()
                 .clickOkButton();

@@ -980,10 +980,7 @@ public class TournamentsTest extends BaseTest {
                 .clickAddPlayersButton()
                 .selectPlayerName()
                 .selectPaymentMethod();
-
-
     }
-
 
     private List<String> generateTournamentData() {
         random = new Random();

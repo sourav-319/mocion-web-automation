@@ -16,8 +16,8 @@ public class TournamentsPage {
     public String createButton = "role=button[name='Create']";
     public String tournamentsText = "text='Tournaments'";
     public String editTournamentsText = "text='Edit tournaments'";
-    public String addPlayerText="text='Add Players'";
-    public String addPlayerButton="text='Add Players'";
+    public String addPlayerText = "text='Add Players'";
+    public String addPlayerButton = "text='Add Players'";
     public String nameInputField = "input[name='name']";
     public String organizationNameField = "input[name='organizer_name']";
     public String tournamentDescriptionField = "input[name='description']";
@@ -345,21 +345,24 @@ public class TournamentsPage {
         page.locator(saveAndPublishButton).click();
         return this;
     }
+
     public TournamentsPage clickAddPlayers() {
         page.locator(addPlayerText).click();
         return this;
     }
+
     public TournamentsPage clickAddPlayersButton() {
         page.locator(addPlayerButton).click();
         return this;
     }
+
     public TournamentsPage selectPlayerName() {
         page.locator(addPlayerNameDropdown).click();
         return this;
     }
-    public TournamentsPage selectPaymentMethod() {
+
+    public void selectPaymentMethod() {
         page.locator(addPaymentMethodDropdown).click();
-        return this;
     }
 
     public TournamentsPage clickFirstConversation() {

@@ -930,6 +930,61 @@ public class TournamentsTest extends BaseTest {
         assertThat(tournamentsPage.tournamentCancelSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Private competitive knockout tournament create with single player should successful")
+    public void verify_add_player_with_tournament_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMixed()
+                .selectEventTypeCompetitive()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeSingle()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+        tournamentsPage
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerName()
+                .selectPaymentMethod();
+
+
+    }
+
+
     private List<String> generateTournamentData() {
         random = new Random();
         String id = String.format("%03d", random.nextInt(999) + 1);

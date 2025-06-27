@@ -309,12 +309,12 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectStartTime() {
-        page.locator(startTime).fill("06:00");
+        page.locator(startTime).fill("12:00");
         return this;
     }
 
     public TournamentsPage selectEndTime() {
-        page.locator(endTime).fill("21:00");
+        page.locator(endTime).fill("23:00");
         return this;
     }
 

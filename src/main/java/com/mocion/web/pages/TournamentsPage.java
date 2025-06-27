@@ -16,6 +16,8 @@ public class TournamentsPage {
     public String createButton = "role=button[name='Create']";
     public String tournamentsText = "text='Tournaments'";
     public String editTournamentsText = "text='Edit tournaments'";
+    public String addPlayerText="text='Add Players'";
+    public String addPlayerButton="text='Add Players'";
     public String nameInputField = "input[name='name']";
     public String organizationNameField = "input[name='organizer_name']";
     public String tournamentDescriptionField = "input[name='description']";
@@ -24,6 +26,8 @@ public class TournamentsPage {
     public String prizeField = "input[name='prize_ids.0.name']";
     public String tournamentImageField = "input#trn_image_upload";
     public String numberOfPlayerDropdown = ".react-select__dropdown-indicator";
+    public String addPlayerNameDropdown = ".react-select__indicator react-select";
+    public String addPaymentMethodDropdown = ".react-select w-full__indicators";
     public String minPlayerLevelField = "input[name='min_players_level']";
     public String maxPlayerLevelField = "input[name='max_players_level']";
     public String tournamentStyleKnockout = "input[type='radio'][value='Knockouts']";
@@ -314,6 +318,22 @@ public class TournamentsPage {
 
     public TournamentsPage clickSaveAndPublishButton() {
         page.locator(saveAndPublishButton).click();
+        return this;
+    }
+    public TournamentsPage clickAddPlayers() {
+        page.locator(addPlayerText).click();
+        return this;
+    }
+    public TournamentsPage clickAddPlayersButton() {
+        page.locator(addPlayerButton).click();
+        return this;
+    }
+    public TournamentsPage selectPlayerName() {
+        page.locator(addPlayerNameDropdown).click();
+        return this;
+    }
+    public TournamentsPage selectPaymentMethod() {
+        page.locator(addPaymentMethodDropdown).click();
         return this;
     }
 

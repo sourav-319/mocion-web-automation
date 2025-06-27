@@ -2,6 +2,7 @@ package com.mocion.test;
 
 import com.mocion.web.pages.LoginPage;
 import com.mocion.web.pages.TournamentsPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -797,6 +798,27 @@ public class TournamentsTest extends BaseTest {
                 .clickSaveAndPublishButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Chat with players should successful")
+    public void verify_chat_with_players_should_succeed() throws InterruptedException {
+        String conversationText = "Hello, this is a test message";
+        tournamentsPage = new TournamentsPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar();
+        page.navigate(prop.getProperty("tournamentsPageUrl"));
+        tournamentsPage
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickChatWithPlayers()
+                .clickFirstConversation()
+                .fillConversationText(conversationText)
+                .clickSendIcon();
+
+        Assert.assertTrue(tournamentsPage.sentMessageTextContent().contains(conversationText));
     }
 
     private List<String> generateTournamentData() {

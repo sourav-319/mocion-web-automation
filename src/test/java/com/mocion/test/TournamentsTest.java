@@ -2,6 +2,7 @@ package com.mocion.test;
 
 import com.mocion.web.pages.LoginPage;
 import com.mocion.web.pages.TournamentsPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -797,6 +798,136 @@ public class TournamentsTest extends BaseTest {
                 .clickSaveAndPublishButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Chat with players should successful")
+    public void verify_chat_with_players_should_succeed() throws InterruptedException {
+        String conversationText = "Hello, this is a test message";
+        tournamentsPage = new TournamentsPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar();
+        page.navigate(prop.getProperty("tournamentsPageUrl"));
+        tournamentsPage
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickChatWithPlayers()
+                .clickFirstConversation()
+                .fillConversationText(conversationText)
+                .clickSendIcon();
+
+        Assert.assertTrue(tournamentsPage.sentMessageTextContent().contains(conversationText));
+    }
+
+    @Test(description = "Tournament duplicate should successful")
+    public void verify_tournament_duplicate_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMixed()
+                .selectEventTypeCompetitive()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeSingle()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+        tournamentsPage
+                .clickMenuIcon()
+                .clickDuplicate()
+                .clickNextButton();
+        tournamentsPage
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Tournament cancel should successful")
+    public void verify_tournament_cancel_should_succeed() throws InterruptedException {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .clickTournaments()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectGenderMixed()
+                .selectEventTypeCompetitive()
+                .selectTournamentStyleKnockouts()
+                .selectPlayerJoiningTypeSingle()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .clickNextButton();
+        tournamentsPage
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedCourts()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .clickCourtAvailabilityButton()
+                .selectMultipleCourts(0, 3)
+                .clickSaveAndPublishButton()
+                .clickOkButton();
+        tournamentsPage
+                .clickMenuIcon()
+                .clickCancelTournament()
+                .clickYesToCancelTournament();
+
+        assertThat(tournamentsPage.tournamentCancelSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Private competitive knockout tournament create with single player should successful")

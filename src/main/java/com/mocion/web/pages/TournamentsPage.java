@@ -60,6 +60,16 @@ public class TournamentsPage {
     public String tournamentCreateSuccessMessage = "text='Successful.'";
     public String tournamentEditSuccessMessage = "text='tournament has been updated successfully'";
 
+    public String chatWithPlayersText = "li:has-text('chat with players')";
+    public String firstConversation = ".w-full.flex.px-8";
+    public String conversationTextInputField = ".editable.w-full.pt-2";
+    public String sendMessageIcon = ".lucide.lucide-send";
+    public String sentMessageText = ".flex.flex-col.gap-2.py-2.pr-2";
+    public String duplicateText = "li:has-text('Duplicate')";
+    public String cancelTournamentText = "text=Cancel tournament";
+    public String yesButtonToCancelTournament = "button:has-text('Yes')";
+    public String tournamentCancelSuccessMessage = "text='tournament has been canceled successfully'";
+
     public TournamentsPage(Page page) {
         this.page = page;
     }
@@ -69,8 +79,23 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage clickCancelTournament() {
+        page.locator(cancelTournamentText).click();
+        return this;
+    }
+
+    public TournamentsPage clickDuplicate() {
+        page.locator(duplicateText).click();
+        return this;
+    }
+
     public TournamentsPage selectClubName(String clubName) {
         page.selectOption(clubNameDropdown, clubName);
+        return this;
+    }
+
+    public TournamentsPage clickChatWithPlayers() {
+        page.locator(chatWithPlayersText).click();
         return this;
     }
 
@@ -337,6 +362,24 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage clickFirstConversation() {
+        page.locator(firstConversation).nth(0).click();
+        return this;
+    }
+
+    public TournamentsPage fillConversationText(String conversationText) {
+        page.locator(conversationTextInputField).fill(conversationText);
+        return this;
+    }
+
+    public void clickYesToCancelTournament() {
+        page.locator(yesButtonToCancelTournament).click();
+    }
+
+    public void clickSendIcon() {
+        page.locator(sendMessageIcon).click();
+    }
+
     public void clickOkButton() {
         page.locator(okButton).click();
     }
@@ -347,5 +390,13 @@ public class TournamentsPage {
 
     public Locator tournamentEditSuccessMessageLocator() {
         return page.locator(tournamentEditSuccessMessage);
+    }
+
+    public String sentMessageTextContent() {
+        return page.locator(sentMessageText).last().textContent();
+    }
+
+    public Locator tournamentCancelSuccessMessageLocator() {
+        return page.locator(tournamentCancelSuccessMessage);
     }
 }

@@ -27,7 +27,7 @@ public class TournamentsPage {
     public String tournamentImageField = "input#trn_image_upload";
     public String numberOfPlayerDropdown = ".react-select__dropdown-indicator";
     public String addPlayerNameDropdown = "div.react-select.__dropdown-indicator";
-    public String addPaymentMethodDropdown = ".react-select w-full__indicators";
+    public String paymentMethodDropdown = "div.react-select.w-full__dropdown-indicator";
     public String minPlayerLevelField = "input[name='min_players_level']";
     public String maxPlayerLevelField = "input[name='max_players_level']";
     public String tournamentStyleKnockout = "input[type='radio'][value='Knockouts']";
@@ -69,6 +69,11 @@ public class TournamentsPage {
     public String cancelTournamentText = "text=Cancel tournament";
     public String yesButtonToCancelTournament = "button:has-text('Yes')";
     public String tournamentCancelSuccessMessage = "text='tournament has been canceled successfully'";
+    public String paymentMethod = "text='Cash'";
+    public String joinTypeSingle = "input[type='radio'][value='Single']";
+    public String addTournamentPlayerSuccessMessageLocator = "text='Players were added successfully as League Players'";
+    public String playerName = "text='Zeinab khalil'";
+    public String addPlayerSaveButton = "button[type='submit']";
 
     public TournamentsPage(Page page) {
         this.page = page;
@@ -309,7 +314,7 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectStartTime() {
-        page.locator(startTime).fill("12:00");
+        page.locator(startTime).fill("00:00");
         return this;
     }
 
@@ -358,12 +363,14 @@ public class TournamentsPage {
 
     public TournamentsPage selectPlayerName() {
         page.locator(addPlayerNameDropdown).click();
-        page.keyboard().press("Enter");
+        page.locator(playerName).click();
         return this;
     }
 
-    public void selectPaymentMethod() {
-        page.locator(addPaymentMethodDropdown).click();
+    public TournamentsPage selectPaymentMethod() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethod).click();
+        return this;
     }
 
     public TournamentsPage clickFirstConversation() {
@@ -376,8 +383,17 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage selectJoinTypeSingle() {
+        page.locator(joinTypeSingle).click();
+        return this;
+    }
+
     public void clickYesToCancelTournament() {
         page.locator(yesButtonToCancelTournament).click();
+    }
+
+    public void clickAddPlayerSaveButton() {
+        page.locator(addPlayerSaveButton).click();
     }
 
     public void clickSendIcon() {
@@ -402,5 +418,9 @@ public class TournamentsPage {
 
     public Locator tournamentCancelSuccessMessageLocator() {
         return page.locator(tournamentCancelSuccessMessage);
+    }
+
+    public Locator addTournamentPlayerSuccessMessageLocator() {
+        return page.locator(addTournamentPlayerSuccessMessageLocator);
     }
 }

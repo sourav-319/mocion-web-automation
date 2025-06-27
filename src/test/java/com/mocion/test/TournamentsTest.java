@@ -930,8 +930,8 @@ public class TournamentsTest extends BaseTest {
         assertThat(tournamentsPage.tournamentCancelSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Private competitive knockout tournament create with single player should successful")
-    public void verify_add_player_with_tournament_should_succeed() throws InterruptedException {
+    @Test(description = "Adding player to tournament should be successful")
+    public void verify_adding_player_to_tournament_should_succeed() throws InterruptedException {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -979,7 +979,11 @@ public class TournamentsTest extends BaseTest {
                 .clickAddPlayers()
                 .clickAddPlayersButton()
                 .selectPlayerName()
-                .selectPaymentMethod();
+                .selectJoinTypeSingle()
+                .selectPaymentMethod()
+                .clickAddPlayerSaveButton();
+
+        assertThat(tournamentsPage.addTournamentPlayerSuccessMessageLocator()).isVisible();
     }
 
     private List<String> generateTournamentData() {

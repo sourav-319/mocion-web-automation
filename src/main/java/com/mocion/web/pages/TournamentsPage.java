@@ -362,14 +362,12 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectPlayerName() {
-        page.locator(addPlayerNameDropdown).click();
-        page.locator(playerName).click();
+        page.selectOption(addPlayerNameDropdown, playerName);
         return this;
     }
 
     public TournamentsPage selectPaymentMethod() {
-        page.locator(paymentMethodDropdown).click();
-        page.locator(paymentMethod).click();
+        page.selectOption(paymentMethodDropdown, paymentMethod);
         return this;
     }
 

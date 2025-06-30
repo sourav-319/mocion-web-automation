@@ -10,7 +10,7 @@ import java.util.List;
 public class TournamentsPage {
     private final Page page;
 
-    public String bookingText = "text='Booking'";
+    public String eventsText = "text='Events'";
     public String clubNameDropdown = "select[title='Club name here']";
     public String menuIcon = "button[class*='flex']:has(svg)";
     public String createButton = "role=button[name='Create']";
@@ -43,7 +43,6 @@ public class TournamentsPage {
     public String eventTypeFriendly = "input[type='radio'][value='friendly']";
     public String eventTypePrivate = "input[type='radio'][value='private']";
     public String eventTypePublic = "input[type='radio'][value='public']";
-
     public String startDate = "label[for='start_date']";
     public String endDate = "label[for='end_date']";
     public String registrationDeadline = "label[for='registration_deadline_date']";
@@ -59,7 +58,6 @@ public class TournamentsPage {
     public String okButton = "//button[text()='Ok']";
     public String tournamentCreateSuccessMessage = "text='Successful.'";
     public String tournamentEditSuccessMessage = "text='tournament has been updated successfully'";
-
     public String chatWithPlayersText = "li:has-text('chat with players')";
     public String firstConversation = ".w-full.flex.px-8";
     public String conversationTextInputField = ".editable.w-full.pt-2";
@@ -74,13 +72,30 @@ public class TournamentsPage {
     public String addTournamentPlayerSuccessMessageLocator = "text='Players were added successfully as League Players'";
     public String playerName = "text='Zeinab khalil'";
     public String addPlayerSaveButton = "button[type='submit']";
+    public String scheduleText = "text='Schedule'";
+    public String numberOfTopSeatsDropdown = ".react-select__indicator.react-select__dropdown-indicator";
+    public String generateGroupsButton = "button:has-text(\"Generate groups\")";
+    public String saveAndNextButton = "button:has-text(\"save And Next\")";
+    public String numberOfTopSeatsTwo = "text='2'";
+    public String scoreOneInputField = "input[name='score_1']";
+    public String scoreTwoInputField = "input[name='score_2']";
+    public String saveMatchScoreButton = "button:has-text(\"Save\")";
+    public String confirmResultIcon = "button:has(img[alt='check icon'])";
+    public String editMatchScoreIcon = "button:has(img[alt='edit icon'])";
+    public String yesToConfirmMatchResultButton = "button:has-text(\"Yes\")";
+    public String scoresUpdateSuccessMessageLocator = "text='scores have been updated successfully'";
 
     public TournamentsPage(Page page) {
         this.page = page;
     }
 
-    public TournamentsPage clickBookingFromNavigationBar() {
-        page.locator(bookingText).click();
+    public TournamentsPage clickEventsFromNavigationBar() {
+        page.locator(eventsText).click();
+        return this;
+    }
+
+    public TournamentsPage clickTournamentsFromNavigationBar() {
+        page.locator(tournamentsText).click();
         return this;
     }
 
@@ -111,11 +126,6 @@ public class TournamentsPage {
 
     public TournamentsPage clickCreateButton() {
         page.locator(createButton).click();
-        return this;
-    }
-
-    public TournamentsPage clickTournaments() {
-        page.locator(tournamentsText).nth(1).click();
         return this;
     }
 
@@ -396,6 +406,71 @@ public class TournamentsPage {
         page.locator(addPlayerSaveButton).click();
     }
 
+    public TournamentsPage clickSchedule() {
+        page.locator(scheduleText).click();
+        return this;
+    }
+
+    public TournamentsPage selectNumberOfTopSeatsTwo() {
+        page.locator(numberOfTopSeatsDropdown).click();
+        page.locator(numberOfTopSeatsTwo).click();
+        return this;
+    }
+
+    public TournamentsPage clickGenerateGroupsButton() {
+        page.locator(generateGroupsButton).click();
+        return this;
+    }
+
+    public TournamentsPage clickSaveAndNextButton() {
+        page.locator(saveAndNextButton).click();
+        return this;
+    }
+
+    public void fillMatchScoreOne(String scoreOne) {
+        page.locator(scoreOneInputField).fill(scoreOne);
+    }
+
+    public void fillMatchScoreTwo(String scoreTwo) {
+        page.locator(scoreTwoInputField).fill(scoreTwo);
+    }
+
+    public void clickSaveMatchScoreButton() {
+        page.locator(saveMatchScoreButton).click();
+    }
+
+    public void clickYesToConfirmMatchResult() {
+        page.locator(yesToConfirmMatchResultButton).click();
+    }
+
+    public void handleMatchScores(String scoreOne, String scoreTwo) {
+        List<String> order = List.of("L1", "R1", "F1", "F2");
+        Locator rows = page.locator("tbody tr");
+        int count = rows.count();
+
+        for (String label : order) {
+            for (int i = 0; i < count; i++) {
+                String text = rows.nth(i).locator("td").first().locator("p").first().innerText().trim();
+                if (text.equals(label)) {
+                    Locator editIcon = rows.nth(i).locator(editMatchScoreIcon);
+                    if (editIcon.count() == 0) continue;
+
+                    editIcon.click();
+                    fillMatchScoreOne(scoreOne);
+                    fillMatchScoreTwo(scoreTwo);
+                    clickSaveMatchScoreButton();
+
+                    Locator confirmIcon = rows.nth(i).locator(confirmResultIcon);
+                    if (confirmIcon.count() > 0) {
+                        confirmIcon.click();
+                        clickYesToConfirmMatchResult();
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
     public void clickSendIcon() {
         page.locator(sendMessageIcon).click();
     }
@@ -422,5 +497,9 @@ public class TournamentsPage {
 
     public Locator addTournamentPlayerSuccessMessageLocator() {
         return page.locator(addTournamentPlayerSuccessMessageLocator);
+    }
+
+    public Locator scoresUpdateSuccessMessageLocator() {
+        return page.locator(scoresUpdateSuccessMessageLocator);
     }
 }

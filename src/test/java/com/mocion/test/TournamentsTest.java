@@ -32,10 +32,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -80,10 +80,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -128,10 +128,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -176,10 +176,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -224,10 +224,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -272,10 +272,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -320,10 +320,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -368,10 +368,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -416,10 +416,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -464,10 +464,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -512,10 +512,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -560,10 +560,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -608,10 +608,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -672,10 +672,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -738,10 +738,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -808,9 +808,8 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar();
-        page.navigate(prop.getProperty("tournamentsPageUrl"));
-        tournamentsPage
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickMenuIcon()
                 .clickChatWithPlayers()
@@ -829,10 +828,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -886,10 +885,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -938,10 +937,10 @@ public class TournamentsTest extends BaseTest {
         setLocationPermissionAllowed();
         userLogin();
         tournamentsPage
-                .clickBookingFromNavigationBar()
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickCreateButton()
-                .clickTournaments()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
                 .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
@@ -984,6 +983,30 @@ public class TournamentsTest extends BaseTest {
                 .clickAddPlayerSaveButton();
 
         assertThat(tournamentsPage.addTournamentPlayerSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Setting the schedule for the tournament should be successful")
+    public void verify_setting_the_schedule_for_the_tournament_should_succeed() throws InterruptedException {
+        String scoreOne = "4";
+        String scoreTwo = "2";
+        String clubName = "RE2";
+        tournamentsPage = new TournamentsPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
+                .selectClubName(clubName)
+                .clickMenuIcon()
+                .clickSchedule()
+                .selectNumberOfTopSeatsTwo()
+                .clickGenerateGroupsButton()
+                .clickSaveAndNextButton()
+                .clickSaveAndNextButton()
+                .handleMatchScores(scoreOne, scoreTwo);
+
+        assertThat(tournamentsPage.scoresUpdateSuccessMessageLocator()).isVisible();
     }
 
     private List<String> generateTournamentData() {

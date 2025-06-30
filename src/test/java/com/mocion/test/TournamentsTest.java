@@ -987,6 +987,9 @@ public class TournamentsTest extends BaseTest {
 
     @Test(description = "Setting the schedule for the tournament should be successful")
     public void verify_setting_the_schedule_for_the_tournament_should_succeed() throws InterruptedException {
+        String scoreOne = "4";
+        String scoreTwo = "2";
+        String clubName = "RE2";
         tournamentsPage = new TournamentsPage(page);
 
         setLocationPermissionAllowed();
@@ -994,14 +997,14 @@ public class TournamentsTest extends BaseTest {
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
-                .selectClubName("RE2")
+                .selectClubName(clubName)
                 .clickMenuIcon()
                 .clickSchedule()
                 .selectNumberOfTopSeatsTwo()
                 .clickGenerateGroupsButton()
                 .clickSaveAndNextButton()
                 .clickSaveAndNextButton()
-                .handleMatchScores("4", "2");
+                .handleMatchScores(scoreOne, scoreTwo);
 
         assertThat(tournamentsPage.scoresUpdateSuccessMessageLocator()).isVisible();
     }

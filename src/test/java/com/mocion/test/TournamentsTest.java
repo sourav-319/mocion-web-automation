@@ -985,8 +985,8 @@ public class TournamentsTest extends BaseTest {
         assertThat(tournamentsPage.addTournamentPlayerSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Setting the schedule for the tournament should be successful")
-    public void verify_setting_the_schedule_for_the_tournament_should_succeed() throws InterruptedException {
+    @Test(description = "Setting the schedule for the knockout tournament should be successful")
+    public void verify_setting_the_schedule_for_the_knockout_tournament_should_succeed() throws InterruptedException {
         String scoreOne = "4";
         String scoreTwo = "2";
         String clubName = "RE2";
@@ -1004,9 +1004,35 @@ public class TournamentsTest extends BaseTest {
                 .clickGenerateGroupsButton()
                 .clickSaveAndNextButton()
                 .clickSaveAndNextButton()
-                .handleMatchScores(scoreOne, scoreTwo);
+                .setKnockoutMatchScores(scoreOne, scoreTwo);
 
         assertThat(tournamentsPage.scoresUpdateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Setting the schedule for the round robin tournament should be successful")
+    public void verify_setting_the_schedule_for_the_round_robin_tournament_should_succeed() throws InterruptedException {
+        String scoreOne = "4";
+        String scoreTwo = "2";
+        String clubName = "RE2";
+        tournamentsPage = new TournamentsPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
+                .selectClubName(clubName)
+                .clickMenuIcon()
+                .clickSchedule()
+                .selectNumberOfTopSeatsTwo()
+                .clickGenerateGroupsButton()
+                .clickSaveAndNextButton()
+                .clickNextButtonPhaseOne()
+                .clickSaveAndNextButtonPhaseOne()
+                .setRoundRobinPhaseOneMatchScores(scoreOne, scoreTwo)
+                .clickGenerateResultsButton()
+                .clickNextButtonPhaseOne()
+                .clickViewChartButton();
     }
 
     private List<String> generateTournamentData() {

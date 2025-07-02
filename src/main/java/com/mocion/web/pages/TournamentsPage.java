@@ -84,6 +84,9 @@ public class TournamentsPage {
     public String editMatchScoreIcon = "button:has(img[alt='edit icon'])";
     public String yesToConfirmMatchResultButton = "button:has-text(\"Yes\")";
     public String scoresUpdateSuccessMessageLocator = "text='scores have been updated successfully'";
+    public String nextButtonPhaseOne = "button:has-text(\"Next\")";
+    public String saveAndNextButtonPhaseOne = "button:has-text(\"save and next\")";
+    public String generateResultsButton = "button:has-text(\"Generate results\")";
 
     public TournamentsPage(Page page) {
         this.page = page;
@@ -306,7 +309,7 @@ public class TournamentsPage {
                 "Friday", "Saturday", "Sunday"
         );
 
-        page.locator(allowedDays).nth(1).click(); // Open dropdown once
+        page.locator(allowedDays).nth(1).click();
 
         for (String day : daysToSelect) {
             int index = allDays.indexOf(day);
@@ -443,7 +446,7 @@ public class TournamentsPage {
         page.locator(yesToConfirmMatchResultButton).click();
     }
 
-    public void handleMatchScores(String scoreOne, String scoreTwo) {
+    public void setKnockoutMatchScores(String scoreOne, String scoreTwo) {
         List<String> order = List.of("L1", "R1", "F1", "F2");
         Locator rows = page.locator("tbody tr");
         int count = rows.count();
@@ -469,6 +472,59 @@ public class TournamentsPage {
                 }
             }
         }
+    }
+
+    public TournamentsPage setRoundRobinPhaseOneMatchScores(String scoreOne, String scoreTwo) {
+        int count = page.locator(editMatchScoreIcon).count();
+
+        for (int i = 0; i < count; i++) {
+            page.locator(editMatchScoreIcon).nth(i).click();
+            fillMatchScoreOne(scoreOne);
+            fillMatchScoreTwo(scoreTwo);
+            clickSaveMatchScoreButton();
+        }
+        return this;
+    }
+
+    public TournamentsPage setRoundRobinSemiFinalMatchScores(String scoreOne, String scoreTwo) {
+        int count = page.locator(editMatchScoreIcon).count();
+
+        for (int i = 0; i < count; i++) {
+            page.locator(editMatchScoreIcon).nth(0).click();
+            fillMatchScoreOne(scoreOne);
+            fillMatchScoreTwo(scoreTwo);
+            clickSaveMatchScoreButton();
+        }
+        return this;
+    }
+
+    public TournamentsPage setRoundRobinFinalMatchScores(String scoreOne, String scoreTwo) {
+        setRoundRobinSemiFinalMatchScores(scoreOne, scoreTwo);
+        return this;
+    }
+
+    public TournamentsPage clickPhaseOneGenerateResultsButton() {
+        int count = page.locator(generateResultsButton).count();
+
+        for (int i = 0; i < count; i++) {
+            page.locator(generateResultsButton).nth(0).click();
+        }
+        return this;
+    }
+
+    public TournamentsPage clickFinalGenerateResultsButton() {
+        page.locator(generateResultsButton).nth(0).click();
+        return this;
+    }
+
+    public TournamentsPage clickNextButtonPhaseOne() {
+        page.locator(nextButtonPhaseOne).click();
+        return this;
+    }
+
+    public TournamentsPage clickSaveAndNextButtonPhaseOne() {
+        page.locator(saveAndNextButtonPhaseOne).click();
+        return this;
     }
 
     public void clickSendIcon() {

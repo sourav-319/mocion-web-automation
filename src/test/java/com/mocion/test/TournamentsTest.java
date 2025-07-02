@@ -25,7 +25,7 @@ public class TournamentsTest extends BaseTest {
     private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
 
     @Test(description = "Private competitive knockout tournament create with single player should successful")
-    public void verify_private_competitive_knockout_tournament_create_with_single_player_should_succeed() throws InterruptedException {
+    public void verify_private_competitive_knockout_tournament_create_with_single_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -73,7 +73,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Public competitive knockout tournament create with double player should successful")
-    public void verify_public_competitive_knockout_tournament_create_with_double_player_should_succeed() throws InterruptedException {
+    public void verify_public_competitive_knockout_tournament_create_with_double_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -121,7 +121,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Private competitive round tournament create with both player should successful")
-    public void verify_private_competitive_round_tournament_create_with_both_player_should_succeed() throws InterruptedException {
+    public void verify_private_competitive_round_tournament_create_with_both_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -169,7 +169,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Public competitive round tournament create with single player should successful")
-    public void verify_public_competitive_round_tournament_create_with_single_player_should_succeed() throws InterruptedException {
+    public void verify_public_competitive_round_tournament_create_with_single_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -217,7 +217,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Private friendly knockout tournament create with double player should successful")
-    public void verify_private_friendly_knockout_tournament_create_with_double_player_should_succeed() throws InterruptedException {
+    public void verify_private_friendly_knockout_tournament_create_with_double_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -265,7 +265,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Public friendly knockout tournament create with both player should successful")
-    public void verify_public_friendly_knockout_tournament_create_with_both_player_should_succeed() throws InterruptedException {
+    public void verify_public_friendly_knockout_tournament_create_with_both_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -313,7 +313,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Private friendly round tournament create with single player should successful")
-    public void verify_private_friendly_round_tournament_create_with_single_player_should_succeed() throws InterruptedException {
+    public void verify_private_friendly_round_tournament_create_with_single_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -361,7 +361,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Public friendly round tournament create with double player should successful")
-    public void verify_public_friendly_round_tournament_create_with_double_player_should_succeed() throws InterruptedException {
+    public void verify_public_friendly_round_tournament_create_with_double_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -409,7 +409,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Private friendly round tournament create with both player should successful")
-    public void verify_private_friendly_round_tournament_create_with_both_player_should_succeed() throws InterruptedException {
+    public void verify_private_friendly_round_tournament_create_with_both_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -457,7 +457,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Public competitive knockout tournament create with both player should successful")
-    public void verify_public_competitive_knockout_tournament_create_with_both_player_should_succeed() throws InterruptedException {
+    public void verify_public_competitive_knockout_tournament_create_with_both_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -505,7 +505,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Private competitive round tournament create with double player should successful")
-    public void verify_private_competitive_round_tournament_create_with_double_player_should_succeed() throws InterruptedException {
+    public void verify_private_competitive_round_tournament_create_with_double_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -553,7 +553,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Public friendly knockout tournament create with single player should successful")
-    public void verify_public_friendly_knockout_tournament_create_with_single_player_should_succeed() throws InterruptedException {
+    public void verify_public_friendly_knockout_tournament_create_with_single_player_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -601,7 +601,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Tournament edit with all required editable fields should successful")
-    public void verify_tournament_edit_with_all_required_editable_fields_should_succeed() throws InterruptedException {
+    public void verify_tournament_edit_with_all_required_editable_fields_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -665,7 +665,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Tournament edit with all optional editable fields should successful")
-    public void verify_tournament_edit_with_all_optional_editable_fields_should_succeed() throws InterruptedException {
+    public void verify_tournament_edit_with_all_optional_editable_fields_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -731,7 +731,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Tournament edit with all editable fields should successful")
-    public void verify_tournament_edit_with_all_editable_fields_should_succeed() throws InterruptedException {
+    public void verify_tournament_edit_with_all_editable_fields_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -801,7 +801,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Chat with players should successful")
-    public void verify_chat_with_players_should_succeed() throws InterruptedException {
+    public void verify_chat_with_players_should_succeed() {
         String conversationText = "Hello, this is a test message";
         tournamentsPage = new TournamentsPage(page);
 
@@ -821,7 +821,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Tournament duplicate should successful")
-    public void verify_tournament_duplicate_should_succeed() throws InterruptedException {
+    public void verify_tournament_duplicate_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -878,7 +878,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Tournament cancel should successful")
-    public void verify_tournament_cancel_should_succeed() throws InterruptedException {
+    public void verify_tournament_cancel_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -930,7 +930,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Adding player to tournament should be successful")
-    public void verify_adding_player_to_tournament_should_succeed() throws InterruptedException {
+    public void verify_adding_player_to_tournament_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -986,7 +986,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Setting the schedule for the knockout tournament should be successful")
-    public void verify_setting_the_schedule_for_the_knockout_tournament_should_succeed() throws InterruptedException {
+    public void verify_setting_the_schedule_for_the_knockout_tournament_should_succeed() {
         String scoreOne = "4";
         String scoreTwo = "2";
         String clubName = "RE2";
@@ -1010,7 +1010,7 @@ public class TournamentsTest extends BaseTest {
     }
 
     @Test(description = "Setting the schedule for the round robin tournament should be successful")
-    public void verify_setting_the_schedule_for_the_round_robin_tournament_should_succeed() throws InterruptedException {
+    public void verify_setting_the_schedule_for_the_round_robin_tournament_should_succeed() {
         String scoreOne = "4";
         String scoreTwo = "2";
         String clubName = "RE2";

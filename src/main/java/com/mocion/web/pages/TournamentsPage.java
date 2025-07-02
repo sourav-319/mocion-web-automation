@@ -87,7 +87,6 @@ public class TournamentsPage {
     public String nextButtonPhaseOne = "button:has-text(\"Next\")";
     public String saveAndNextButtonPhaseOne = "button:has-text(\"save and next\")";
     public String generateResultsButton = "button:has-text(\"Generate results\")";
-    public String viewChartButton = "button:has-text(\"View Chart\")";
 
     public TournamentsPage(Page page) {
         this.page = page;

@@ -487,21 +487,35 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickGenerateResults() {
-        page.locator(generateResultsButton).click();
-    }
-
-    public TournamentsPage clickGenerateResultsButton() {
-        int count = page.locator(generateResultsButton).count();
+    public TournamentsPage setRoundRobinSemiFinalMatchScores(String scoreOne, String scoreTwo) {
+        int count = page.locator(editMatchScoreIcon).count();
 
         for (int i = 0; i < count; i++) {
-            clickGenerateResults();
+            page.locator(editMatchScoreIcon).nth(0).click();
+            fillMatchScoreOne(scoreOne);
+            fillMatchScoreTwo(scoreTwo);
+            clickSaveMatchScoreButton();
         }
         return this;
     }
 
-    public void clickViewChartButton() {
-        page.locator(viewChartButton).click();
+    public TournamentsPage setRoundRobinFinalMatchScores(String scoreOne, String scoreTwo) {
+        setRoundRobinSemiFinalMatchScores(scoreOne, scoreTwo);
+        return this;
+    }
+
+    public TournamentsPage clickPhaseOneGenerateResultsButton() {
+        int count = page.locator(generateResultsButton).count();
+
+        for (int i = 0; i < count; i++) {
+            page.locator(generateResultsButton).nth(0).click();
+        }
+        return this;
+    }
+
+    public TournamentsPage clickFinalGenerateResultsButton() {
+        page.locator(generateResultsButton).nth(0).click();
+        return this;
     }
 
     public TournamentsPage clickNextButtonPhaseOne() {

@@ -1030,9 +1030,14 @@ public class TournamentsTest extends BaseTest {
                 .clickNextButtonPhaseOne()
                 .clickSaveAndNextButtonPhaseOne()
                 .setRoundRobinPhaseOneMatchScores(scoreOne, scoreTwo)
-                .clickGenerateResultsButton()
+                .clickPhaseOneGenerateResultsButton()
                 .clickNextButtonPhaseOne()
-                .clickViewChartButton();
+                .setRoundRobinSemiFinalMatchScores(scoreOne, scoreTwo)
+                .clickFinalGenerateResultsButton()
+                .setRoundRobinFinalMatchScores(scoreOne, scoreTwo)
+                .clickFinalGenerateResultsButton();
+
+        assertThat(tournamentsPage.scoresUpdateSuccessMessageLocator()).isVisible();
     }
 
     private List<String> generateTournamentData() {

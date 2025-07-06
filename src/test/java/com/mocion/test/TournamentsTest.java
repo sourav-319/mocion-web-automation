@@ -17,11 +17,11 @@ public class TournamentsTest extends BaseTest {
     public Random random;
 
     private static final String CLUB_NAME = "Farah123";
-    private static final String TOURNAMENT_DESCRIPTION = "test_description";
     private static final String MIN_PLAYER_LEVEL = "0";
     private static final String MAX_PLAYER_LEVEL = "5";
-    private static final String TERMS_AND_CONDITIONS = "test_terms_and_conditions";
     private static final String PRICE_PER_PLAYER = "10";
+    private static final int MAX_DATE_INCREMENT = 5;
+    private static final int COURTS_TO_SELECT = 2;
     private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
 
     @Test(description = "Private competitive knockout tournament create with single player should successful")
@@ -38,7 +38,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -52,20 +52,19 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
-                .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -86,7 +85,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -100,20 +99,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeDouble()
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -134,7 +133,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -148,20 +147,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeBoth()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 9)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -182,7 +181,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -196,20 +195,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 9)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -230,7 +229,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -244,20 +243,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeDouble()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -278,7 +277,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -292,20 +291,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeBoth()
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -326,7 +325,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -340,20 +339,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 9)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -374,7 +373,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -388,20 +387,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeBoth()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 9)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -422,7 +421,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -436,20 +435,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeBoth()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 9)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -470,7 +469,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -484,20 +483,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeBoth()
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -518,7 +517,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -532,20 +531,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeDouble()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 9)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -566,7 +565,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -580,20 +579,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -614,7 +613,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -628,20 +627,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -653,7 +652,7 @@ public class TournamentsTest extends BaseTest {
                 .clearTournamentNameField()
                 .fillTournamentName(editData.getFirst())
                 .TournamentDescriptionField()
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .clickNextButton();
 
         assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
@@ -678,7 +677,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -692,20 +691,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -744,7 +743,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -758,20 +757,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -785,7 +784,7 @@ public class TournamentsTest extends BaseTest {
                 .clearOrganizationNameField()
                 .fillOrganizationName(editData.get(1))
                 .TournamentDescriptionField()
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .clearSponsorField()
                 .fillSponsor(editData.get(2))
                 .clearPrizeField()
@@ -834,7 +833,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -848,20 +847,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
         tournamentsPage
@@ -870,7 +869,7 @@ public class TournamentsTest extends BaseTest {
                 .clickNextButton();
         tournamentsPage
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
 
@@ -891,7 +890,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -905,20 +904,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
         tournamentsPage
@@ -943,7 +942,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCreateButton()
                 .fillTournamentName(data.get(0))
                 .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(TOURNAMENT_DESCRIPTION)
+                .fillTournamentDescription(data.get(4))
                 .fillSponsor(data.get(2))
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
@@ -957,20 +956,20 @@ public class TournamentsTest extends BaseTest {
                 .selectPlayerJoiningTypeSingle()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(TERMS_AND_CONDITIONS)
+                .fillTermsAndConditionsField(data.get(5))
                 .clickNextButton();
         tournamentsPage
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts()
+                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
                 .selectMatchDuration()
                 .setPerMatchOne()
                 .clickCourtAvailabilityButton()
-                .selectMultipleCourts(0, 3)
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
                 .clickSaveAndPublishButton()
                 .clickOkButton();
         tournamentsPage
@@ -1047,7 +1046,9 @@ public class TournamentsTest extends BaseTest {
                 "test_tournament_" + id,
                 "test_organization_" + id,
                 "test_sponsor_" + id,
-                "test_prize_" + id
+                "test_prize_" + id,
+                "test_description",
+                "test_terms_and_conditions"
         );
     }
 

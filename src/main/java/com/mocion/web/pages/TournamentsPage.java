@@ -43,16 +43,13 @@ public class TournamentsPage {
     public String eventTypeFriendly = "input[type='radio'][value='friendly']";
     public String eventTypePrivate = "input[type='radio'][value='private']";
     public String eventTypePublic = "input[type='radio'][value='public']";
-    public String startDate = "label[for='start_date']";
-    public String endDate = "label[for='end_date']";
-    public String registrationDeadline = "label[for='registration_deadline_date']";
-    public String allowedCourts = "div.react-select__indicator.react-select__dropdown-indicator";
+    public String dateFields = "div.absolute.right-1.top-2 svg";
+    public String allowedCourtsDropdown = "div.react-select__indicator.react-select__dropdown-indicator";
     public String allowedDays = "div.react-select__indicator.react-select__dropdown-indicator";
     public String matchDuration = "div.react-select__indicator.react-select__dropdown-indicator";
     public String startTime = "input[name='start_time']";
     public String endTime = "input[name='end_time']";
     public String setPerMatchOne = "input[type='radio'][value='1']";
-    public String selectCourt = ".p-2.ml-2.px-4.rounded-lg.whitespace-nowrap";
     public String saveAndPublishButton = "text='Save and publish'";
     public String checkAvailabilityButton = "button:text('Check court availibility')";
     public String okButton = "//button[text()='Ok']";
@@ -87,6 +84,9 @@ public class TournamentsPage {
     public String nextButtonPhaseOne = "button:has-text(\"Next\")";
     public String saveAndNextButtonPhaseOne = "button:has-text(\"save and next\")";
     public String generateResultsButton = "button:has-text(\"Generate results\")";
+    public String courtOptions = ".react-select__option";
+    public String selectedSlotsCount = "h3.text-primary";
+    public String allAvailableCourts = "span.bg-\\[\\#f3f3f3\\].text-primary";
 
     public TournamentsPage(Page page) {
         this.page = page;
@@ -280,26 +280,52 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectStartDate() {
-        page.locator(startDate).click();
+        page.locator(dateFields).nth(0).click();
         page.keyboard().press("Enter");
         return this;
     }
 
     public TournamentsPage selectEndDate() {
-        page.locator(endDate).click();
+        page.locator(dateFields).nth(1).click();
         page.keyboard().press("Enter");
         return this;
     }
 
     public TournamentsPage selectRegistrationDeadline() {
-        page.locator(registrationDeadline).click();
+        page.locator(dateFields).nth(2).click();
         page.keyboard().press("Enter");
         return this;
     }
 
-    public TournamentsPage selectAllowedCourts() {
-        page.locator(allowedCourts).nth(0).click();
+    private void incrementStartDate() {
+        page.locator(dateFields).nth(0).click();
+        page.keyboard().press("ArrowRight");
         page.keyboard().press("Enter");
+    }
+
+    private void incrementEndDate() {
+        page.locator(dateFields).nth(1).click();
+        page.keyboard().press("ArrowRight");
+        page.keyboard().press("Enter");
+    }
+
+    private void incrementRegistrationDeadline() {
+        page.locator(dateFields).nth(2).click();
+        page.keyboard().press("ArrowRight");
+        page.keyboard().press("Enter");
+    }
+
+    public TournamentsPage selectAllowedCourts(int courtsToSelect) {
+        page.locator(allowedCourtsDropdown).nth(0).click();
+        Locator options = page.locator(courtOptions);
+        int count = options.count();
+
+        int toSelect = Math.min(count, courtsToSelect);
+
+        for (int i = 0; i < toSelect; i++) {
+            options.nth(i).click();
+        }
+
         return this;
     }
 
@@ -352,9 +378,35 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage selectMultipleCourts(int startIndex, int endIndex) {
-        for (int i = startIndex; i <= endIndex; i++) {
-            page.locator(selectCourt).nth(i).click();
+    public TournamentsPage selectCourtsWithDateIncrement(int maxIncrementDays) {
+        for (int day = 0; day <= maxIncrementDays; day++) {
+            clickCourtAvailabilityButton();
+            page.waitForTimeout(2000);
+
+            String slotsText = page.locator(selectedSlotsCount).nth(3).textContent().trim();
+            int toSelect = Integer.parseInt(slotsText.split("/")[1].trim());
+
+            Locator availableCourts = page.locator(allAvailableCourts);
+            int totalAvailable = availableCourts.count();
+            System.out.println("Available courts: " + totalAvailable);
+
+            if (totalAvailable < toSelect) {
+                incrementStartDate();
+                incrementEndDate();
+                incrementRegistrationDeadline();
+                continue;
+            }
+
+            int selected = 0;
+            while (selected < toSelect) {
+                Locator court = page.locator(allAvailableCourts);
+                if (court.count() == 0) break;
+
+                court.nth(0).click(new Locator.ClickOptions().setForce(true));
+                page.waitForTimeout(1000);
+                selected++;
+            }
+            break;
         }
         return this;
     }

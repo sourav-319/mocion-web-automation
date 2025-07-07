@@ -611,4 +611,3 @@ public class TournamentsPage {
         return page.locator(scoresUpdateSuccessMessageLocator);
     }
 }
-

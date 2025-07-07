@@ -277,6 +277,7 @@ public class TournamentsPage {
 
     public TournamentsPage clickNextButton() {
         page.locator(nextButton).click();
+        return this;
     }
 
     public TournamentsPage selectStartDate() {

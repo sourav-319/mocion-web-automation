@@ -54,7 +54,6 @@ public class TournamentsPage {
     public String checkAvailabilityButton = "button:text('Check court availibility')";
     public String okButton = "//button[text()='Ok']";
     public String tournamentCreateSuccessMessage = "text='Successful.'";
-    public String tournamentEditSuccessMessage = "text='tournament has been updated successfully'";
     public String chatWithPlayersText = "li:has-text('chat with players')";
     public String firstConversation = ".w-full.flex.px-8";
     public String conversationTextInputField = ".editable.w-full.pt-2";
@@ -66,7 +65,7 @@ public class TournamentsPage {
     public String tournamentCancelSuccessMessage = "text='tournament has been canceled successfully'";
     public String paymentMethod = "text='Cash'";
     public String joinTypeSingle = "input[type='radio'][value='Single']";
-    public String addTournamentPlayerSuccessMessageLocator = "text='Players were added successfully as League Players'";
+    public String addPlayersToTournamentSuccessMessageLocator = "text='Players were added successfully as League Players'";
     public String playerName = "text='Zeinab khalil'";
     public String addPlayerSaveButton = "button[type='submit']";
     public String scheduleText = "text='Schedule'";
@@ -157,7 +156,7 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage TournamentDescriptionField() {
+    public TournamentsPage clearTournamentDescriptionField() {
         page.locator(tournamentDescriptionField).clear();
         return this;
     }
@@ -275,8 +274,9 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickNextButton() {
+    public TournamentsPage clickNextButton() {
         page.locator(nextButton).click();
+        return this;
     }
 
     public TournamentsPage selectStartDate() {
@@ -592,7 +592,7 @@ public class TournamentsPage {
     }
 
     public Locator tournamentEditSuccessMessageLocator() {
-        return page.locator(tournamentEditSuccessMessage);
+        return page.locator(tournamentCreateSuccessMessage);
     }
 
     public String sentMessageTextContent() {
@@ -603,8 +603,8 @@ public class TournamentsPage {
         return page.locator(tournamentCancelSuccessMessage);
     }
 
-    public Locator addTournamentPlayerSuccessMessageLocator() {
-        return page.locator(addTournamentPlayerSuccessMessageLocator);
+    public Locator addPlayersToTournamentSuccessMessageLocator() {
+        return page.locator(addPlayersToTournamentSuccessMessageLocator);
     }
 
     public Locator scoresUpdateSuccessMessageLocator() {

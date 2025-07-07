@@ -109,6 +109,83 @@ public class LeaguesTest extends BaseTest {
         assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Edit league with all required fields should successful")
+    public void verify_edit_league_with_all_required_fields_should_succeed() {
+        leaguesPage = new LeaguesPage(page);
+        List<String> data = generateLeagueData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditLeagues()
+                .clearLeagueName()
+                .fillLeagueName(data.get(0))
+                .clearLeagueDescription()
+                .fillLeagueDescription(data.get(4))
+                .clickNextButton()
+                .clickSaveAndPublishButton();
+
+        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Edit league with all optional fields should successful")
+    public void verify_edit_league_with_all_optional_fields_should_succeed() {
+        leaguesPage = new LeaguesPage(page);
+        List<String> data = generateLeagueData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditLeagues()
+                .clearOrganizationName()
+                .fillOrganizationName(data.get(1))
+                .clearSponsor()
+                .fillSponsor(data.get(2))
+                .clearPrize()
+                .fillPrize(data.get(3))
+                .clickNextButton()
+                .clickSaveAndPublishButton();
+
+        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Edit league with all fields should successful")
+    public void verify_edit_league_with_all_fields_should_succeed() {
+        leaguesPage = new LeaguesPage(page);
+        List<String> data = generateLeagueData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditLeagues()
+                .clearLeagueName()
+                .fillLeagueName(data.get(0))
+                .clearOrganizationName()
+                .fillOrganizationName(data.get(1))
+                .clearLeagueDescription()
+                .fillLeagueDescription(data.get(4))
+                .clearSponsor()
+                .fillSponsor(data.get(2))
+                .clearPrize()
+                .fillPrize(data.get(3))
+                .clickNextButton()
+                .clickSaveAndPublishButton();
+
+        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
+    }
+
     private List<String> generateLeagueData() {
         random = new Random();
         String id = String.format("%03d", random.nextInt(999) + 1);

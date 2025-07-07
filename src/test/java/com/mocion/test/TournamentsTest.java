@@ -599,8 +599,8 @@ public class TournamentsTest extends BaseTest {
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Tournament edit with all required editable fields should successful")
-    public void verify_tournament_edit_with_all_required_editable_fields_should_succeed() {
+    @Test(description = "Edit tournament with required fields should successful")
+    public void verify_tournament_edit_with_required_fields_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -610,61 +610,20 @@ public class TournamentsTest extends BaseTest {
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
-                .clickCreateButton()
-                .fillTournamentName(data.get(0))
-                .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(data.get(4))
-                .fillSponsor(data.get(2))
-                .uploadSponsorLogo()
-                .fillPrize(data.get(3))
-                .uploadTournamentImage()
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMixed()
-                .selectEventTypeCompetitive()
-                .selectTournamentStyleKnockouts()
-                .selectPlayerJoiningTypeSingle()
-                .selectEventTypePrivate()
-                .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(data.get(5))
-                .clickNextButton();
-        tournamentsPage
-                .selectStartDate()
-                .selectEndDate()
-                .selectRegistrationDeadline()
-                .selectAllowedCourts(COURTS_TO_SELECT)
-                .selectAllowedDays(ALLOWED_DAYS)
-                .selectStartTime()
-                .selectEndTime()
-                .selectMatchDuration()
-                .setPerMatchOne()
-                .clickCourtAvailabilityButton()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton()
-                .clickOkButton();
-
-        List<String> editData = generateTournamentData();
-
-        tournamentsPage
                 .clickMenuIcon()
                 .clickEditTournaments()
                 .clearTournamentNameField()
-                .fillTournamentName(editData.getFirst())
-                .TournamentDescriptionField()
+                .fillTournamentName(data.getFirst())
+                .clearTournamentDescriptionField()
                 .fillTournamentDescription(data.get(4))
-                .clickNextButton();
-
-        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
-
-        tournamentsPage
+                .clickNextButton()
                 .clickSaveAndPublishButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Tournament edit with all optional editable fields should successful")
-    public void verify_tournament_edit_with_all_optional_editable_fields_should_succeed() {
+    @Test(description = "Edit tournament with optional fields should successful")
+    public void verify_edit_tournament_with_optional_fields_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -674,63 +633,22 @@ public class TournamentsTest extends BaseTest {
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
-                .clickCreateButton()
-                .fillTournamentName(data.get(0))
-                .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(data.get(4))
-                .fillSponsor(data.get(2))
-                .uploadSponsorLogo()
-                .fillPrize(data.get(3))
-                .uploadTournamentImage()
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMixed()
-                .selectEventTypeCompetitive()
-                .selectTournamentStyleKnockouts()
-                .selectPlayerJoiningTypeSingle()
-                .selectEventTypePrivate()
-                .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(data.get(5))
-                .clickNextButton();
-        tournamentsPage
-                .selectStartDate()
-                .selectEndDate()
-                .selectRegistrationDeadline()
-                .selectAllowedCourts(COURTS_TO_SELECT)
-                .selectAllowedDays(ALLOWED_DAYS)
-                .selectStartTime()
-                .selectEndTime()
-                .selectMatchDuration()
-                .setPerMatchOne()
-                .clickCourtAvailabilityButton()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton()
-                .clickOkButton();
-
-        List<String> editData = generateTournamentData();
-
-        tournamentsPage
                 .clickMenuIcon()
                 .clickEditTournaments()
                 .clearOrganizationNameField()
-                .fillOrganizationName(editData.get(1))
+                .fillOrganizationName(data.get(1))
                 .clearSponsorField()
-                .fillSponsor(editData.get(2))
+                .fillSponsor(data.get(2))
                 .clearPrizeField()
-                .fillPrize(editData.get(3))
-                .clickNextButton();
-
-        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
-
-        tournamentsPage
+                .fillPrize(data.get(3))
+                .clickNextButton()
                 .clickSaveAndPublishButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Tournament edit with all editable fields should successful")
-    public void verify_tournament_edit_with_all_editable_fields_should_succeed() {
+    @Test(description = "Edit tournament with all fields should successful")
+    public void verify_edit_tournament_with_all_fields_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
@@ -740,67 +658,26 @@ public class TournamentsTest extends BaseTest {
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
-                .clickCreateButton()
-                .fillTournamentName(data.get(0))
-                .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(data.get(4))
-                .fillSponsor(data.get(2))
-                .uploadSponsorLogo()
-                .fillPrize(data.get(3))
-                .uploadTournamentImage()
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMixed()
-                .selectEventTypeCompetitive()
-                .selectTournamentStyleKnockouts()
-                .selectPlayerJoiningTypeSingle()
-                .selectEventTypePrivate()
-                .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(data.get(5))
-                .clickNextButton();
-        tournamentsPage
-                .selectStartDate()
-                .selectEndDate()
-                .selectRegistrationDeadline()
-                .selectAllowedCourts(COURTS_TO_SELECT)
-                .selectAllowedDays(ALLOWED_DAYS)
-                .selectStartTime()
-                .selectEndTime()
-                .selectMatchDuration()
-                .setPerMatchOne()
-                .clickCourtAvailabilityButton()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton()
-                .clickOkButton();
-
-        List<String> editData = generateTournamentData();
-
-        tournamentsPage
                 .clickMenuIcon()
                 .clickEditTournaments()
                 .clearTournamentNameField()
-                .fillTournamentName(editData.get(0))
+                .fillTournamentName(data.get(0))
                 .clearOrganizationNameField()
-                .fillOrganizationName(editData.get(1))
-                .TournamentDescriptionField()
+                .fillOrganizationName(data.get(1))
+                .clearTournamentDescriptionField()
                 .fillTournamentDescription(data.get(4))
                 .clearSponsorField()
-                .fillSponsor(editData.get(2))
+                .fillSponsor(data.get(2))
                 .clearPrizeField()
-                .fillPrize(editData.get(3))
-                .clickNextButton();
-
-        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
-
-        tournamentsPage
+                .fillPrize(data.get(3))
+                .clickNextButton()
                 .clickSaveAndPublishButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Chat with players should successful")
-    public void verify_chat_with_players_should_succeed() {
+    @Test(description = "Chat with tournament players should successful")
+    public void verify_chat_with_tournament_players_should_succeed() {
         String conversationText = "Hello, this is a test message";
         tournamentsPage = new TournamentsPage(page);
 
@@ -822,7 +699,6 @@ public class TournamentsTest extends BaseTest {
     @Test(description = "Tournament duplicate should successful")
     public void verify_tournament_duplicate_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
-        List<String> data = generateTournamentData();
 
         setLocationPermissionAllowed();
         userLogin();
@@ -830,40 +706,6 @@ public class TournamentsTest extends BaseTest {
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
-                .clickCreateButton()
-                .fillTournamentName(data.get(0))
-                .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(data.get(4))
-                .fillSponsor(data.get(2))
-                .uploadSponsorLogo()
-                .fillPrize(data.get(3))
-                .uploadTournamentImage()
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMixed()
-                .selectEventTypeCompetitive()
-                .selectTournamentStyleKnockouts()
-                .selectPlayerJoiningTypeSingle()
-                .selectEventTypePrivate()
-                .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(data.get(5))
-                .clickNextButton();
-        tournamentsPage
-                .selectStartDate()
-                .selectEndDate()
-                .selectRegistrationDeadline()
-                .selectAllowedCourts(COURTS_TO_SELECT)
-                .selectAllowedDays(ALLOWED_DAYS)
-                .selectStartTime()
-                .selectEndTime()
-                .selectMatchDuration()
-                .setPerMatchOne()
-                .clickCourtAvailabilityButton()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton()
-                .clickOkButton();
-        tournamentsPage
                 .clickMenuIcon()
                 .clickDuplicate()
                 .clickNextButton();
@@ -887,40 +729,6 @@ public class TournamentsTest extends BaseTest {
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
-                .clickCreateButton()
-                .fillTournamentName(data.get(0))
-                .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(data.get(4))
-                .fillSponsor(data.get(2))
-                .uploadSponsorLogo()
-                .fillPrize(data.get(3))
-                .uploadTournamentImage()
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMixed()
-                .selectEventTypeCompetitive()
-                .selectTournamentStyleKnockouts()
-                .selectPlayerJoiningTypeSingle()
-                .selectEventTypePrivate()
-                .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(data.get(5))
-                .clickNextButton();
-        tournamentsPage
-                .selectStartDate()
-                .selectEndDate()
-                .selectRegistrationDeadline()
-                .selectAllowedCourts(COURTS_TO_SELECT)
-                .selectAllowedDays(ALLOWED_DAYS)
-                .selectStartTime()
-                .selectEndTime()
-                .selectMatchDuration()
-                .setPerMatchOne()
-                .clickCourtAvailabilityButton()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton()
-                .clickOkButton();
-        tournamentsPage
                 .clickMenuIcon()
                 .clickCancelTournament()
                 .clickYesToCancelTournament();
@@ -928,10 +736,9 @@ public class TournamentsTest extends BaseTest {
         assertThat(tournamentsPage.tournamentCancelSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Adding player to tournament should be successful")
-    public void verify_adding_player_to_tournament_should_succeed() {
+    @Test(description = "Add players to tournament should successful")
+    public void verify_add_players_to_tournament_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
-        List<String> data = generateTournamentData();
 
         setLocationPermissionAllowed();
         userLogin();
@@ -939,40 +746,6 @@ public class TournamentsTest extends BaseTest {
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
                 .selectClubName(CLUB_NAME)
-                .clickCreateButton()
-                .fillTournamentName(data.get(0))
-                .fillOrganizationName(data.get(1))
-                .fillTournamentDescription(data.get(4))
-                .fillSponsor(data.get(2))
-                .uploadSponsorLogo()
-                .fillPrize(data.get(3))
-                .uploadTournamentImage()
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
-                .selectGenderMixed()
-                .selectEventTypeCompetitive()
-                .selectTournamentStyleKnockouts()
-                .selectPlayerJoiningTypeSingle()
-                .selectEventTypePrivate()
-                .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(data.get(5))
-                .clickNextButton();
-        tournamentsPage
-                .selectStartDate()
-                .selectEndDate()
-                .selectRegistrationDeadline()
-                .selectAllowedCourts(COURTS_TO_SELECT)
-                .selectAllowedDays(ALLOWED_DAYS)
-                .selectStartTime()
-                .selectEndTime()
-                .selectMatchDuration()
-                .setPerMatchOne()
-                .clickCourtAvailabilityButton()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton()
-                .clickOkButton();
-        tournamentsPage
                 .clickMenuIcon()
                 .clickAddPlayers()
                 .clickAddPlayersButton()
@@ -981,7 +754,7 @@ public class TournamentsTest extends BaseTest {
                 .selectPaymentMethod()
                 .clickAddPlayerSaveButton();
 
-        assertThat(tournamentsPage.addTournamentPlayerSuccessMessageLocator()).isVisible();
+        assertThat(tournamentsPage.addPlayersToTournamentSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Setting the schedule for the knockout tournament should be successful")

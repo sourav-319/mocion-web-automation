@@ -66,7 +66,7 @@ public class TournamentsPage {
     public String tournamentCancelSuccessMessage = "text='tournament has been canceled successfully'";
     public String paymentMethod = "text='Cash'";
     public String joinTypeSingle = "input[type='radio'][value='Single']";
-    public String addTournamentPlayerSuccessMessageLocator = "text='Players were added successfully as League Players'";
+    public String addPlayersToTournamentSuccessMessageLocator = "text='Players were added successfully as League Players'";
     public String playerName = "text='Zeinab khalil'";
     public String addPlayerSaveButton = "button[type='submit']";
     public String scheduleText = "text='Schedule'";
@@ -157,7 +157,7 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage TournamentDescriptionField() {
+    public TournamentsPage clearTournamentDescriptionField() {
         page.locator(tournamentDescriptionField).clear();
         return this;
     }
@@ -275,7 +275,7 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickNextButton() {
+    public TournamentsPage clickNextButton() {
         page.locator(nextButton).click();
     }
 
@@ -603,8 +603,8 @@ public class TournamentsPage {
         return page.locator(tournamentCancelSuccessMessage);
     }
 
-    public Locator addTournamentPlayerSuccessMessageLocator() {
-        return page.locator(addTournamentPlayerSuccessMessageLocator);
+    public Locator addPlayersToTournamentSuccessMessageLocator() {
+        return page.locator(addPlayersToTournamentSuccessMessageLocator);
     }
 
     public Locator scoresUpdateSuccessMessageLocator() {

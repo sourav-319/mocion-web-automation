@@ -157,8 +157,8 @@ public class LeaguesTest extends BaseTest {
         assertThat(leaguesPage.addPlayersToLeagueSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Chat with players should successful")
-    public void verify_chat_with_players_should_succeed() {
+    @Test(description = "Chat with league players should successful")
+    public void verify_chat_with_league_players_should_succeed() {
         String conversationText = "Hello, this is a test message";
         leaguesPage = new LeaguesPage(page);
 

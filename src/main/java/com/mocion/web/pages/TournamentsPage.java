@@ -54,7 +54,6 @@ public class TournamentsPage {
     public String checkAvailabilityButton = "button:text('Check court availibility')";
     public String okButton = "//button[text()='Ok']";
     public String tournamentCreateSuccessMessage = "text='Successful.'";
-    public String tournamentEditSuccessMessage = "text='tournament has been updated successfully'";
     public String chatWithPlayersText = "li:has-text('chat with players')";
     public String firstConversation = ".w-full.flex.px-8";
     public String conversationTextInputField = ".editable.w-full.pt-2";

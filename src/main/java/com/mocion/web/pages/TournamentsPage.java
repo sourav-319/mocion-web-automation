@@ -592,10 +592,6 @@ public class TournamentsPage {
         return page.locator(tournamentCreateSuccessMessage);
     }
 
-    public Locator tournamentEditSuccessMessageLocator() {
-        return page.locator(tournamentEditSuccessMessage);
-    }
-
     public String sentMessageTextContent() {
         return page.locator(sentMessageText).last().textContent();
     }

@@ -721,7 +721,6 @@ public class TournamentsTest extends BaseTest {
     @Test(description = "Tournament cancel should successful")
     public void verify_tournament_cancel_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
-        List<String> data = generateTournamentData();
 
         setLocationPermissionAllowed();
         userLogin();

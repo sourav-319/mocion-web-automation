@@ -619,7 +619,7 @@ public class TournamentsTest extends BaseTest {
                 .clickNextButton()
                 .clickSaveAndPublishButton();
 
-        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Edit tournament with optional fields should successful")
@@ -644,7 +644,7 @@ public class TournamentsTest extends BaseTest {
                 .clickNextButton()
                 .clickSaveAndPublishButton();
 
-        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Edit tournament with all fields should successful")
@@ -673,7 +673,7 @@ public class TournamentsTest extends BaseTest {
                 .clickNextButton()
                 .clickSaveAndPublishButton();
 
-        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+        assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Chat with tournament players should successful")

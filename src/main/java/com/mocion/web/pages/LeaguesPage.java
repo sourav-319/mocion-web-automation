@@ -58,7 +58,6 @@ public class LeaguesPage {
     public String sendMessageIcon = ".lucide.lucide-send";
     public String sentMessageText = ".flex.flex-col.gap-2.py-2.pr-2";
     public String editLeaguesText = "text='Edit leagues'";
-    public String leagueEditSuccessMessage = "text='league has been updated successfully'";
 
     public LeaguesPage(Page page) {
         this.page = page;
@@ -400,6 +399,6 @@ public class LeaguesPage {
     }
 
     public Locator leagueEditSuccessMessageLocator() {
-        return page.locator(leagueEditSuccessMessage);
+        return page.locator(leagueCreateSuccessMessage);
     }
 }

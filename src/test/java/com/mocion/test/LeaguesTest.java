@@ -138,10 +138,12 @@ public class LeaguesTest extends BaseTest {
         assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Add player to league should be successful")
-    public void verify_add_player_to_league_should_succeed() {
+    @Test(description = "Add players to league should be successful")
+    public void verify_add_players_to_league_should_succeed() {
         leaguesPage = new LeaguesPage(page);
 
+        setLocationPermissionAllowed();
+        userLogin();
         leaguesPage
                 .clickEventsFromNavigationBar()
                 .clickLeaguesFromNavigationBar()

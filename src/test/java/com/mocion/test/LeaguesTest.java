@@ -121,6 +121,7 @@ public class LeaguesTest extends BaseTest {
                 .clickEventsFromNavigationBar()
                 .clickLeaguesFromNavigationBar()
                 .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
                 .clickEditLeagues()
                 .clearLeagueName()
                 .fillLeagueName(data.get(0))

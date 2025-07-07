@@ -47,7 +47,6 @@ public class LeaguesPage {
     public String addPlayerText = "text='Add Players'";
     public String addPlayerButton = "text='Add Players'";
     public String addPlayerNameDropdown = "div.react-select.__dropdown-indicator";
-    public String playerOptions = "div.react-select __control";
     public String joinTypeSingle = "input[type='radio'][value='Single']";
     public String paymentMethodDropdown = "div.react-select.w-full__dropdown-indicator";
     public String paymentMethod = "text='Cash'";
@@ -345,7 +344,7 @@ public class LeaguesPage {
 
     public LeaguesPage selectPlayerName() {
         page.locator(addPlayerNameDropdown).click();
-        page.locator(playerOptions).nth(0).click();
+        page.keyboard().press("Enter");
         return this;
     }
 

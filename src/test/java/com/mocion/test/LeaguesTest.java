@@ -2,6 +2,7 @@ package com.mocion.test;
 
 import com.mocion.web.pages.LeaguesPage;
 import com.mocion.web.pages.LoginPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -107,6 +108,73 @@ public class LeaguesTest extends BaseTest {
                 .clickSaveAndPublishButton();
 
         assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Edit league should successful")
+    public void verify_edit_league_should_succeed() {
+        leaguesPage = new LeaguesPage(page);
+        List<String> data = generateLeagueData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickEditLeagues()
+                .clearLeagueName()
+                .fillLeagueName(data.get(0))
+                .clearOrganizationName()
+                .fillOrganizationName(data.get(1))
+                .clearLeagueDescription()
+                .fillLeagueDescription(data.get(4))
+                .clearSponsor()
+                .fillSponsor(data.get(2))
+                .clearPrize()
+                .fillPrize(data.get(3))
+                .clickNextButton()
+                .clickSaveAndPublishButton();
+
+        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add player to league should be successful")
+    public void verify_add_player_to_league_should_succeed() {
+        leaguesPage = new LeaguesPage(page);
+
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerName()
+                .selectJoinTypeSingle()
+                .selectPaymentMethod()
+                .clickAddPlayerSaveButton();
+
+        assertThat(leaguesPage.addPlayersToLeagueSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Chat with players should successful")
+    public void verify_chat_with_players_should_succeed() {
+        String conversationText = "Hello, this is a test message";
+        leaguesPage = new LeaguesPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickChatWithPlayers()
+                .clickFirstConversation()
+                .fillConversationText(conversationText)
+                .clickSendIcon();
+
+        Assert.assertTrue(leaguesPage.sentMessageTextContent().contains(conversationText));
     }
 
     private List<String> generateLeagueData() {

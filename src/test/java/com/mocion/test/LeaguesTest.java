@@ -186,6 +186,27 @@ public class LeaguesTest extends BaseTest {
         assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Add players to league should successful")
+    public void verify_add_players_to_league_should_succeed() {
+        leaguesPage = new LeaguesPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerName()
+                .selectJoinTypeSingle()
+                .selectPaymentMethod()
+                .clickAddPlayerSaveButton();
+
+        assertThat(leaguesPage.addPlayersToLeagueSuccessMessageLocator()).isVisible();
+    }
+
     private List<String> generateLeagueData() {
         random = new Random();
         String id = String.format("%03d", random.nextInt(999) + 1);

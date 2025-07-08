@@ -58,6 +58,10 @@ public class LeaguesPage {
     public String sendMessageIcon = ".lucide.lucide-send";
     public String sentMessageText = ".flex.flex-col.gap-2.py-2.pr-2";
     public String editLeaguesText = "text='Edit leagues'";
+    public String duplicateText = "li:has-text('Duplicate')";
+    public String cancelLeagueText = "text=Cancel league";
+    public String yesButtonToCancelLeague = "button:has-text('Yes')";
+    public String leagueCancelSuccessMessage = "text='tournament has been canceled successfully'";
 
     public LeaguesPage(Page page) {
         this.page = page;
@@ -384,6 +388,24 @@ public class LeaguesPage {
     public LeaguesPage clickEditLeagues() {
         page.locator(editLeaguesText).click();
         return this;
+    }
+
+    public LeaguesPage clickDuplicate() {
+        page.locator(duplicateText).click();
+        return this;
+    }
+
+    public LeaguesPage clickCancelLeague() {
+        page.locator(cancelLeagueText).click();
+        return this;
+    }
+
+    public void clickYesToCancelLeague() {
+        page.locator(yesButtonToCancelLeague).click();
+    }
+
+    public Locator leagueCancelSuccessMessageLocator() {
+        return page.locator(leagueCancelSuccessMessage);
     }
 
     public String sentMessageTextContent() {

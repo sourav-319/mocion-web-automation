@@ -3,7 +3,7 @@ package com.mocion.web.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
-public class PricePage {
+public class PricingPage {
     private final Page page;
 
     public String pricingText = "Pricing";
@@ -32,71 +32,71 @@ public class PricePage {
     public String dateFromField = "input[type='date']";
     public String searchFirstRowResult = ".py-4.border-b.text-primary";
 
-    public PricePage(Page page) {
+    public PricingPage(Page page) {
         this.page = page;
     }
 
-    public PricePage clickGeneralFromNavigationBar() {
+    public PricingPage clickGeneralFromNavigationBar() {
         page.getByText(generalText).click();
         return this;
     }
 
-    public PricePage clickPricingFromNavigationBar() {
+    public PricingPage clickPricingFromNavigationBar() {
         page.getByText(pricingText).click();
         return this;
     }
 
-    public PricePage clickCreateButton() {
+    public PricingPage clickCreateButton() {
         page.locator(createButton).click();
         return this;
     }
 
-    public PricePage clickDuplicateButton() {
+    public PricingPage clickDuplicateButton() {
         page.locator(duplicateButton).click();
         return this;
     }
 
-    public PricePage clickMenuIcon() {
+    public PricingPage clickMenuIcon() {
         page.locator(menuIcon).nth(0).click();
         return this;
     }
 
-    public PricePage clickConfigureButton() {
+    public PricingPage clickConfigureButton() {
         page.locator(configureButton).click();
         return this;
     }
 
-    public PricePage clickDeactivateButton() {
+    public PricingPage clickDeactivateButton() {
         page.locator(deactivateButton).click();
         return this;
     }
 
-    public PricePage clickActivateButton() {
+    public PricingPage clickActivateButton() {
         page.locator(activateButton).click();
         return this;
     }
 
-    public PricePage clickDeleteButton() {
+    public PricingPage clickDeleteButton() {
         page.locator(deleteButton).click();
         return this;
     }
 
-    public PricePage clickFilterIcon() {
+    public PricingPage clickFilterIcon() {
         page.locator(filterIcon).nth(1).click();
         return this;
     }
 
-    public PricePage clickStatusDropdown() {
+    public PricingPage clickStatusDropdown() {
         page.locator(filterStatusDropdown).click();
         return this;
     }
 
-    public PricePage selectStatusAsActive() {
+    public PricingPage selectStatusAsActive() {
         page.locator(selectStatus).nth(0).click();
         return this;
     }
 
-    public PricePage selectDateFrom(String dateFrom) {
+    public PricingPage selectDateFrom(String dateFrom) {
         page.locator(dateFromField).nth(0).fill(dateFrom);
         return this;
     }
@@ -109,43 +109,43 @@ public class PricePage {
         page.locator(yestToConfirmationTab).click();
     }
 
-    public PricePage clearPricingListName() {
+    public PricingPage clearPricingListName() {
         page.locator(pricingListNameFiled).clear();
         return this;
     }
 
-    public PricePage fillPricingListName(String pricingListName) {
+    public PricingPage fillPricingListName(String pricingListName) {
         page.locator(pricingListNameFiled).fill(pricingListName);
         return this;
     }
 
-    public PricePage clearHourlyRateField() {
+    public PricingPage clearHourlyRateField() {
         page.locator(hourlyRateField).clear();
         return this;
     }
 
-    public PricePage fillHourlyRateField(String hourlyRate) {
+    public PricingPage fillHourlyRateField(String hourlyRate) {
         page.locator(hourlyRateField).fill(hourlyRate);
         return this;
     }
 
-    public PricePage clickCourtsDropdown() {
+    public PricingPage clickCourtsDropdown() {
         page.locator(courtDropdown).click();
         return this;
     }
 
-    public PricePage selectCourt() {
+    public PricingPage selectCourt() {
         page.locator(selectCourt).nth(0).click();
         return this;
     }
 
-    public PricePage fillStartDateField() {
+    public PricingPage fillStartDateField() {
         page.locator(startDateField).click();
         page.keyboard().press("Enter");
         return this;
     }
 
-    public PricePage fillEndDateField() {
+    public PricingPage fillEndDateField() {
         page.locator(endDateField).click();
         page.keyboard().press("Enter");
         return this;

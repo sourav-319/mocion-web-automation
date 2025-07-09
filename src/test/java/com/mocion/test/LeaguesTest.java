@@ -228,8 +228,8 @@ public class LeaguesTest extends BaseTest {
         Assert.assertTrue(leaguesPage.sentMessageTextContent().contains(conversationText));
     }
 
-    @Test(description = "League duplicate should successful")
-    public void verify_league_duplicate_should_succeed() {
+    @Test(description = "Duplicate League should successful")
+    public void verify_duplicate_league_should_succeed() {
         leaguesPage = new LeaguesPage(page);
 
         setLocationPermissionAllowed();
@@ -247,8 +247,8 @@ public class LeaguesTest extends BaseTest {
         assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "League cancel should successful")
-    public void verify_league_cancel_should_succeed() {
+    @Test(description = "Cancel league should successful")
+    public void verify_cancel_league_should_succeed() {
         leaguesPage = new LeaguesPage(page);
 
         setLocationPermissionAllowed();
@@ -259,10 +259,9 @@ public class LeaguesTest extends BaseTest {
                 .selectClubName(CLUB_NAME)
                 .clickMenuIcon()
                 .clickCancelLeague()
-                .clickNextButton()
                 .clickYesToCancelLeague();
 
-        assertThat(leaguesPage.leagueCancelSuccessMessageLocator()).isVisible();
+        assertThat(leaguesPage.cancelLeagueSuccessMessageLocator()).isVisible();
     }
 
     private List<String> generateLeagueData() {

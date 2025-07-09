@@ -696,8 +696,8 @@ public class TournamentsTest extends BaseTest {
         Assert.assertTrue(tournamentsPage.sentMessageTextContent().contains(conversationText));
     }
 
-    @Test(description = "Tournament duplicate should successful")
-    public void verify_tournament_duplicate_should_succeed() {
+    @Test(description = "Duplicate tournament should successful")
+    public void verify_duplicate_tournament_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
 
         setLocationPermissionAllowed();
@@ -718,8 +718,8 @@ public class TournamentsTest extends BaseTest {
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Tournament cancel should successful")
-    public void verify_tournament_cancel_should_succeed() {
+    @Test(description = "Cancel tournament should successful")
+    public void verify_cancel_tournament_should_succeed() {
         tournamentsPage = new TournamentsPage(page);
 
         setLocationPermissionAllowed();
@@ -732,7 +732,7 @@ public class TournamentsTest extends BaseTest {
                 .clickCancelTournament()
                 .clickYesToCancelTournament();
 
-        assertThat(tournamentsPage.tournamentCancelSuccessMessageLocator()).isVisible();
+        assertThat(tournamentsPage.cancelTournamentSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Add players to tournament should successful")

@@ -62,7 +62,7 @@ public class TournamentsPage {
     public String duplicateText = "li:has-text('Duplicate')";
     public String cancelTournamentText = "text=Cancel tournament";
     public String yesButtonToCancelTournament = "button:has-text('Yes')";
-    public String tournamentCancelSuccessMessage = "text='tournament has been canceled successfully'";
+    public String cancelTournamentSuccessMessage = "text='tournament has been canceled successfully'";
     public String paymentMethod = "text='Cash'";
     public String joinTypeSingle = "input[type='radio'][value='Single']";
     public String addPlayersToTournamentSuccessMessageLocator = "text='Players were added successfully as League Players'";
@@ -599,8 +599,8 @@ public class TournamentsPage {
         return page.locator(sentMessageText).last().textContent();
     }
 
-    public Locator tournamentCancelSuccessMessageLocator() {
-        return page.locator(tournamentCancelSuccessMessage);
+    public Locator cancelTournamentSuccessMessageLocator() {
+        return page.locator(cancelTournamentSuccessMessage);
     }
 
     public Locator addPlayersToTournamentSuccessMessageLocator() {

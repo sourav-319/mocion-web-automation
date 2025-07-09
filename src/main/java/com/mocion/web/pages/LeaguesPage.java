@@ -61,7 +61,7 @@ public class LeaguesPage {
     public String duplicateText = "li:has-text('Duplicate')";
     public String cancelLeagueText = "text=Cancel league";
     public String yesButtonToCancelLeague = "button:has-text('Yes')";
-    public String leagueCancelSuccessMessage = "text='tournament has been canceled successfully'";
+    public String cancelLeagueSuccessMessage = "text='league has been canceled successfully'";
 
     public LeaguesPage(Page page) {
         this.page = page;
@@ -404,8 +404,8 @@ public class LeaguesPage {
         page.locator(yesButtonToCancelLeague).click();
     }
 
-    public Locator leagueCancelSuccessMessageLocator() {
-        return page.locator(leagueCancelSuccessMessage);
+    public Locator cancelLeagueSuccessMessageLocator() {
+        return page.locator(cancelLeagueSuccessMessage);
     }
 
     public String sentMessageTextContent() {

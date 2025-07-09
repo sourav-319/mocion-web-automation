@@ -10,15 +10,15 @@ import java.util.Random;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class PriceTest extends BaseTest {
+public class PricingTest extends BaseTest {
     public LoginPage loginPage;
     public Random random;
-    public PricingPage pricePage;
+    public PricingPage pricingPage;
 
     @Test(description = "Price create should successful")
     public void Price_create_should_succeed() {
         random = new Random();
-        pricePage = new PricingPage(page);
+        pricingPage = new PricingPage(page);
         loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
@@ -31,7 +31,7 @@ public class PriceTest extends BaseTest {
 
         loginPage
                 .userLogin();
-        pricePage
+        pricingPage
                 .clickGeneralFromNavigationBar()
                 .clickPricingFromNavigationBar()
                 .clickCreateButton()
@@ -43,13 +43,13 @@ public class PriceTest extends BaseTest {
                 .fillEndDateField()
                 .clickSaveButton();
 
-        assertThat(pricePage.getPriceListCreateSuccessMessageLocator()).isVisible();
+        assertThat(pricingPage.getPriceListCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Configure price should successful")
     public void verify_configure_price_should_succeed() {
         random = new Random();
-        pricePage = new PricingPage(page);
+        pricingPage = new PricingPage(page);
         loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
@@ -62,7 +62,7 @@ public class PriceTest extends BaseTest {
 
         loginPage
                 .userLogin();
-        pricePage
+        pricingPage
                 .clickGeneralFromNavigationBar()
                 .clickPricingFromNavigationBar()
                 .clickMenuIcon()
@@ -75,13 +75,13 @@ public class PriceTest extends BaseTest {
                 .fillEndDateField()
                 .clickSaveButton();
 
-        assertThat(pricePage.getPriceListEditSuccessMessageLocator()).isVisible();
+        assertThat(pricingPage.getPriceListEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Price duplicate should successful")
     public void verify_price_duplicate_should_succeed() {
         random = new Random();
-        pricePage = new PricingPage(page);
+        pricingPage = new PricingPage(page);
         loginPage = new LoginPage(page);
 
         int randomNumber = random.nextInt(999) + 1;
@@ -93,7 +93,7 @@ public class PriceTest extends BaseTest {
 
         loginPage
                 .userLogin();
-        pricePage
+        pricingPage
                 .clickGeneralFromNavigationBar()
                 .clickPricingFromNavigationBar()
                 .clickMenuIcon()
@@ -102,12 +102,12 @@ public class PriceTest extends BaseTest {
                 .fillPricingListName(priceListName)
                 .clickSaveButton();
 
-        assertThat(pricePage.getPriceListDuplicateSuccessMessageLocator()).isVisible();
+        assertThat(pricingPage.getPriceListDuplicateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Price deactivate should successful")
     public void verify_price_deactivate_should_succeed() {
-        pricePage = new PricingPage(page);
+        pricingPage = new PricingPage(page);
         loginPage = new LoginPage(page);
 
         // Grant location permission
@@ -115,19 +115,19 @@ public class PriceTest extends BaseTest {
 
         loginPage
                 .userLogin();
-        pricePage
+        pricingPage
                 .clickGeneralFromNavigationBar()
                 .clickPricingFromNavigationBar()
                 .clickMenuIcon()
                 .clickDeactivateButton()
                 .clickYesToConfirmationTab();
 
-        assertThat(pricePage.getPriceListDeactivateSuccessMessageLocator()).isVisible();
+        assertThat(pricingPage.getPriceListDeactivateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Price activate should successful")
     public void verify_price_activate_should_succeed() {
-        pricePage = new PricingPage(page);
+        pricingPage = new PricingPage(page);
         loginPage = new LoginPage(page);
 
         // Grant location permission
@@ -135,19 +135,19 @@ public class PriceTest extends BaseTest {
 
         loginPage
                 .userLogin();
-        pricePage
+        pricingPage
                 .clickGeneralFromNavigationBar()
                 .clickPricingFromNavigationBar()
                 .clickMenuIcon()
                 .clickActivateButton()
                 .clickYesToConfirmationTab();
 
-        assertThat(pricePage.getPriceListActivateSuccessMessageLocator()).isVisible();
+        assertThat(pricingPage.getPriceListActivateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Price delete should successful")
     public void verify_price_delete_should_succeed() {
-        pricePage = new PricingPage(page);
+        pricingPage = new PricingPage(page);
         loginPage = new LoginPage(page);
 
         // Grant location permission
@@ -155,14 +155,14 @@ public class PriceTest extends BaseTest {
 
         loginPage
                 .userLogin();
-        pricePage
+        pricingPage
                 .clickGeneralFromNavigationBar()
                 .clickPricingFromNavigationBar()
                 .clickMenuIcon()
                 .clickDeleteButton()
                 .clickYesToConfirmationTab();
 
-        assertThat(pricePage.getPriceListDeleteSuccessMessageLocator()).isVisible();
+        assertThat(pricingPage.getPriceListDeleteSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Price filter should successful")
@@ -170,7 +170,7 @@ public class PriceTest extends BaseTest {
         String searchKeyword = "test_price";
         String dateFrom = "2025-06-01";
 
-        pricePage = new PricingPage(page);
+        pricingPage = new PricingPage(page);
         loginPage = new LoginPage(page);
 
         // Grant location permission
@@ -178,7 +178,7 @@ public class PriceTest extends BaseTest {
 
         loginPage
                 .userLogin();
-        pricePage
+        pricingPage
                 .clickGeneralFromNavigationBar()
                 .clickPricingFromNavigationBar()
                 .clickFilterIcon()
@@ -187,8 +187,8 @@ public class PriceTest extends BaseTest {
                 .selectDateFrom(dateFrom)
                 .selectDateTo(dateFrom);
 
-        if (pricePage.getFirstRowSearchResultLocator().isVisible()) {
-            assertTrue(pricePage.getFirstRowSearchResult().contains(searchKeyword));
+        if (pricingPage.getFirstRowSearchResultLocator().isVisible()) {
+            assertTrue(pricingPage.getFirstRowSearchResult().contains(searchKeyword));
         } else {
             System.out.println("Price filter result not found");
         }

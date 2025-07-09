@@ -2,6 +2,7 @@ package com.mocion.test;
 
 import com.mocion.web.pages.LeaguesPage;
 import com.mocion.web.pages.LoginPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -205,6 +206,62 @@ public class LeaguesTest extends BaseTest {
                 .clickAddPlayerSaveButton();
 
         assertThat(leaguesPage.addPlayersToLeagueSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Chat with league players should successful")
+    public void verify_chat_with_league_players_should_succeed() {
+        String conversationText = "Hello, this is a test message";
+        leaguesPage = new LeaguesPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickChatWithPlayers()
+                .clickFirstConversation()
+                .fillConversationText(conversationText)
+                .clickSendIcon();
+
+        Assert.assertTrue(leaguesPage.sentMessageTextContent().contains(conversationText));
+    }
+
+    @Test(description = "Duplicate League should successful")
+    public void verify_duplicate_league_should_succeed() {
+        leaguesPage = new LeaguesPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickDuplicate()
+                .clickNextButton()
+                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
+                .clickSaveAndPublishButton();
+
+        assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Cancel league should successful")
+    public void verify_cancel_league_should_succeed() {
+        leaguesPage = new LeaguesPage(page);
+
+        setLocationPermissionAllowed();
+        userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickCancelLeague()
+                .clickYesToCancelLeague();
+
+        assertThat(leaguesPage.cancelLeagueSuccessMessageLocator()).isVisible();
     }
 
     private List<String> generateLeagueData() {

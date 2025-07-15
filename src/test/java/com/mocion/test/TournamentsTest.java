@@ -187,6 +187,170 @@ public class TournamentsTest extends BaseTest {
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Private friendly knockout tournament create should successful")
+    public void verify_private_friendly_knockout_tournament_create_should_succeed() {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
+                .selectGenderMixed()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleKnockouts()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .selectAssignOrganizer()
+                .fillTermsAndConditionsField(data.get(5))
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .clickNextButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public friendly knockout tournament create should successful")
+    public void verify_public_friendly_knockout_tournament_create_should_succeed() {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
+                .selectGenderMixed()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleKnockouts()
+                .selectEventTypePublic()
+                .selectNumberOfPlayer()
+                .selectAssignOrganizer()
+                .fillTermsAndConditionsField(data.get(5))
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .clickNextButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Private friendly round tournament create should successful")
+    public void verify_private_friendly_round_tournament_create_should_succeed() {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
+                .selectGenderMixed()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleRoundRobin()
+                .selectEventTypePrivate()
+                .selectNumberOfPlayer()
+                .selectAssignOrganizer()
+                .fillTermsAndConditionsField(data.get(5))
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .clickNextButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public friendly round robin tournament create should successful")
+    public void verify_public_friendly_round_robin_tournament_create_should_succeed() {
+        tournamentsPage = new TournamentsPage(page);
+        List<String> data = generateTournamentData();
+
+        setLocationPermissionAllowed();
+        userLogin();
+        tournamentsPage
+                .clickEventsFromNavigationBar()
+                .clickTournamentsFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillTournamentName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillTournamentDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadTournamentImage()
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
+                .selectGenderMixed()
+                .selectEventTypeFriendly()
+                .selectTournamentStyleRoundRobin()
+                .selectEventTypePublic()
+                .selectNumberOfPlayer()
+                .selectAssignOrganizer()
+                .fillTermsAndConditionsField(data.get(5))
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedDays(ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .clickNextButton();
+
+        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+    }
+
     private List<String> generateTournamentData() {
         random = new Random();
         String id = String.format("%03d", random.nextInt(999) + 1);

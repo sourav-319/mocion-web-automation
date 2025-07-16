@@ -32,9 +32,6 @@ public class TournamentsPage {
     public String maxPlayerLevelField = "input[name='max_players_level']";
     public String tournamentStyleKnockout = "input[type='radio'][value='Knockouts']";
     public String tournamentStyleRoundRobin = "input[type='radio'][value='Round Robin']";
-    public String playerJoiningTypeSingle = "input[type='radio'][value='Single']";
-    public String playerJoiningTypeDouble = "input[type='radio'][value='Double']";
-    public String playerJoiningTypeBoth = "input[type='radio'][value='Both']";
     public String termsAndConditionsField = "input[name='terms_and_conditions']";
     public String nextButton = "button.bg-primary.text-white.rounded-full";
     public String pricePerPlayerField = "input[name='price_per_player']";

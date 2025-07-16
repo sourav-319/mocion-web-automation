@@ -600,7 +600,7 @@ public class TournamentsTest extends BaseTest {
                 .clickMenuIcon()
                 .clickDuplicate()
                 .clearTournamentNameField()
-                .fillTournamentName(data.get(0))
+                .fillTournamentName(data.getFirst())
                 .clickSaveButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();

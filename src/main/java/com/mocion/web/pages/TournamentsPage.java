@@ -152,11 +152,6 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage clearOrganizationName() {
-        page.locator(organizationNameField).clear();
-        return this;
-    }
-
     public TournamentsPage fillOrganizationName(String organizationName) {
         page.locator(organizationNameField).fill(organizationName);
         return this;
@@ -240,21 +235,6 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage selectPlayerJoiningTypeSingle() {
-        page.locator(playerJoiningTypeSingle).click();
-        return this;
-    }
-
-    public TournamentsPage selectPlayerJoiningTypeDouble() {
-        page.locator(playerJoiningTypeDouble).click();
-        return this;
-    }
-
-    public TournamentsPage selectPlayerJoiningTypeBoth() {
-        page.locator(playerJoiningTypeBoth).click();
-        return this;
-    }
-
     public TournamentsPage clearTermsAndConditionsField() {
         page.locator(termsAndConditionsField).clear();
         return this;
@@ -300,9 +280,8 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage clickNextButton() {
+    public void clickNextButton() {
         page.locator(nextButton).click();
-        return this;
     }
 
     public TournamentsPage selectStartDate() {
@@ -399,9 +378,8 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage clickCourtAvailabilityButton() {
+    public void clickCourtAvailabilityButton() {
         page.locator(checkAvailabilityButton).click();
-        return this;
     }
 
     public TournamentsPage selectCourtsWithDateIncrement(int maxIncrementDays) {
@@ -437,9 +415,8 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage clickSaveAndPublishButton() {
+    public void clickSaveAndPublishButton() {
         page.locator(saveAndPublishButton).click();
-        return this;
     }
 
     public TournamentsPage clickAddPlayers() {

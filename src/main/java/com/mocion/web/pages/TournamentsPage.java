@@ -25,16 +25,13 @@ public class TournamentsPage {
     public String sponsorLogoField = "label[for='clubLogo']";
     public String prizeField = "input[name='prize_ids.0.name']";
     public String tournamentImageField = "input#trn_image_upload";
-    public String numberOfPlayerDropdown = ".react-select__dropdown-indicator";
+    public String tournamentCreateDropdowns = ".react-select__dropdown-indicator";
     public String addPlayerNameDropdown = "div.react-select.__dropdown-indicator";
     public String paymentMethodDropdown = "div.react-select.w-full__dropdown-indicator";
     public String minPlayerLevelField = "input[name='min_players_level']";
     public String maxPlayerLevelField = "input[name='max_players_level']";
     public String tournamentStyleKnockout = "input[type='radio'][value='Knockouts']";
-    public String tournamentStyleRound = "input[type='radio'][value='Round Robin']";
-    public String playerJoiningTypeSingle = "input[type='radio'][value='Single']";
-    public String playerJoiningTypeDouble = "input[type='radio'][value='Double']";
-    public String playerJoiningTypeBoth = "input[type='radio'][value='Both']";
+    public String tournamentStyleRoundRobin = "input[type='radio'][value='Round Robin']";
     public String termsAndConditionsField = "input[name='terms_and_conditions']";
     public String nextButton = "button.bg-primary.text-white.rounded-full";
     public String pricePerPlayerField = "input[name='price_per_player']";
@@ -44,16 +41,14 @@ public class TournamentsPage {
     public String eventTypePrivate = "input[type='radio'][value='private']";
     public String eventTypePublic = "input[type='radio'][value='public']";
     public String dateFields = "div.absolute.right-1.top-2 svg";
-    public String allowedCourtsDropdown = "div.react-select__indicator.react-select__dropdown-indicator";
-    public String allowedDays = "div.react-select__indicator.react-select__dropdown-indicator";
-    public String matchDuration = "div.react-select__indicator.react-select__dropdown-indicator";
+    public String scheduleCourtsDropdowns = "div.react-select__indicator.react-select__dropdown-indicator";
     public String startTime = "input[name='start_time']";
     public String endTime = "input[name='end_time']";
     public String setPerMatchOne = "input[type='radio'][value='1']";
     public String saveAndPublishButton = "text='Save and publish'";
     public String checkAvailabilityButton = "button:text('Check court availibility')";
-    public String okButton = "//button[text()='Ok']";
     public String tournamentCreateSuccessMessage = "text='Successful.'";
+    public String tournamentEditSuccessMessage = "text='tournament has been updated successfully'";
     public String chatWithPlayersText = "li:has-text('chat with players')";
     public String firstConversation = ".w-full.flex.px-8";
     public String conversationTextInputField = ".editable.w-full.pt-2";
@@ -86,6 +81,9 @@ public class TournamentsPage {
     public String courtOptions = ".react-select__option";
     public String selectedSlotsCount = "h3.text-primary";
     public String allAvailableCourts = "span.bg-\\[\\#f3f3f3\\].text-primary";
+    public String paymentDetailsApp = "text='App'";
+    public String scheduleCourtsText = "li.flex.cursor-pointer:has-text('Schedule courts')";
+    public String saveButton = "button.bg-primary:text('Save')";
 
     public TournamentsPage(Page page) {
         this.page = page;
@@ -199,13 +197,23 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectNumberOfPlayer() {
-        page.locator(numberOfPlayerDropdown).click();
+        page.locator(tournamentCreateDropdowns).nth(0).click();
         page.keyboard().press("Enter");
+        return this;
+    }
+
+    public TournamentsPage clearMinPlayerLevelField() {
+        page.locator(minPlayerLevelField).clear();
         return this;
     }
 
     public TournamentsPage fillMinPlayerLevelField(String minPlayerLevel) {
         page.locator(minPlayerLevelField).fill(minPlayerLevel);
+        return this;
+    }
+
+    public TournamentsPage clearMaxPlayerLevelField() {
+        page.locator(maxPlayerLevelField).clear();
         return this;
     }
 
@@ -219,28 +227,23 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage selectTournamentStyleRound() {
-        page.locator(tournamentStyleRound).click();
+    public TournamentsPage selectTournamentStyleRoundRobin() {
+        page.locator(tournamentStyleRoundRobin).click();
         return this;
     }
 
-    public TournamentsPage selectPlayerJoiningTypeSingle() {
-        page.locator(playerJoiningTypeSingle).click();
-        return this;
-    }
-
-    public TournamentsPage selectPlayerJoiningTypeDouble() {
-        page.locator(playerJoiningTypeDouble).click();
-        return this;
-    }
-
-    public TournamentsPage selectPlayerJoiningTypeBoth() {
-        page.locator(playerJoiningTypeBoth).click();
+    public TournamentsPage clearTermsAndConditionsField() {
+        page.locator(termsAndConditionsField).clear();
         return this;
     }
 
     public TournamentsPage fillTermsAndConditionsField(String termsAndConditions) {
         page.locator(termsAndConditionsField).fill(termsAndConditions);
+        return this;
+    }
+
+    public TournamentsPage clearPricePerPlayerField() {
+        page.locator(pricePerPlayerField).clear();
         return this;
     }
 
@@ -274,9 +277,8 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage clickNextButton() {
+    public void clickNextButton() {
         page.locator(nextButton).click();
-        return this;
     }
 
     public TournamentsPage selectStartDate() {
@@ -316,7 +318,7 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectAllowedCourts(int courtsToSelect) {
-        page.locator(allowedCourtsDropdown).nth(0).click();
+        page.locator(scheduleCourtsDropdowns).nth(0).click();
         Locator options = page.locator(courtOptions);
         int count = options.count();
 
@@ -335,7 +337,7 @@ public class TournamentsPage {
                 "Friday", "Saturday", "Sunday"
         );
 
-        page.locator(allowedDays).nth(1).click();
+        page.locator(tournamentCreateDropdowns).nth(3).click();
 
         for (String day : daysToSelect) {
             int index = allDays.indexOf(day);
@@ -363,7 +365,7 @@ public class TournamentsPage {
     }
 
     public TournamentsPage selectMatchDuration() {
-        page.locator(matchDuration).nth(2).click();
+        page.locator(scheduleCourtsDropdowns).nth(1).click();
         page.keyboard().press("Enter");
         return this;
     }
@@ -373,9 +375,8 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage clickCourtAvailabilityButton() {
+    public void clickCourtAvailabilityButton() {
         page.locator(checkAvailabilityButton).click();
-        return this;
     }
 
     public TournamentsPage selectCourtsWithDateIncrement(int maxIncrementDays) {
@@ -383,7 +384,7 @@ public class TournamentsPage {
             clickCourtAvailabilityButton();
             page.waitForTimeout(2000);
 
-            String slotsText = page.locator(selectedSlotsCount).nth(3).textContent().trim();
+            String slotsText = page.locator(selectedSlotsCount).nth(2).textContent().trim();
             int toSelect = Integer.parseInt(slotsText.split("/")[1].trim());
 
             Locator availableCourts = page.locator(allAvailableCourts);
@@ -411,9 +412,8 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage clickSaveAndPublishButton() {
+    public void clickSaveAndPublishButton() {
         page.locator(saveAndPublishButton).click();
-        return this;
     }
 
     public TournamentsPage clickAddPlayers() {
@@ -579,12 +579,35 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickSendIcon() {
-        page.locator(sendMessageIcon).click();
+    public TournamentsPage selectPaymentDetailsApp() {
+        page.locator(tournamentCreateDropdowns).nth(1).click();
+        page.locator(paymentDetailsApp).click();
+        return this;
     }
 
-    public void clickOkButton() {
-        page.locator(okButton).click();
+    public TournamentsPage editPaymentDetailsApp() {
+        page.locator(tournamentCreateDropdowns).nth(1).click();
+        page.locator(paymentDetailsApp).nth(1).click();
+        return this;
+    }
+
+    public TournamentsPage selectAssignOrganizer() {
+        page.locator(tournamentCreateDropdowns).nth(2).click();
+        page.keyboard().press("Enter");
+        return this;
+    }
+
+    public TournamentsPage clickScheduleCourts() {
+        page.locator(scheduleCourtsText).click();
+        return this;
+    }
+
+    public void clickSaveButton() {
+        page.locator(saveButton).click();
+    }
+
+    public void clickSendIcon() {
+        page.locator(sendMessageIcon).click();
     }
 
     public Locator tournamentCreateSuccessMessageLocator() {
@@ -592,7 +615,7 @@ public class TournamentsPage {
     }
 
     public Locator tournamentEditSuccessMessageLocator() {
-        return page.locator(tournamentCreateSuccessMessage);
+        return page.locator(tournamentEditSuccessMessage);
     }
 
     public String sentMessageTextContent() {

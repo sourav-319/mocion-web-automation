@@ -45,15 +45,13 @@ public class TournamentsPage {
     public String eventTypePublic = "input[type='radio'][value='public']";
     public String dateFields = "div.absolute.right-1.top-2 svg";
     public String scheduleCourtsDropdowns = "div.react-select__indicator.react-select__dropdown-indicator";
-    public String allowedDays = "div.react-select__indicator.react-select__dropdown-indicator";
-    public String matchDurationDropdown = "div.react-select__indicator.react-select__dropdown-indicator";
     public String startTime = "input[name='start_time']";
     public String endTime = "input[name='end_time']";
     public String setPerMatchOne = "input[type='radio'][value='1']";
     public String saveAndPublishButton = "text='Save and publish'";
     public String checkAvailabilityButton = "button:text('Check court availibility')";
-    public String okButton = "//button[text()='Ok']";
     public String tournamentCreateSuccessMessage = "text='Successful.'";
+    public String tournamentEditSuccessMessage = "text='tournament has been updated successfully'";
     public String chatWithPlayersText = "li:has-text('chat with players')";
     public String firstConversation = ".w-full.flex.px-8";
     public String conversationTextInputField = ".editable.w-full.pt-2";
@@ -88,6 +86,7 @@ public class TournamentsPage {
     public String allAvailableCourts = "span.bg-\\[\\#f3f3f3\\].text-primary";
     public String paymentDetailsApp = "text='App'";
     public String scheduleCourtsText = "li.flex.cursor-pointer:has-text('Schedule courts')";
+    public String saveButton = "button.bg-primary:text('Save')";
 
     public TournamentsPage(Page page) {
         this.page = page;
@@ -153,6 +152,11 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage clearOrganizationName() {
+        page.locator(organizationNameField).clear();
+        return this;
+    }
+
     public TournamentsPage fillOrganizationName(String organizationName) {
         page.locator(organizationNameField).fill(organizationName);
         return this;
@@ -206,8 +210,18 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage clearMinPlayerLevelField() {
+        page.locator(minPlayerLevelField).clear();
+        return this;
+    }
+
     public TournamentsPage fillMinPlayerLevelField(String minPlayerLevel) {
         page.locator(minPlayerLevelField).fill(minPlayerLevel);
+        return this;
+    }
+
+    public TournamentsPage clearMaxPlayerLevelField() {
+        page.locator(maxPlayerLevelField).clear();
         return this;
     }
 
@@ -241,8 +255,18 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage clearTermsAndConditionsField() {
+        page.locator(termsAndConditionsField).clear();
+        return this;
+    }
+
     public TournamentsPage fillTermsAndConditionsField(String termsAndConditions) {
         page.locator(termsAndConditionsField).fill(termsAndConditions);
+        return this;
+    }
+
+    public TournamentsPage clearPricePerPlayerField() {
+        page.locator(pricePerPlayerField).clear();
         return this;
     }
 
@@ -385,7 +409,7 @@ public class TournamentsPage {
             clickCourtAvailabilityButton();
             page.waitForTimeout(2000);
 
-            String slotsText = page.locator(selectedSlotsCount).nth(3).textContent().trim();
+            String slotsText = page.locator(selectedSlotsCount).nth(2).textContent().trim();
             int toSelect = Integer.parseInt(slotsText.split("/")[1].trim());
 
             Locator availableCourts = page.locator(allAvailableCourts);
@@ -587,6 +611,12 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage editPaymentDetailsApp() {
+        page.locator(tournamentCreateDropdowns).nth(1).click();
+        page.locator(paymentDetailsApp).nth(1).click();
+        return this;
+    }
+
     public TournamentsPage selectAssignOrganizer() {
         page.locator(tournamentCreateDropdowns).nth(2).click();
         page.keyboard().press("Enter");
@@ -598,12 +628,12 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickSendIcon() {
-        page.locator(sendMessageIcon).click();
+    public void clickSaveButton() {
+        page.locator(saveButton).click();
     }
 
-    public void clickOkButton() {
-        page.locator(okButton).click();
+    public void clickSendIcon() {
+        page.locator(sendMessageIcon).click();
     }
 
     public Locator tournamentCreateSuccessMessageLocator() {
@@ -611,7 +641,7 @@ public class TournamentsPage {
     }
 
     public Locator tournamentEditSuccessMessageLocator() {
-        return page.locator(tournamentCreateSuccessMessage);
+        return page.locator(tournamentEditSuccessMessage);
     }
 
     public String sentMessageTextContent() {

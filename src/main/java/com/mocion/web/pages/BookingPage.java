@@ -175,14 +175,6 @@ public class BookingPage {
         return this;
     }
 
-    public void clickCloseIcon() {
-        page.locator(bookingCreateCloseIcon).click();
-    }
-
-    public void clickCancelWithRefundButton() {
-        page.locator(cancelWithRefundButton).click();
-    }
-
     public BookingPage clickCancelBooking() {
         page.locator(cancelBookingText).click();
         return this;
@@ -233,16 +225,24 @@ public class BookingPage {
         return this;
     }
 
+    public void clickCloseIcon() {
+        page.locator(bookingCreateCloseIcon).click();
+    }
+
+    public void clickCancelWithRefundButton() {
+        page.locator(cancelWithRefundButton).click();
+    }
+
     public void clickSavePrivateMatchButton() {
         page.locator(savePrivateMatchButton).click();
     }
 
-    public String getPaymentStatus() {
-        return page.locator(paymentStatus).nth(0).textContent();
-    }
-
     public void clickCancelWithoutRefundButton() {
         page.locator(cancelWithoutRefundButton).click();
+    }
+
+    public String getPaymentStatus() {
+        return page.locator(paymentStatus).nth(0).textContent();
     }
 
     public Locator bookingCreateSuccessMessageLocator() {

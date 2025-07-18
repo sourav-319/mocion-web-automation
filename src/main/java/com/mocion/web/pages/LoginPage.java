@@ -15,14 +15,12 @@ public class LoginPage {
         this.page = page;
     }
 
-    public LoginPage fillUserEmail(String email) {
+    public void fillUserEmail(String email) {
         page.locator(userEmailField).fill(email);
-        return this;
     }
 
-    public LoginPage fillUserPassword(String password) {
+    public void fillUserPassword(String password) {
         page.locator(passwordField).fill(password);
-        return this;
     }
 
     public void clickLoginBtn() {
@@ -31,8 +29,8 @@ public class LoginPage {
 
     public void userLogin() {
         page.navigate(prop.getProperty("baseUrl"));
-        fillUserEmail(prop.getProperty("userEmail"));
-        fillUserPassword(prop.getProperty("userPassword"));
+        fillUserEmail(prop.getProperty("userEmail_2"));
+        fillUserPassword(prop.getProperty("userPassword_2"));
         clickLoginBtn();
     }
 }

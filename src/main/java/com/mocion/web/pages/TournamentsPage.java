@@ -33,7 +33,7 @@ public class TournamentsPage {
     public String tournamentStyleKnockout = "input[type='radio'][value='Knockouts']";
     public String tournamentStyleRoundRobin = "input[type='radio'][value='Round Robin']";
     public String termsAndConditionsField = "input[name='terms_and_conditions']";
-    public String nextButton = "button.bg-primary.text-white.rounded-full";
+    public String saveTournamentButton = "button.bg-primary.text-white";
     public String pricePerPlayerField = "input[name='price_per_player']";
     public String genderMixed = "input[type='radio'][value='Mixed']";
     public String eventTypeCompetitive = "input[type='radio'][value='competitive']";
@@ -83,7 +83,6 @@ public class TournamentsPage {
     public String allAvailableCourts = "span.bg-\\[\\#f3f3f3\\].text-primary";
     public String paymentDetailsApp = "text='App'";
     public String scheduleCourtsText = "li.flex.cursor-pointer:has-text('Schedule courts')";
-    public String saveButton = "button.bg-primary:text('Save')";
 
     public TournamentsPage(Page page) {
         this.page = page;
@@ -217,7 +216,7 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage fillMaxPlayerLevelField(String maxPlayerLevel) {
+    public TournamentsPage fillMaxPlayerLevel(String maxPlayerLevel) {
         page.locator(maxPlayerLevelField).fill(maxPlayerLevel);
         return this;
     }
@@ -237,7 +236,7 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage fillTermsAndConditionsField(String termsAndConditions) {
+    public TournamentsPage fillTermsAndConditions(String termsAndConditions) {
         page.locator(termsAndConditionsField).fill(termsAndConditions);
         return this;
     }
@@ -247,7 +246,7 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage fillPricePerPlayerField(String pricePerPlayer) {
+    public TournamentsPage fillPricePerPlayer(String pricePerPlayer) {
         page.locator(pricePerPlayerField).fill(pricePerPlayer);
         return this;
     }
@@ -277,10 +276,6 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickNextButton() {
-        page.locator(nextButton).click();
-    }
-
     public TournamentsPage selectStartDate() {
         page.locator(dateFields).nth(0).click();
         page.keyboard().press("Enter");
@@ -297,24 +292,6 @@ public class TournamentsPage {
         page.locator(dateFields).nth(2).click();
         page.keyboard().press("Enter");
         return this;
-    }
-
-    private void incrementStartDate() {
-        page.locator(dateFields).nth(0).click();
-        page.keyboard().press("ArrowRight");
-        page.keyboard().press("Enter");
-    }
-
-    private void incrementEndDate() {
-        page.locator(dateFields).nth(1).click();
-        page.keyboard().press("ArrowRight");
-        page.keyboard().press("Enter");
-    }
-
-    private void incrementRegistrationDeadline() {
-        page.locator(dateFields).nth(2).click();
-        page.keyboard().press("ArrowRight");
-        page.keyboard().press("Enter");
     }
 
     public TournamentsPage selectAllowedCourts(int courtsToSelect) {
@@ -375,10 +352,6 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickCourtAvailabilityButton() {
-        page.locator(checkAvailabilityButton).click();
-    }
-
     public TournamentsPage selectCourtsWithDateIncrement(int maxIncrementDays) {
         for (int day = 0; day <= maxIncrementDays; day++) {
             clickCourtAvailabilityButton();
@@ -410,10 +383,6 @@ public class TournamentsPage {
             break;
         }
         return this;
-    }
-
-    public void clickSaveAndPublishButton() {
-        page.locator(saveAndPublishButton).click();
     }
 
     public TournamentsPage clickAddPlayers() {
@@ -453,14 +422,6 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickYesToCancelTournament() {
-        page.locator(yesButtonToCancelTournament).click();
-    }
-
-    public void clickAddPlayerSaveButton() {
-        page.locator(addPlayerSaveButton).click();
-    }
-
     public TournamentsPage clickSchedule() {
         page.locator(scheduleText).click();
         return this;
@@ -480,50 +441,6 @@ public class TournamentsPage {
     public TournamentsPage clickSaveAndNextButton() {
         page.locator(saveAndNextButton).click();
         return this;
-    }
-
-    public void fillMatchScoreOne(String scoreOne) {
-        page.locator(scoreOneInputField).fill(scoreOne);
-    }
-
-    public void fillMatchScoreTwo(String scoreTwo) {
-        page.locator(scoreTwoInputField).fill(scoreTwo);
-    }
-
-    public void clickSaveMatchScoreButton() {
-        page.locator(saveMatchScoreButton).click();
-    }
-
-    public void clickYesToConfirmMatchResult() {
-        page.locator(yesToConfirmMatchResultButton).click();
-    }
-
-    public void setKnockoutMatchScores(String scoreOne, String scoreTwo) {
-        List<String> order = List.of("L1", "R1", "F1", "F2");
-        Locator rows = page.locator("tbody tr");
-        int count = rows.count();
-
-        for (String label : order) {
-            for (int i = 0; i < count; i++) {
-                String text = rows.nth(i).locator("td").first().locator("p").first().innerText().trim();
-                if (text.equals(label)) {
-                    Locator editIcon = rows.nth(i).locator(editMatchScoreIcon);
-                    if (editIcon.count() == 0) continue;
-
-                    editIcon.click();
-                    fillMatchScoreOne(scoreOne);
-                    fillMatchScoreTwo(scoreTwo);
-                    clickSaveMatchScoreButton();
-
-                    Locator confirmIcon = rows.nth(i).locator(confirmResultIcon);
-                    if (confirmIcon.count() > 0) {
-                        confirmIcon.click();
-                        clickYesToConfirmMatchResult();
-                    }
-                    break;
-                }
-            }
-        }
     }
 
     public TournamentsPage setRoundRobinPhaseOneMatchScores(String scoreOne, String scoreTwo) {
@@ -602,12 +519,94 @@ public class TournamentsPage {
         return this;
     }
 
-    public void clickSaveButton() {
-        page.locator(saveButton).click();
+    public void setKnockoutMatchScores(String scoreOne, String scoreTwo) {
+        List<String> order = List.of("L1", "R1", "F1", "F2");
+        Locator rows = page.locator("tbody tr");
+        int count = rows.count();
+
+        for (String label : order) {
+            for (int i = 0; i < count; i++) {
+                String text = rows.nth(i).locator("td").first().locator("p").first().innerText().trim();
+                if (text.equals(label)) {
+                    Locator editIcon = rows.nth(i).locator(editMatchScoreIcon);
+                    if (editIcon.count() == 0) continue;
+
+                    editIcon.click();
+                    fillMatchScoreOne(scoreOne);
+                    fillMatchScoreTwo(scoreTwo);
+                    clickSaveMatchScoreButton();
+
+                    Locator confirmIcon = rows.nth(i).locator(confirmResultIcon);
+                    if (confirmIcon.count() > 0) {
+                        confirmIcon.click();
+                        clickYesToConfirmMatchResult();
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    private void incrementStartDate() {
+        page.locator(dateFields).nth(0).click();
+        page.keyboard().press("ArrowRight");
+        page.keyboard().press("Enter");
+    }
+
+    private void incrementEndDate() {
+        page.locator(dateFields).nth(1).click();
+        page.keyboard().press("ArrowRight");
+        page.keyboard().press("Enter");
+    }
+
+    private void incrementRegistrationDeadline() {
+        page.locator(dateFields).nth(2).click();
+        page.keyboard().press("ArrowRight");
+        page.keyboard().press("Enter");
+    }
+
+    public void clickYesToCancelTournament() {
+        page.locator(yesButtonToCancelTournament).click();
+    }
+
+    public void clickAddPlayerSaveButton() {
+        page.locator(addPlayerSaveButton).click();
+    }
+
+    public void clickSaveAndPublishButton() {
+        page.locator(saveAndPublishButton).click();
+    }
+
+    public void clickSaveTournamentButton() {
+        page.locator(saveTournamentButton).click();
+    }
+
+    public void clickCourtAvailabilityButton() {
+        page.locator(checkAvailabilityButton).click();
+    }
+
+    public void fillMatchScoreOne(String scoreOne) {
+        page.locator(scoreOneInputField).fill(scoreOne);
+    }
+
+    public void fillMatchScoreTwo(String scoreTwo) {
+        page.locator(scoreTwoInputField).fill(scoreTwo);
+    }
+
+    public void clickSaveMatchScoreButton() {
+        page.locator(saveMatchScoreButton).click();
+    }
+
+    public void clickYesToConfirmMatchResult() {
+        page.locator(yesToConfirmMatchResultButton).click();
     }
 
     public void clickSendIcon() {
         page.locator(sendMessageIcon).click();
+    }
+
+    public String sentMessageTextContent() {
+        return page.locator(sentMessageText).last().textContent();
     }
 
     public Locator tournamentCreateSuccessMessageLocator() {
@@ -616,10 +615,6 @@ public class TournamentsPage {
 
     public Locator tournamentEditSuccessMessageLocator() {
         return page.locator(tournamentEditSuccessMessage);
-    }
-
-    public String sentMessageTextContent() {
-        return page.locator(sentMessageText).last().textContent();
     }
 
     public Locator cancelTournamentSuccessMessageLocator() {

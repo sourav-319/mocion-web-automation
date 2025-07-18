@@ -101,14 +101,6 @@ public class PricingPage {
         return this;
     }
 
-    public void selectDateTo(String dateTo) {
-        page.locator(dateFromField).nth(1).fill(dateTo);
-    }
-
-    public void clickYesToConfirmationTab() {
-        page.locator(yestToConfirmationTab).click();
-    }
-
     public PricingPage clearPricingListName() {
         page.locator(pricingListNameFiled).clear();
         return this;
@@ -149,6 +141,14 @@ public class PricingPage {
         page.locator(endDateField).click();
         page.keyboard().press("Enter");
         return this;
+    }
+
+    public void selectDateTo(String dateTo) {
+        page.locator(dateFromField).nth(1).fill(dateTo);
+    }
+
+    public void clickYesToConfirmationTab() {
+        page.locator(yestToConfirmationTab).click();
     }
 
     public void clickSaveButton() {

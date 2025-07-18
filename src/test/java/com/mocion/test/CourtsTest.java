@@ -1,10 +1,10 @@
 package com.mocion.test;
 
 import com.mocion.web.pages.CourtsPage;
+import com.mocion.web.pages.LocationPage;
 import com.mocion.web.pages.LoginPage;
 import org.testng.annotations.Test;
 
-import java.util.List;
 import java.util.Random;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -14,23 +14,25 @@ public class CourtsTest extends BaseTest {
     public LoginPage loginPage;
     public CourtsPage courtsPage;
     public Random random;
+    public LocationPage locationPage;
 
-    @Test(description = "Courts create should successful")
-    public void verify_courts_create_should_succeed() throws InterruptedException {
+    public void initPages() {
         random = new Random();
         courtsPage = new CourtsPage(page);
         loginPage = new LoginPage(page);
+        locationPage = new LocationPage(page);
+    }
 
+    @Test(description = "Courts create should successful")
+    public void verify_courts_create_should_succeed() {
+        initPages();
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
         String courtsName = "test_courts_" + formattedNumber;
         String courtsDescription = "test_courts_description";
 
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickCreateCourtsButton()
@@ -49,21 +51,15 @@ public class CourtsTest extends BaseTest {
     }
 
     @Test(description = "Courts edit should successful")
-    public void verify_courts_edit_should_succeed() throws InterruptedException {
-        random = new Random();
-        courtsPage = new CourtsPage(page);
-        loginPage = new LoginPage(page);
-
+    public void verify_courts_edit_should_succeed() {
+        initPages();
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
         String courtsName = "test_courts_" + formattedNumber;
         String courtsDescription = "test_courts_description";
 
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickMenuIcon()
@@ -84,20 +80,14 @@ public class CourtsTest extends BaseTest {
     }
 
     @Test(description = "Courts duplicate should successful")
-    public void verify_courts_duplicate_should_succeed() throws InterruptedException {
-        random = new Random();
-        courtsPage = new CourtsPage(page);
-        loginPage = new LoginPage(page);
-
+    public void verify_courts_duplicate_should_succeed() {
+        initPages();
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
         String courtsName = "test_courts_" + formattedNumber;
 
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickMenuIcon()
@@ -110,15 +100,10 @@ public class CourtsTest extends BaseTest {
     }
 
     @Test(description = "Courts deactivate should successful")
-    public void verify_courts_deactivate_should_succeed() throws InterruptedException {
-        courtsPage = new CourtsPage(page);
-        loginPage = new LoginPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+    public void verify_courts_deactivate_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickMenuIcon()
@@ -129,15 +114,10 @@ public class CourtsTest extends BaseTest {
     }
 
     @Test(description = "Courts activate should successful")
-    public void verify_courts_activate_should_succeed() throws InterruptedException {
-        courtsPage = new CourtsPage(page);
-        loginPage = new LoginPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+    public void verify_courts_activate_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickMenuIcon()
@@ -151,14 +131,9 @@ public class CourtsTest extends BaseTest {
     public void verify_courts_search_should_succeed() throws InterruptedException {
         String searchKeyword = "test_courts";
 
-        courtsPage = new CourtsPage(page);
-        loginPage = new LoginPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clearSearchField()
@@ -173,20 +148,15 @@ public class CourtsTest extends BaseTest {
     }
 
     @Test(description = "Courts filter should successful")
-    public void verify_courts_filter_should_succeed() throws InterruptedException {
+    public void verify_courts_filter_should_succeed() {
         String searchKeyword = "test_courts";
         String dateFrom = "2025-05-31";
         String dateTo = "2026-05-31";
         String courtDescription = "test_courts_description";
 
-        courtsPage = new CourtsPage(page);
-        loginPage = new LoginPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         courtsPage
                 .clickCourtsFromNavigationBar()
                 .clickFilterIcon()

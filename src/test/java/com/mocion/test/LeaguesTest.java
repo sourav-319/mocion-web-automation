@@ -132,47 +132,6 @@ public class LeaguesTest extends BaseTest {
         assertThat(leaguesPage.addPlayersToLeagueSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Edit league with required fields should successful")
-    public void verify_edit_league_with_required_fields_should_succeed() {
-        List<String> data = generateLeagueData();
-
-        initPages();
-        locationPage.setLocationPermissionAllowed();
-        loginPage.userLogin();
-        leaguesPage
-                .clickEventsFromNavigationBar()
-                .clickLeaguesFromNavigationBar()
-                .selectClubName(CLUB_NAME)
-                .clickMenuIcon()
-                .clickEditLeagues()
-                .clearLeagueNameField()
-                .fillLeagueName(data.get(0))
-                .clearLeagueDescriptionField()
-                .fillLeagueDescription(data.get(4))
-                .clearMinPlayerLevelField()
-                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
-                .clearMaxPlayerLevelField()
-                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
-                .clearPricePerPlayerField()
-                .fillPricePerPlayer(PRICE_PER_PLAYER)
-                .editPaymentDetailsApp()
-                .selectGenderMixed()
-                .selectEventTypePublic()
-                .selectNumberOfPlayer()
-                .selectAssignOrganizer()
-                .clearTermsAndConditionsField()
-                .fillTermsAndConditions(data.get(5))
-                .selectStartDate()
-                .selectEndDate()
-                .selectRegistrationDeadline()
-                .selectAllowedDays(EDIT_ALLOWED_DAYS)
-                .selectStartTime()
-                .selectEndTime()
-                .clickSaveLeagueButton();
-
-        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
-    }
-
     @Test(description = "Schedule courts for league should successful")
     public void verify_schedule_courts_for_league_should_succeed() {
         initPages();
@@ -211,6 +170,47 @@ public class LeaguesTest extends BaseTest {
                 .clickSendIcon();
 
         Assert.assertTrue(leaguesPage.sentMessageTextContent().contains(conversationText));
+    }
+
+    @Test(description = "Edit league with required fields should successful")
+    public void verify_edit_league_with_required_fields_should_succeed() {
+        List<String> data = generateLeagueData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditLeagues()
+                .clearLeagueNameField()
+                .fillLeagueName(data.get(0))
+                .clearLeagueDescriptionField()
+                .fillLeagueDescription(data.get(4))
+                .clearMinPlayerLevelField()
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
+                .clearMaxPlayerLevelField()
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .clearPricePerPlayerField()
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .editPaymentDetailsApp()
+                .selectGenderMixed()
+                .selectEventTypePublic()
+                .selectNumberOfPlayer()
+                .editAssignOrganizer()
+                .clearTermsAndConditionsField()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedDays(EDIT_ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveLeagueButton();
+
+        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Edit league with optional fields should successful")
@@ -270,7 +270,7 @@ public class LeaguesTest extends BaseTest {
                 .selectGenderMixed()
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
-                .selectAssignOrganizer()
+                .editAssignOrganizer()
                 .clearTermsAndConditionsField()
                 .fillTermsAndConditions(data.get(5))
                 .selectStartDate()

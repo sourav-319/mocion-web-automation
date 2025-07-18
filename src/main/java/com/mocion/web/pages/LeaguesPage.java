@@ -395,6 +395,13 @@ public class LeaguesPage {
         return this;
     }
 
+    public LeaguesPage editAssignOrganizer() {
+        page.locator(leagueCreateDropdowns).nth(2).click();
+        page.keyboard().press("Enter");
+        page.keyboard().press("Enter");
+        return this;
+    }
+
     public LeaguesPage editPaymentDetailsApp() {
         page.locator(leagueCreateDropdowns).nth(1).click();
         page.locator(paymentDetailsApp).nth(1).click();

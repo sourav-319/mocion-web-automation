@@ -514,6 +514,13 @@ public class TournamentsPage {
         return this;
     }
 
+    public TournamentsPage editAssignOrganizer() {
+        page.locator(tournamentCreateDropdowns).nth(2).click();
+        page.keyboard().press("Enter");
+        page.keyboard().press("Enter");
+        return this;
+    }
+
     public TournamentsPage clickScheduleCourts() {
         page.locator(scheduleCourtsText).click();
         return this;

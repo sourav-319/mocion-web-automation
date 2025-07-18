@@ -1,10 +1,10 @@
 package com.mocion.test;
 
 import com.mocion.web.pages.ClubPage;
+import com.mocion.web.pages.LocationPage;
 import com.mocion.web.pages.LoginPage;
 import org.testng.annotations.Test;
 
-import java.util.List;
 import java.util.Random;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -14,9 +14,17 @@ public class ClubTest extends BaseTest {
     public LoginPage loginPage;
     public ClubPage clubPage;
     public Random random;
+    public LocationPage locationPage;
+
+    public void initPages() {
+        locationPage = new LocationPage(page);
+        loginPage = new LoginPage(page);
+        clubPage = new ClubPage(page);
+        random = new Random();
+    }
 
     @Test(description = "Club create should successful")
-    public void verify_club_create_should_succeed() throws InterruptedException {
+    public void verify_club_create_should_succeed() {
         String landline = "+971 111 111 111";
         String aboutClub = "test_club";
         String accountHolderName = "test_account_holder";
@@ -25,19 +33,13 @@ public class ClubTest extends BaseTest {
         String iban = "1111 1111 1111 1111";
         String swiftCode = "46654869652";
 
-        random = new Random();
-        clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
-
+        initPages();
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
         String clubName = "test_club_" + formattedNumber;
 
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickCreateClubButton()
@@ -63,7 +65,7 @@ public class ClubTest extends BaseTest {
     }
 
     @Test(description = "Club edit should successful")
-    public void verify_club_edit_should_succeed() throws InterruptedException {
+    public void verify_club_edit_should_succeed() {
         String landline = "+971 111 111 111";
         String aboutClub = "test_club";
         String accountHolderName = "test_account_holder";
@@ -76,19 +78,13 @@ public class ClubTest extends BaseTest {
         String maximumBookingsDay = "1";
         String numberOfActiveBookings = "1";
 
-        random = new Random();
-        clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
-
+        initPages();
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
         String clubName = "test_club_" + formattedNumber;
 
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
@@ -134,20 +130,14 @@ public class ClubTest extends BaseTest {
     }
 
     @Test(description = "Club duplicate should successful")
-    public void verify_club_duplicate_should_succeed() throws InterruptedException {
-        random = new Random();
-        clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
-
+    public void verify_club_duplicate_should_succeed() {
+        initPages();
         int randomNumber = random.nextInt(999) + 1;
         String formattedNumber = String.format("%03d", randomNumber);
         String clubName = "test_club_" + formattedNumber;
 
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
@@ -161,15 +151,9 @@ public class ClubTest extends BaseTest {
     }
 
     @Test(description = "Club deactivate should successful")
-    public void verify_club_deactivate_should_succeed() throws InterruptedException {
-        clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+    public void verify_club_deactivate_should_succeed() {
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
@@ -180,15 +164,9 @@ public class ClubTest extends BaseTest {
     }
 
     @Test(description = "Club activate should successful")
-    public void verify_club_activate_should_succeed() throws InterruptedException {
-        clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+    public void verify_club_activate_should_succeed() {
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clickMenuIcon()
@@ -199,16 +177,11 @@ public class ClubTest extends BaseTest {
     }
 
     @Test(description = "Club search should successful")
-    public void verify_club_search_should_succeed() throws InterruptedException {
+    public void verify_club_search_should_succeed() {
         String searchKeyword = "test_club";
-        clubPage = new ClubPage(page);
-        loginPage = new LoginPage(page);
 
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        loginPage
-                .userLogin();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         clubPage
                 .clickOrganizationFromLeftNavigation()
                 .clearSearchField()

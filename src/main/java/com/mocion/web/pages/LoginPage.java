@@ -31,8 +31,8 @@ public class LoginPage {
 
     public void userLogin() {
         page.navigate(prop.getProperty("baseUrl"));
-        fillUserEmail(prop.getProperty("userEmail"));
-        fillUserPassword(prop.getProperty("userPassword"));
+        fillUserEmail(prop.getProperty("userEmail_2"));
+        fillUserPassword(prop.getProperty("userPassword_2"));
         clickLoginBtn();
     }
 }

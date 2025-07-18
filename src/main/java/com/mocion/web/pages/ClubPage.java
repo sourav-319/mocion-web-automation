@@ -83,10 +83,6 @@ public class ClubPage {
         return this;
     }
 
-    public void clickYesToConfirmationTab() {
-        page.locator(yesToConfirmationTabButton).click();
-    }
-
     public ClubPage fillClubName(String clubName) {
         page.locator(clubNameField).nth(1).fill(clubName);
         return this;
@@ -322,25 +318,29 @@ public class ClubPage {
         return this;
     }
 
+    public ClubPage clearSearchField() {
+        page.locator(searchField).click();
+        return this;
+    }
+
     public void clickSaveButton() {
         page.locator(saveButton).last().click();
     }
 
-    public ClubPage clearSearchField() {
-        page.locator(searchField).click();
-        return this;
+    public void clickYesToConfirmationTab() {
+        page.locator(yesToConfirmationTabButton).click();
     }
 
     public void fillSearchKeyword(String searchKeyword) {
         page.locator(searchField).fill(searchKeyword);
     }
 
-    public Locator getSearchFirstRowResultLocator() {
-        return page.locator(searchResultFirstRow).first();
-    }
-
     public String getSearchFirstRowResult() {
         return page.locator(searchResultFirstRow).first().textContent();
+    }
+
+    public Locator getSearchFirstRowResultLocator() {
+        return page.locator(searchResultFirstRow).first();
     }
 
     public Locator getClubCreateSuccessMessageLocator() {

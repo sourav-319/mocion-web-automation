@@ -1,5 +1,6 @@
 package com.mocion.test;
 
+import com.mocion.web.pages.LocationPage;
 import com.mocion.web.pages.LoginPage;
 import com.mocion.web.pages.TournamentsPage;
 import org.testng.Assert;
@@ -15,6 +16,7 @@ public class TournamentsTest extends BaseTest {
     public LoginPage loginPage;
     public TournamentsPage tournamentsPage;
     public Random random;
+    public LocationPage locationPage;
 
     private static final String CLUB_NAME = "Farah123";
     private static final String MIN_PLAYER_LEVEL = "0";
@@ -25,13 +27,20 @@ public class TournamentsTest extends BaseTest {
     private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
     private static final List<String> EDIT_ALLOWED_DAYS = Arrays.asList("Saturday", "Sunday");
 
+    public void initPages() {
+        random = new Random();
+        loginPage = new LoginPage(page);
+        tournamentsPage = new TournamentsPage(page);
+        locationPage = new LocationPage(page);
+    }
+
     @Test(description = "Private competitive knockout tournament create should successful")
     public void verify_private_competitive_knockout_tournament_create_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -45,8 +54,8 @@ public class TournamentsTest extends BaseTest {
                 .fillPrize(data.get(3))
                 .uploadTournamentImage()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeCompetitive()
@@ -54,25 +63,25 @@ public class TournamentsTest extends BaseTest {
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickNextButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Public competitive knockout tournament create should successful")
     public void verify_public_competitive_knockout_tournament_create_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -86,8 +95,8 @@ public class TournamentsTest extends BaseTest {
                 .fillPrize(data.get(3))
                 .uploadTournamentImage()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeCompetitive()
@@ -95,25 +104,25 @@ public class TournamentsTest extends BaseTest {
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickNextButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Private competitive round robin tournament create should successful")
     public void verify_private_competitive_round_robin_tournament_create_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -127,8 +136,8 @@ public class TournamentsTest extends BaseTest {
                 .fillPrize(data.get(3))
                 .uploadTournamentImage()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeCompetitive()
@@ -136,25 +145,25 @@ public class TournamentsTest extends BaseTest {
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickNextButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Public competitive round robin tournament create should successful")
     public void verify_public_competitive_round_tournament_create_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -168,8 +177,8 @@ public class TournamentsTest extends BaseTest {
                 .fillPrize(data.get(3))
                 .uploadTournamentImage()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeCompetitive()
@@ -177,25 +186,25 @@ public class TournamentsTest extends BaseTest {
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickNextButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Private friendly knockout tournament create should successful")
     public void verify_private_friendly_knockout_tournament_create_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -209,8 +218,8 @@ public class TournamentsTest extends BaseTest {
                 .fillPrize(data.get(3))
                 .uploadTournamentImage()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeFriendly()
@@ -218,25 +227,25 @@ public class TournamentsTest extends BaseTest {
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickNextButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Public friendly knockout tournament create should successful")
     public void verify_public_friendly_knockout_tournament_create_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -250,8 +259,8 @@ public class TournamentsTest extends BaseTest {
                 .fillPrize(data.get(3))
                 .uploadTournamentImage()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeFriendly()
@@ -259,25 +268,25 @@ public class TournamentsTest extends BaseTest {
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickNextButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Private friendly round tournament create should successful")
     public void verify_private_friendly_round_tournament_create_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -291,8 +300,8 @@ public class TournamentsTest extends BaseTest {
                 .fillPrize(data.get(3))
                 .uploadTournamentImage()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeFriendly()
@@ -300,25 +309,25 @@ public class TournamentsTest extends BaseTest {
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickNextButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Public friendly round robin tournament create should successful")
     public void verify_public_friendly_round_robin_tournament_create_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -332,8 +341,8 @@ public class TournamentsTest extends BaseTest {
                 .fillPrize(data.get(3))
                 .uploadTournamentImage()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeFriendly()
@@ -341,24 +350,23 @@ public class TournamentsTest extends BaseTest {
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickNextButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Add players to tournament should successful")
     public void verify_add_players_to_tournament_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
-
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -376,10 +384,9 @@ public class TournamentsTest extends BaseTest {
 
     @Test(description = "Schedule courts for tournament should successful")
     public void verify_schedule_courts_for_tournament_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
-
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -398,10 +405,10 @@ public class TournamentsTest extends BaseTest {
     @Test(description = "Chat with tournament players should successful")
     public void verify_chat_with_tournament_players_should_succeed() {
         String conversationText = "Hello, this is a test message";
-        tournamentsPage = new TournamentsPage(page);
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -420,10 +427,10 @@ public class TournamentsTest extends BaseTest {
         String scoreOne = "4";
         String scoreTwo = "2";
         String clubName = "RE2";
-        tournamentsPage = new TournamentsPage(page);
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -444,10 +451,10 @@ public class TournamentsTest extends BaseTest {
         String scoreOne = "4";
         String scoreTwo = "2";
         String clubName = "RE2";
-        tournamentsPage = new TournamentsPage(page);
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -472,11 +479,11 @@ public class TournamentsTest extends BaseTest {
 
     @Test(description = "Edit tournament with required fields should successful")
     public void verify_tournament_edit_with_required_fields_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -490,9 +497,9 @@ public class TournamentsTest extends BaseTest {
                 .clearMinPlayerLevelField()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .clearMaxPlayerLevelField()
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .clearPricePerPlayerField()
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .editPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeFriendly()
@@ -501,25 +508,25 @@ public class TournamentsTest extends BaseTest {
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
                 .clearTermsAndConditionsField()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(EDIT_ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickSaveButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Edit tournament with optional fields should successful")
     public void verify_tournament_edit_with_optional_fields_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -532,18 +539,18 @@ public class TournamentsTest extends BaseTest {
                 .fillSponsor(data.get(2))
                 .clearPrizeField()
                 .fillPrize(data.get(3))
-                .clickSaveButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Edit tournament with all fields should successful")
     public void verify_edit_tournament_with_all_fields_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -563,9 +570,9 @@ public class TournamentsTest extends BaseTest {
                 .clearMinPlayerLevelField()
                 .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
                 .clearMaxPlayerLevelField()
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .clearPricePerPlayerField()
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .editPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypeFriendly()
@@ -574,25 +581,25 @@ public class TournamentsTest extends BaseTest {
                 .selectNumberOfPlayer()
                 .selectAssignOrganizer()
                 .clearTermsAndConditionsField()
-                .fillTermsAndConditionsField(data.get(5))
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
                 .selectAllowedDays(EDIT_ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .clickSaveButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentEditSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Duplicate tournament should successful")
     public void verify_duplicate_tournament_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
         List<String> data = generateTournamentData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -601,17 +608,16 @@ public class TournamentsTest extends BaseTest {
                 .clickDuplicate()
                 .clearTournamentNameField()
                 .fillTournamentName(data.getFirst())
-                .clickSaveButton();
+                .clickSaveTournamentButton();
 
         assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Cancel tournament should successful")
     public void verify_cancel_tournament_should_succeed() {
-        tournamentsPage = new TournamentsPage(page);
-
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         tournamentsPage
                 .clickEventsFromNavigationBar()
                 .clickTournamentsFromNavigationBar()
@@ -634,18 +640,5 @@ public class TournamentsTest extends BaseTest {
                 "test_description",
                 "test_terms_and_conditions"
         );
-    }
-
-    private void setLocationPermissionAllowed() {
-        page.context().grantPermissions(List.of("geolocation"));
-    }
-
-    private void userLogin() {
-        loginPage = new LoginPage(page);
-        page.navigate(prop.getProperty("baseUrl"));
-        loginPage
-                .fillUserEmail(prop.getProperty("userEmail_2"))
-                .fillUserPassword(prop.getProperty("userPassword_2"))
-                .clickLoginBtn();
     }
 }

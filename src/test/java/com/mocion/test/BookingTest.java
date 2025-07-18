@@ -3,31 +3,34 @@ package com.mocion.test;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import com.mocion.web.pages.BookingPage;
+import com.mocion.web.pages.LocationPage;
 import com.mocion.web.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class BookingTest extends BaseTest {
     public LoginPage loginPage;
     public BookingPage bookingPage;
+    public LocationPage locationPage;
+
+    public void initPages() {
+        locationPage = new LocationPage(page);
+        loginPage = new LoginPage(page);
+        bookingPage = new BookingPage(page);
+    }
 
     @Test(description = "Public match booking create should successful")
-    public void verify_public_match_booking_create_should_succeed() throws InterruptedException {
+    public void verify_public_match_booking_create_should_succeed() {
         String clubName = "Farah123";
         String notes = "test_note";
         String minLevel = "0";
         String maxLevel = "1";
 
-        bookingPage = new BookingPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
                 .selectClubName(clubName)
@@ -55,18 +58,15 @@ public class BookingTest extends BaseTest {
     }
 
     @Test(description = "Cancel public match booking with refund should successful")
-    public void verify_cancel_public_match_booking_with_refund_should_succeed() throws InterruptedException {
+    public void verify_cancel_public_match_booking_with_refund_should_succeed() {
         String clubName = "Farah123";
         String notes = "test_note";
         String minLevel = "0";
         String maxLevel = "1";
 
-        bookingPage = new BookingPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
                 .selectClubName(clubName)
@@ -99,18 +99,15 @@ public class BookingTest extends BaseTest {
     }
 
     @Test(description = "Cancel public match booking without refund should successful")
-    public void verify_cancel_public_match_booking_without_refund_should_succeed() throws InterruptedException {
+    public void verify_cancel_public_match_booking_without_refund_should_succeed() {
         String clubName = "Farah123";
         String notes = "test_note";
         String minLevel = "0";
         String maxLevel = "1";
 
-        bookingPage = new BookingPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
                 .selectClubName(clubName)
@@ -143,18 +140,15 @@ public class BookingTest extends BaseTest {
     }
 
     @Test(description = "Public match booking payment status should be paid when all player payments are paid should successful")
-    public void verify_public_match_booking_payment_status_should_be_paid_when_all_player_payments_are_paid_should_succeed() throws InterruptedException {
+    public void verify_public_match_booking_payment_status_should_be_paid_when_all_player_payments_are_paid_should_succeed() {
         String clubName = "Farah123";
         String notes = "test_note";
         String minLevel = "0";
         String maxLevel = "1";
 
-        bookingPage = new BookingPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
                 .selectClubName(clubName)
@@ -183,17 +177,14 @@ public class BookingTest extends BaseTest {
     }
 
     @Test(description = "Friendly private match booking create with full price should succeed")
-    public void verify_friendly_private_match_booking_create_with_full_price_should_succeed() throws InterruptedException {
+    public void verify_friendly_private_match_booking_create_with_full_price_should_succeed() {
         String clubName = "Farah123";
         String notes = "test_note";
         String ownerPrice = "10";
 
-        bookingPage = new BookingPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
                 .selectClubName(clubName)
@@ -218,7 +209,7 @@ public class BookingTest extends BaseTest {
     }
 
     @Test(description = "Friendly private match booking create with split price should successful")
-    public void verify_friendly_private_match_booking_create_with_split_price_should_succeed() throws InterruptedException {
+    public void verify_friendly_private_match_booking_create_with_split_price_should_succeed() {
         String clubName = "Farah123";
         String notes = "test_note";
         String ownerPrice = "10";
@@ -226,12 +217,9 @@ public class BookingTest extends BaseTest {
         String playerTwoPrice = "10";
         String playerThreePrice = "10";
 
-        bookingPage = new BookingPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
                 .selectClubName(clubName)
@@ -262,17 +250,14 @@ public class BookingTest extends BaseTest {
     }
 
     @Test(description = "Competitive private match booking create with full price should successful")
-    public void verify_competitive_private_match_booking_create_with_full_price_should_succeed() throws InterruptedException {
+    public void verify_competitive_private_match_booking_create_with_full_price_should_succeed() {
         String clubName = "Farah123";
         String notes = "test_note";
         String ownerPrice = "10";
 
-        bookingPage = new BookingPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
                 .selectClubName(clubName)
@@ -297,7 +282,7 @@ public class BookingTest extends BaseTest {
     }
 
     @Test(description = "Competitive private match booking create with split price should successful")
-    public void verify_competitive_private_match_booking_create_with_split_price_should_succeed() throws InterruptedException {
+    public void verify_competitive_private_match_booking_create_with_split_price_should_succeed() {
         String clubName = "Farah123";
         String notes = "test_note";
         String ownerPrice = "10";
@@ -305,12 +290,9 @@ public class BookingTest extends BaseTest {
         String playerTwoPrice = "10";
         String playerThreePrice = "10";
 
-        bookingPage = new BookingPage(page);
-
-        // Grant location permission
-        page.context().grantPermissions(List.of("geolocation"));
-
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
                 .selectClubName(clubName)
@@ -338,14 +320,5 @@ public class BookingTest extends BaseTest {
                 .clickSavePrivateMatchButton();
 
         assertThat(bookingPage.bookingCreateSuccessMessageLocator()).isVisible();
-    }
-
-    private void userLogin() {
-        loginPage = new LoginPage(page);
-        page.navigate(prop.getProperty("baseUrl"));
-        loginPage
-                .fillUserEmail(prop.getProperty("userEmail_2"))
-                .fillUserPassword(prop.getProperty("userPassword_2"))
-                .clickLoginBtn();
     }
 }

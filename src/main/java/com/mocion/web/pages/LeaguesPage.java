@@ -21,19 +21,16 @@ public class LeaguesPage {
     public String sponsorLogoField = "label[for='clubLogo']";
     public String prizeField = "input[name='prize_ids.0.name']";
     public String leagueImageField = "input#trn_image_upload";
-    public String numberOfPlayerDropdown = ".react-select__dropdown-indicator";
     public String minPlayerLevelField = "input[name='min_players_level']";
     public String maxPlayerLevelField = "input[name='max_players_level']";
     public String genderMixed = "input[type='radio'][value='Mixed']";
     public String eventTypePublic = "input[type='radio'][value='public']";
     public String eventTypePrivate = "input[type='radio'][value='private']";
     public String termsAndConditionsField = "input[name='terms_and_conditions']";
-    public String nextButton = "button.bg-primary.text-white.rounded-full";
     public String pricePerPlayerField = "input[name='price_per_player']";
     public String dateFields = "div.absolute.right-1.top-2 svg";
     public String allowedCourtsDropdown = "div.react-select__indicator.react-select__dropdown-indicator";
     public String courtOptions = ".react-select__option";
-    public String allowedDaysDropdown = "div.react-select__indicator.react-select__dropdown-indicator";
     public String startTime = "input[name='start_time']";
     public String endTime = "input[name='end_time']";
     public String setPerMatchOne = "input[type='radio'][value='1']";
@@ -42,6 +39,7 @@ public class LeaguesPage {
     public String saveAndPublishButton = "text='Save and publish'";
     public String allAvailableCourts = "span.bg-\\[\\#f3f3f3\\].text-primary";
     public String selectedSlotsCount = "h3.text-primary";
+    public String leagueEditSuccessMessage = "text='league has been updated successfully'";
     public String leagueCreateSuccessMessage = "text='Successful.'";
     public String menuIcon = "button[class*='flex']:has(svg)";
     public String addPlayerText = "text='Add Players'";
@@ -49,7 +47,7 @@ public class LeaguesPage {
     public String addPlayerNameDropdown = "div.react-select.__dropdown-indicator";
     public String joinTypeSingle = "input[type='radio'][value='Single']";
     public String paymentMethodDropdown = "div.react-select.w-full__dropdown-indicator";
-    public String paymentMethod = "text='Cash'";
+    public String paymentMethodInApp = "text='In app'";
     public String addPlayerSaveButton = "button[type='submit']";
     public String addPlayersToLeagueSuccessMessageLocator = "text='Players were added successfully as League Players'";
     public String chatWithPlayersText = "li:has-text('chat with players')";
@@ -62,6 +60,10 @@ public class LeaguesPage {
     public String cancelLeagueText = "text=Cancel league";
     public String yesButtonToCancelLeague = "button:has-text('Yes')";
     public String cancelLeagueSuccessMessage = "text='league has been canceled successfully'";
+    public String leagueCreateDropdowns = ".react-select__dropdown-indicator";
+    public String paymentDetailsApp = "text='App'";
+    public String saveLeagueButton = "button.bg-primary.text-white";
+    public String scheduleCourtsText = "li.flex.cursor-pointer:has-text('Schedule courts')";
 
     public LeaguesPage(Page page) {
         this.page = page;
@@ -87,7 +89,7 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage clearLeagueName() {
+    public LeaguesPage clearLeagueNameField() {
         page.locator(nameInputField).clear();
         return this;
     }
@@ -97,7 +99,7 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage clearOrganizationName() {
+    public LeaguesPage clearOrganizationNameField() {
         page.locator(organizationNameField).clear();
         return this;
     }
@@ -107,7 +109,7 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage clearLeagueDescription() {
+    public LeaguesPage clearLeagueDescriptionField() {
         page.locator(leagueDescriptionField).clear();
         return this;
     }
@@ -117,7 +119,7 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage clearSponsor() {
+    public LeaguesPage clearSponsorField() {
         page.locator(sponsorField).clear();
         return this;
     }
@@ -133,7 +135,7 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage clearPrize() {
+    public LeaguesPage clearPrizeField() {
         page.locator(prizeField).clear();
         return this;
     }
@@ -150,22 +152,37 @@ public class LeaguesPage {
     }
 
     public LeaguesPage selectNumberOfPlayer() {
-        page.locator(numberOfPlayerDropdown).click();
+        page.locator(leagueCreateDropdowns).nth(0).click();
         page.keyboard().press("Enter");
         return this;
     }
 
-    public LeaguesPage fillMinPlayerLevelField(String minPlayerLevel) {
+    public LeaguesPage clearMinPlayerLevelField() {
+        page.locator(minPlayerLevelField).clear();
+        return this;
+    }
+
+    public LeaguesPage fillMinPlayerLevel(String minPlayerLevel) {
         page.locator(minPlayerLevelField).fill(minPlayerLevel);
         return this;
     }
 
-    public LeaguesPage fillMaxPlayerLevelField(String maxPlayerLevel) {
+    public LeaguesPage clearMaxPlayerLevelField() {
+        page.locator(maxPlayerLevelField).clear();
+        return this;
+    }
+
+    public LeaguesPage fillMaxPlayerLevel(String maxPlayerLevel) {
         page.locator(maxPlayerLevelField).fill(maxPlayerLevel);
         return this;
     }
 
-    public LeaguesPage fillPricePerPlayerField(String pricePerPlayer) {
+    public LeaguesPage clearPricePerPlayerField() {
+        page.locator(pricePerPlayerField).clear();
+        return this;
+    }
+
+    public LeaguesPage fillPricePerPlayer(String pricePerPlayer) {
         page.locator(pricePerPlayerField).fill(pricePerPlayer);
         return this;
     }
@@ -185,13 +202,13 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage fillTermsAndConditionsField(String termsAndConditions) {
-        page.locator(termsAndConditionsField).fill(termsAndConditions);
+    public LeaguesPage clearTermsAndConditionsField() {
+        page.locator(termsAndConditionsField).clear();
         return this;
     }
 
-    public LeaguesPage clickNextButton() {
-        page.locator(nextButton).click();
+    public LeaguesPage fillTermsAndConditions(String termsAndConditions) {
+        page.locator(termsAndConditionsField).fill(termsAndConditions);
         return this;
     }
 
@@ -211,24 +228,6 @@ public class LeaguesPage {
         page.locator(dateFields).nth(2).click();
         page.keyboard().press("Enter");
         return this;
-    }
-
-    private void incrementStartDate() {
-        page.locator(dateFields).nth(0).click();
-        page.keyboard().press("ArrowRight");
-        page.keyboard().press("Enter");
-    }
-
-    private void incrementEndDate() {
-        page.locator(dateFields).nth(1).click();
-        page.keyboard().press("ArrowRight");
-        page.keyboard().press("Enter");
-    }
-
-    private void incrementRegistrationDeadline() {
-        page.locator(dateFields).nth(2).click();
-        page.keyboard().press("ArrowRight");
-        page.keyboard().press("Enter");
     }
 
     public LeaguesPage selectAllowedCourts(int courtsToSelect) {
@@ -251,7 +250,7 @@ public class LeaguesPage {
                 "Friday", "Saturday", "Sunday"
         );
 
-        page.locator(allowedDaysDropdown).nth(1).click();
+        page.locator(leagueCreateDropdowns).nth(3).click();
 
         for (String day : daysToSelect) {
             int index = allDays.indexOf(day);
@@ -287,14 +286,6 @@ public class LeaguesPage {
     public LeaguesPage setPerMatchOne() {
         page.locator(setPerMatchOne).click();
         return this;
-    }
-
-    public void clickCourtAvailabilityButton() {
-        page.locator(checkAvailabilityButton).click();
-    }
-
-    public void clickSaveAndPublishButton() {
-        page.locator(saveAndPublishButton).click();
     }
 
     public LeaguesPage selectCourtsWithDateIncrement(int maxIncrementDays) {
@@ -356,14 +347,10 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage selectPaymentMethod() {
+    public LeaguesPage selectPaymentMethodInApp() {
         page.locator(paymentMethodDropdown).click();
-        page.locator(paymentMethod).click();
+        page.locator(paymentMethodInApp).click();
         return this;
-    }
-
-    public void clickAddPlayerSaveButton() {
-        page.locator(addPlayerSaveButton).click();
     }
 
     public LeaguesPage clickChatWithPlayers() {
@@ -381,10 +368,6 @@ public class LeaguesPage {
         return this;
     }
 
-    public void clickSendIcon() {
-        page.locator(sendMessageIcon).click();
-    }
-
     public LeaguesPage clickEditLeagues() {
         page.locator(editLeaguesText).click();
         return this;
@@ -400,16 +383,77 @@ public class LeaguesPage {
         return this;
     }
 
+    public LeaguesPage selectPaymentDetailsApp() {
+        page.locator(leagueCreateDropdowns).nth(1).click();
+        page.locator(paymentDetailsApp).click();
+        return this;
+    }
+
+    public LeaguesPage selectAssignOrganizer() {
+        page.locator(leagueCreateDropdowns).nth(2).click();
+        page.keyboard().press("Enter");
+        return this;
+    }
+
+    public LeaguesPage editPaymentDetailsApp() {
+        page.locator(leagueCreateDropdowns).nth(1).click();
+        page.locator(paymentDetailsApp).nth(1).click();
+        return this;
+    }
+
+    public LeaguesPage clickScheduleCourts() {
+        page.locator(scheduleCourtsText).click();
+        return this;
+    }
+
+    private void incrementStartDate() {
+        page.locator(dateFields).nth(0).click();
+        page.keyboard().press("ArrowRight");
+        page.keyboard().press("Enter");
+    }
+
+    private void incrementEndDate() {
+        page.locator(dateFields).nth(1).click();
+        page.keyboard().press("ArrowRight");
+        page.keyboard().press("Enter");
+    }
+
+    private void incrementRegistrationDeadline() {
+        page.locator(dateFields).nth(2).click();
+        page.keyboard().press("ArrowRight");
+        page.keyboard().press("Enter");
+    }
+
+    public void clickCourtAvailabilityButton() {
+        page.locator(checkAvailabilityButton).click();
+    }
+
+    public void clickSaveAndPublishButton() {
+        page.locator(saveAndPublishButton).click();
+    }
+
+    public void clickSendIcon() {
+        page.locator(sendMessageIcon).click();
+    }
+
+    public void clickAddPlayerSaveButton() {
+        page.locator(addPlayerSaveButton).click();
+    }
+
     public void clickYesToCancelLeague() {
         page.locator(yesButtonToCancelLeague).click();
     }
 
-    public Locator cancelLeagueSuccessMessageLocator() {
-        return page.locator(cancelLeagueSuccessMessage);
+    public void clickSaveLeagueButton() {
+        page.locator(saveLeagueButton).click();
     }
 
     public String sentMessageTextContent() {
         return page.locator(sentMessageText).last().textContent();
+    }
+
+    public Locator cancelLeagueSuccessMessageLocator() {
+        return page.locator(cancelLeagueSuccessMessage);
     }
 
     public Locator leagueCreateSuccessMessageLocator() {
@@ -421,6 +465,6 @@ public class LeaguesPage {
     }
 
     public Locator leagueEditSuccessMessageLocator() {
-        return page.locator(leagueCreateSuccessMessage);
+        return page.locator(leagueEditSuccessMessage);
     }
 }

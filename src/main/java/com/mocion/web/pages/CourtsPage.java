@@ -79,26 +79,9 @@ public class CourtsPage {
         return this;
     }
 
-    public void clickYestToConfirmationTab() {
-        page.locator(yestToConfirmationTab).click();
-    }
-
-    public String getFirstRowSearchResult() {
-        return page.locator(searchFirstRowResult).first().textContent();
-    }
-
-    public Locator getFirstRowSearchResultLocator() {
-        return page.locator(searchFirstRowResult).first();
-    }
-
     public CourtsPage clearSearchField() {
         page.locator(searchField).clear();
         return this;
-    }
-
-    public void fillSearchKeyword(String searchKeyword) {
-        page.locator(searchField).click();
-        page.locator(searchField).fill(searchKeyword);
     }
 
     public CourtsPage clickFilterIcon() {
@@ -124,10 +107,6 @@ public class CourtsPage {
     public CourtsPage fillCourtDescriptionFilter(String courtDescription) {
         page.locator(courtDescriptionFilter).nth(2).fill(courtDescription);
         return this;
-    }
-
-    public void selectAvailability() {
-        page.locator(availabilityFilterOption).click();
     }
 
     public CourtsPage selectFilterOptionIndoor() {
@@ -220,8 +199,29 @@ public class CourtsPage {
         return this;
     }
 
+    public void fillSearchKeyword(String searchKeyword) {
+        page.locator(searchField).click();
+        page.locator(searchField).fill(searchKeyword);
+    }
+
+    public void clickYestToConfirmationTab() {
+        page.locator(yestToConfirmationTab).click();
+    }
+
+    public void selectAvailability() {
+        page.locator(availabilityFilterOption).click();
+    }
+
     public void clickSaveButton() {
         page.locator(clickSaveButton).click();
+    }
+
+    public String getFirstRowSearchResult() {
+        return page.locator(searchFirstRowResult).first().textContent();
+    }
+
+    public Locator getFirstRowSearchResultLocator() {
+        return page.locator(searchFirstRowResult).first();
     }
 
     public Locator getCourtsCreateSuccessMessageLocator() {

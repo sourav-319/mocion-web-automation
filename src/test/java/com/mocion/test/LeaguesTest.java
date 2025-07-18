@@ -1,6 +1,7 @@
 package com.mocion.test;
 
 import com.mocion.web.pages.LeaguesPage;
+import com.mocion.web.pages.LocationPage;
 import com.mocion.web.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,22 +16,31 @@ public class LeaguesTest extends BaseTest {
     public LoginPage loginPage;
     public LeaguesPage leaguesPage;
     public Random random;
+    public LocationPage locationPage;
 
     private static final String CLUB_NAME = "Farah123";
     private static final String MIN_PLAYER_LEVEL = "0";
     private static final String MAX_PLAYER_LEVEL = "5";
     private static final String PRICE_PER_PLAYER = "10";
-    private static final int MAX_DATE_INCREMENT = 5;
-    private static final int COURTS_TO_SELECT = 2;
-    private static final List<String> ALLOWED_DAYS = Arrays.asList("Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+    private static final int MAX_NUMBER_OF_DATE_INCREMENT = 5;
+    private static final int NUMBER_OF_COURTS_TO_SELECT = 2;
+    private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+    private static final List<String> EDIT_ALLOWED_DAYS = Arrays.asList("Saturday", "Sunday");
+
+    public void initPages() {
+        loginPage = new LoginPage(page);
+        leaguesPage = new LeaguesPage(page);
+        locationPage = new LocationPage(page);
+        random = new Random();
+    }
 
     @Test(description = "Public league create should successful")
     public void verify_public_league_create_should_succeed() {
-        leaguesPage = new LeaguesPage(page);
         List<String> data = generateLeagueData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         leaguesPage
                 .clickEventsFromNavigationBar()
                 .clickLeaguesFromNavigationBar()
@@ -43,37 +53,33 @@ public class LeaguesTest extends BaseTest {
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
                 .uploadLeagueImage()
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypePublic()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(data.get(5))
-                .clickNextButton();
-        leaguesPage
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .selectMatchDuration()
-                .setPerMatchOne()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton();
+                .clickSaveLeagueButton();
 
         assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Private league create should successful")
     public void verify_private_league_create_should_succeed() {
-        leaguesPage = new LeaguesPage(page);
         List<String> data = generateLeagueData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         leaguesPage
                 .clickEventsFromNavigationBar()
                 .clickLeaguesFromNavigationBar()
@@ -86,113 +92,31 @@ public class LeaguesTest extends BaseTest {
                 .uploadSponsorLogo()
                 .fillPrize(data.get(3))
                 .uploadLeagueImage()
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
-                .fillMaxPlayerLevelField(MAX_PLAYER_LEVEL)
-                .fillPricePerPlayerField(PRICE_PER_PLAYER)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
                 .selectGenderMixed()
                 .selectEventTypePrivate()
                 .selectNumberOfPlayer()
-                .fillTermsAndConditionsField(data.get(5))
-                .clickNextButton();
-        leaguesPage
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
                 .selectStartDate()
                 .selectEndDate()
                 .selectRegistrationDeadline()
-                .selectAllowedCourts(COURTS_TO_SELECT)
                 .selectAllowedDays(ALLOWED_DAYS)
                 .selectStartTime()
                 .selectEndTime()
-                .selectMatchDuration()
-                .setPerMatchOne()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton();
+                .clickSaveLeagueButton();
 
         assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Edit league with all required fields should successful")
-    public void verify_edit_league_with_all_required_fields_should_succeed() {
-        leaguesPage = new LeaguesPage(page);
-        List<String> data = generateLeagueData();
-
-        setLocationPermissionAllowed();
-        userLogin();
-        leaguesPage
-                .clickEventsFromNavigationBar()
-                .clickLeaguesFromNavigationBar()
-                .selectClubName(CLUB_NAME)
-                .clickMenuIcon()
-                .clickEditLeagues()
-                .clearLeagueName()
-                .fillLeagueName(data.get(0))
-                .clearLeagueDescription()
-                .fillLeagueDescription(data.get(4))
-                .clickNextButton()
-                .clickSaveAndPublishButton();
-
-        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
-    }
-
-    @Test(description = "Edit league with all optional fields should successful")
-    public void verify_edit_league_with_all_optional_fields_should_succeed() {
-        leaguesPage = new LeaguesPage(page);
-        List<String> data = generateLeagueData();
-
-        setLocationPermissionAllowed();
-        userLogin();
-        leaguesPage
-                .clickEventsFromNavigationBar()
-                .clickLeaguesFromNavigationBar()
-                .selectClubName(CLUB_NAME)
-                .clickMenuIcon()
-                .clickEditLeagues()
-                .clearOrganizationName()
-                .fillOrganizationName(data.get(1))
-                .clearSponsor()
-                .fillSponsor(data.get(2))
-                .clearPrize()
-                .fillPrize(data.get(3))
-                .clickNextButton()
-                .clickSaveAndPublishButton();
-
-        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
-    }
-
-    @Test(description = "Edit league with all fields should successful")
-    public void verify_edit_league_with_all_fields_should_succeed() {
-        leaguesPage = new LeaguesPage(page);
-        List<String> data = generateLeagueData();
-
-        setLocationPermissionAllowed();
-        userLogin();
-        leaguesPage
-                .clickEventsFromNavigationBar()
-                .clickLeaguesFromNavigationBar()
-                .selectClubName(CLUB_NAME)
-                .clickMenuIcon()
-                .clickEditLeagues()
-                .clearLeagueName()
-                .fillLeagueName(data.get(0))
-                .clearOrganizationName()
-                .fillOrganizationName(data.get(1))
-                .clearLeagueDescription()
-                .fillLeagueDescription(data.get(4))
-                .clearSponsor()
-                .fillSponsor(data.get(2))
-                .clearPrize()
-                .fillPrize(data.get(3))
-                .clickNextButton()
-                .clickSaveAndPublishButton();
-
-        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
-    }
-
     @Test(description = "Add players to league should successful")
     public void verify_add_players_to_league_should_succeed() {
-        leaguesPage = new LeaguesPage(page);
-
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         leaguesPage
                 .clickEventsFromNavigationBar()
                 .clickLeaguesFromNavigationBar()
@@ -202,19 +126,80 @@ public class LeaguesTest extends BaseTest {
                 .clickAddPlayersButton()
                 .selectPlayerName()
                 .selectJoinTypeSingle()
-                .selectPaymentMethod()
+                .selectPaymentMethodInApp()
                 .clickAddPlayerSaveButton();
 
         assertThat(leaguesPage.addPlayersToLeagueSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Edit league with required fields should successful")
+    public void verify_edit_league_with_required_fields_should_succeed() {
+        List<String> data = generateLeagueData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditLeagues()
+                .clearLeagueNameField()
+                .fillLeagueName(data.get(0))
+                .clearLeagueDescriptionField()
+                .fillLeagueDescription(data.get(4))
+                .clearMinPlayerLevelField()
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
+                .clearMaxPlayerLevelField()
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .clearPricePerPlayerField()
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .editPaymentDetailsApp()
+                .selectGenderMixed()
+                .selectEventTypePublic()
+                .selectNumberOfPlayer()
+                .selectAssignOrganizer()
+                .clearTermsAndConditionsField()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedDays(EDIT_ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveLeagueButton();
+
+        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Schedule courts for league should successful")
+    public void verify_schedule_courts_for_league_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickScheduleCourts()
+                .selectAllowedCourts(NUMBER_OF_COURTS_TO_SELECT)
+                .selectMatchDuration()
+                .setPerMatchOne()
+                .selectCourtsWithDateIncrement(MAX_NUMBER_OF_DATE_INCREMENT)
+                .clickSaveAndPublishButton();
+
+        assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
+    }
+
     @Test(description = "Chat with league players should successful")
     public void verify_chat_with_league_players_should_succeed() {
         String conversationText = "Hello, this is a test message";
-        leaguesPage = new LeaguesPage(page);
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         leaguesPage
                 .clickEventsFromNavigationBar()
                 .clickLeaguesFromNavigationBar()
@@ -228,31 +213,102 @@ public class LeaguesTest extends BaseTest {
         Assert.assertTrue(leaguesPage.sentMessageTextContent().contains(conversationText));
     }
 
+    @Test(description = "Edit league with optional fields should successful")
+    public void verify_edit_league_with_optional_fields_should_succeed() {
+        List<String> data = generateLeagueData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditLeagues()
+                .clearOrganizationNameField()
+                .fillOrganizationName(data.get(1))
+                .clearSponsorField()
+                .fillSponsor(data.get(2))
+                .clearPrizeField()
+                .fillPrize(data.get(3))
+                .clickSaveLeagueButton();
+
+        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Edit league with all fields should successful")
+    public void verify_edit_league_with_all_fields_should_succeed() {
+        List<String> data = generateLeagueData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditLeagues()
+                .clearLeagueNameField()
+                .fillLeagueName(data.get(0))
+                .clearOrganizationNameField()
+                .fillOrganizationName(data.get(1))
+                .clearLeagueDescriptionField()
+                .fillLeagueDescription(data.get(4))
+                .clearSponsorField()
+                .fillSponsor(data.get(2))
+                .clearPrizeField()
+                .fillPrize(data.get(3))
+                .clearMinPlayerLevelField()
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
+                .clearMaxPlayerLevelField()
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .clearPricePerPlayerField()
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .editPaymentDetailsApp()
+                .selectGenderMixed()
+                .selectEventTypePublic()
+                .selectNumberOfPlayer()
+                .selectAssignOrganizer()
+                .clearTermsAndConditionsField()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectEndDate()
+                .selectRegistrationDeadline()
+                .selectAllowedDays(EDIT_ALLOWED_DAYS)
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveLeagueButton();
+
+        assertThat(leaguesPage.leagueEditSuccessMessageLocator()).isVisible();
+    }
+
     @Test(description = "Duplicate League should successful")
     public void verify_duplicate_league_should_succeed() {
-        leaguesPage = new LeaguesPage(page);
+        List<String> data = generateLeagueData();
 
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         leaguesPage
                 .clickEventsFromNavigationBar()
                 .clickLeaguesFromNavigationBar()
                 .selectClubName(CLUB_NAME)
                 .clickMenuIcon()
                 .clickDuplicate()
-                .clickNextButton()
-                .selectCourtsWithDateIncrement(MAX_DATE_INCREMENT)
-                .clickSaveAndPublishButton();
+                .clearLeagueNameField()
+                .fillLeagueName(data.getFirst())
+                .clickSaveLeagueButton();
 
         assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Cancel league should successful")
     public void verify_cancel_league_should_succeed() {
-        leaguesPage = new LeaguesPage(page);
-
-        setLocationPermissionAllowed();
-        userLogin();
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
         leaguesPage
                 .clickEventsFromNavigationBar()
                 .clickLeaguesFromNavigationBar()
@@ -275,18 +331,5 @@ public class LeaguesTest extends BaseTest {
                 "test_description",
                 "test_terms_and_conditions"
         );
-    }
-
-    private void setLocationPermissionAllowed() {
-        page.context().grantPermissions(List.of("geolocation"));
-    }
-
-    private void userLogin() {
-        loginPage = new LoginPage(page);
-        page.navigate(prop.getProperty("baseUrl"));
-        loginPage
-                .fillUserEmail(prop.getProperty("userEmail_2"))
-                .fillUserPassword(prop.getProperty("userPassword_2"))
-                .clickLoginBtn();
     }
 }

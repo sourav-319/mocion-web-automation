@@ -451,6 +451,36 @@ public class LeaguesTest extends BaseTest {
         Assert.assertTrue(leaguesPage.sentMessageTextContent().contains(conversationText));
     }
 
+    @Test(description = "Setting up schedule for league should successful")
+    public void verify_setting_up_league_should_succeed() {
+        String scoreOne = "4";
+        String scoreTwo = "2";
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        leaguesPage
+                .clickEventsFromNavigationBar()
+                .clickLeaguesFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickSchedule()
+                .selectNumberOfGroupsTwo()
+                .clickGenerateGroupsButton()
+                .clickSaveAndNextButton()
+                .clickNextButton()
+                .clickSaveAndNextButton()
+                .setPhaseOneMatchScores(scoreOne, scoreTwo)
+                .clickPhaseOneGenerateResultsButton()
+                .clickPhaseOneNextButton()
+                .setSemiFinalMatchScores(scoreOne, scoreTwo)
+                .clickSemiFinalGenerateResultsButton()
+                .setFinalMatchScores(scoreOne, scoreTwo)
+                .clickFinalGenerateResultsButton();
+
+        assertThat(leaguesPage.scoresUpdateSuccessMessageLocator()).isVisible();
+    }
+
     @Test(description = "Share league with players should successful")
     public void verify_share_league_with_players_should_succeed() {
         String conversationText = "you invited to join in this event go to this link to join";

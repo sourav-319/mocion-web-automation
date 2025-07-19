@@ -77,6 +77,19 @@ public class LeaguesPage {
     public String downSizeCourtText = "label:has(img):has-text('Down size league')";
     public String yesToDownSizeCourtText = "button.bg-primary.text-white.rounded-full";
     public String leagueDownSizeSuccessMessage = "text='League was edited successfully'";
+    public String generateGroupsButton = "button:has-text(\"Generate groups\")";
+    public String saveAndNextButton = "button:has-text(\"save And Next\")";
+    public String nextButton = "//button[contains(text(), 'Next')]";
+    public String scheduleText = "text='Schedule'";
+    public String numberOfGroupsDropdown = ".react-select__indicator.react-select__dropdown-indicator";
+    public String numberOfGroupsTwo = "text='2'";
+    public String editMatchScoreIcon = "button:has(img[alt='edit icon'])";
+    public String saveMatchScoreButton = "button:has-text(\"Save\")";
+    public String scoreOneInputField = "input[name='score_1']";
+    public String scoreTwoInputField = "input[name='score_2']";
+    public String generateResultsButton = "button:has-text(\"Generate results\")";
+    public String phaseOneNextButton = "button:has-text(\"Next\")";
+    public String scoresUpdateSuccessMessageLocator = "text='scores have been updated successfully'";
 
     public LeaguesPage(Page page) {
         this.page = page;
@@ -493,6 +506,96 @@ public class LeaguesPage {
         return this;
     }
 
+    public LeaguesPage clickGenerateGroupsButton() {
+        page.locator(generateGroupsButton).click();
+        return this;
+    }
+
+    public LeaguesPage clickSaveAndNextButton() {
+        page.locator(saveAndNextButton).click();
+        return this;
+    }
+
+    public LeaguesPage clickNextButton() {
+        page.locator(nextButton).click();
+        return this;
+    }
+
+    public LeaguesPage clickSchedule() {
+        page.locator(scheduleText).click();
+        return this;
+    }
+
+    public LeaguesPage selectNumberOfGroupsTwo() {
+        page.locator(numberOfGroupsDropdown).click();
+        page.locator(numberOfGroupsTwo).click();
+        return this;
+    }
+
+    public LeaguesPage clickPhaseOneNextButton() {
+        page.locator(phaseOneNextButton).click();
+        return this;
+    }
+
+    public LeaguesPage setSemiFinalMatchScores(String scoreOne, String scoreTwo) {
+        int count = page.locator(editMatchScoreIcon).count();
+
+        for (int i = 0; i < count; i++) {
+            page.locator(editMatchScoreIcon).nth(i).click();
+            fillMatchScoreOne(scoreOne);
+            fillMatchScoreTwo(scoreTwo);
+            clickSaveMatchScoreButton();
+        }
+        return this;
+    }
+
+    public LeaguesPage setFinalMatchScores(String scoreOne, String scoreTwo) {
+        setSemiFinalMatchScores(scoreOne, scoreTwo);
+        return this;
+    }
+
+    public LeaguesPage clickSemiFinalGenerateResultsButton() {
+        page.locator(generateResultsButton).nth(0).click();
+        return this;
+    }
+
+    public LeaguesPage clickPhaseOneGenerateResultsButton() {
+        int count = page.locator(generateResultsButton).count();
+
+        for (int i = 0; i < count; i++) {
+            page.locator(generateResultsButton).nth(0).click();
+        }
+        return this;
+    }
+
+    public LeaguesPage setPhaseOneMatchScores(String scoreOne, String scoreTwo) {
+        int count = page.locator(editMatchScoreIcon).count();
+
+        for (int i = 0; i < count; i++) {
+            page.locator(editMatchScoreIcon).nth(i).click();
+            fillMatchScoreOne(scoreOne);
+            fillMatchScoreTwo(scoreTwo);
+            clickSaveMatchScoreButton();
+        }
+        return this;
+    }
+
+    public void clickFinalGenerateResultsButton() {
+        page.locator(generateResultsButton).nth(0).click();
+    }
+
+    public void fillMatchScoreOne(String scoreOne) {
+        page.locator(scoreOneInputField).fill(scoreOne);
+    }
+
+    public void clickSaveMatchScoreButton() {
+        page.locator(saveMatchScoreButton).click();
+    }
+
+    public void fillMatchScoreTwo(String scoreTwo) {
+        page.locator(scoreTwoInputField).fill(scoreTwo);
+    }
+
     public void clickYestToDownSizeLeague() {
         page.locator(yesToDownSizeCourtText).click();
     }
@@ -541,6 +644,10 @@ public class LeaguesPage {
 
     public String sentMessageTextContent() {
         return page.locator(sentMessageText).last().textContent();
+    }
+
+    public Locator scoresUpdateSuccessMessageLocator() {
+        return page.locator(scoresUpdateSuccessMessageLocator);
     }
 
     public Locator cancelLeagueSuccessMessageLocator() {

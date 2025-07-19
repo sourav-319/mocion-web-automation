@@ -45,6 +45,7 @@ public class LeaguesPage {
     public String addPlayerText = "text='Add Players'";
     public String addPlayerButton = "text='Add Players'";
     public String addPlayerDropdown = "div[class*='dropdown-indicator']";
+    public String paymentMethodDropdown = "div.react-select.w-full__dropdown-indicator";
     public String joinTypeSingle = "input[type='radio'][value='Single']";
     public String joinTypeDouble = "input[type='radio'][value='Double']";
     public String paymentMethodInApp = "text='In app'";
@@ -371,31 +372,31 @@ public class LeaguesPage {
     }
 
     public LeaguesPage selectPaymentMethodCash() {
-        page.locator(addPlayerDropdown).nth(2).click();
+        page.locator(paymentMethodDropdown).click();
         page.locator(paymentMethodCash).click();
         return this;
     }
 
     public LeaguesPage selectPaymentMethodCreditDebitCard() {
-        page.locator(addPlayerDropdown).nth(2).click();
+        page.locator(paymentMethodDropdown).click();
         page.locator(paymentMethodCreditDebitCard).click();
         return this;
     }
 
     public LeaguesPage selectPaymentMethodInApp() {
-        page.locator(addPlayerDropdown).nth(2).click();
+        page.locator(paymentMethodDropdown).click();
         page.locator(paymentMethodInApp).click();
         return this;
     }
 
     public LeaguesPage selectPaymentMethodPaymentLink() {
-        page.locator(addPlayerDropdown).nth(2).click();
+        page.locator(paymentMethodDropdown).click();
         page.locator(paymentMethodPaymentLink).click();
         return this;
     }
 
     public LeaguesPage selectPaymentMethodBankTransfer() {
-        page.locator(addPlayerDropdown).nth(2).click();
+        page.locator(paymentMethodDropdown).click();
         page.locator(paymentMethodBankTransfer).click();
         return this;
     }

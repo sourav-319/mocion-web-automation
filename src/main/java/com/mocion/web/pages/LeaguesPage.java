@@ -76,9 +76,6 @@ public class LeaguesPage {
     public String downSizeCourtText = "label:has(img):has-text('Down size league')";
     public String yesToDownSizeCourtText = "button.bg-primary.text-white.rounded-full";
     public String leagueDownSizeSuccessMessage = "text='League was edited successfully'";
-    public String scheduleText = "text='Schedule'";
-    public String numberOfGroupsDropdown = ".react-select__indicator.react-select__dropdown-indicator";
-    public String numberOfGroupsTwo = "text='2'";
 
     public LeaguesPage(Page page) {
         this.page = page;

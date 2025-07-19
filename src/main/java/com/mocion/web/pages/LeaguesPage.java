@@ -341,17 +341,6 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage clickSchedule() {
-        page.locator(scheduleText).click();
-        return this;
-    }
-
-    public LeaguesPage selectNumberOfGroupsTwo() {
-        page.locator(numberOfGroupsDropdown).click();
-        page.locator(numberOfGroupsTwo).click();
-        return this;
-    }
-
     public LeaguesPage clickAddPlayers() {
         page.locator(addPlayerText).click();
         return this;

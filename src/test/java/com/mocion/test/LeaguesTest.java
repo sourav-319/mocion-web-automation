@@ -452,7 +452,7 @@ public class LeaguesTest extends BaseTest {
     }
 
     @Test(description = "Setting up schedule for league should successful")
-    public void verify_setting_up_league_should_succeed() {
+    public void verify_setting_up_schedule_for_league_should_succeed() {
         String scoreOne = "4";
         String scoreTwo = "2";
 

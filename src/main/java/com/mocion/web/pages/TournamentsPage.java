@@ -76,7 +76,7 @@ public class TournamentsPage {
     public String yesToConfirmMatchResultButton = "button:has-text(\"Yes\")";
     public String scoresUpdateSuccessMessageLocator = "text='scores have been updated successfully'";
     public String phaseOneNextButton = "button:has-text(\"Next\")";
-    public String saveAndNextButtonPhaseOne = "button:has-text(\"save and next\")";
+    public String phaseOneSaveAndNextButton = "button:has-text(\"save and next\")";
     public String generateResultsButton = "button:has-text(\"Generate results\")";
     public String courtOptions = ".react-select__option";
     public String selectedSlotsCount = "h3.text-primary";
@@ -491,8 +491,8 @@ public class TournamentsPage {
         return this;
     }
 
-    public TournamentsPage clickSaveAndNextButtonPhaseOne() {
-        page.locator(saveAndNextButtonPhaseOne).click();
+    public TournamentsPage clickPhaseOneSaveAndNextButton() {
+        page.locator(phaseOneSaveAndNextButton).click();
         return this;
     }
 

@@ -465,7 +465,7 @@ public class TournamentsTest extends BaseTest {
                 .clickGenerateGroupsButton()
                 .clickSaveAndNextButton()
                 .clickPhaseOneNextButton()
-                .clickSaveAndNextButtonPhaseOne()
+                .clickPhaseOneSaveAndNextButton()
                 .setRoundRobinPhaseOneMatchScores(scoreOne, scoreTwo)
                 .clickPhaseOneGenerateResultsButton()
                 .clickPhaseOneNextButton()

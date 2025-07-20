@@ -83,13 +83,14 @@ public class LeaguesPage {
     public String scheduleText = "text='Schedule'";
     public String numberOfGroupsDropdown = ".react-select__indicator.react-select__dropdown-indicator";
     public String numberOfGroupsTwo = "text='2'";
-    public String editMatchScoreIcon = "button:has(img[alt='edit icon'])";
+    public String editMatchScoreIcon = "img[alt='edit icon']";
     public String saveMatchScoreButton = "button:has-text(\"Save\")";
     public String scoreOneInputField = "input[name='score_1']";
     public String scoreTwoInputField = "input[name='score_2']";
-    public String generateResultsButton = "button:has-text(\"Generate results\")";
+    public String generateResultsButton = "//button[contains(text(),'Generate results')]";
     public String phaseOneNextButton = "button:has-text(\"Next\")";
     public String scoresUpdateSuccessMessageLocator = "text='scores have been updated successfully'";
+    public String matchScoreTable = "div.fixed-table > table";
 
     public LeaguesPage(Page page) {
         this.page = page;
@@ -537,51 +538,57 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage setSemiFinalMatchScores(String scoreOne, String scoreTwo) {
-        int count = page.locator(editMatchScoreIcon).count();
+    public LeaguesPage setPhaseOneMatchScores(String scoreOne, String scoreTwo) {
+        Locator tables = page.locator(matchScoreTable);
+        int tableCount = tables.count();
 
-        for (int i = 0; i < count; i++) {
-            page.locator(editMatchScoreIcon).nth(i).click();
-            fillMatchScoreOne(scoreOne);
-            fillMatchScoreTwo(scoreTwo);
-            clickSaveMatchScoreButton();
-        }
-        return this;
-    }
-
-    public LeaguesPage setFinalMatchScores(String scoreOne, String scoreTwo) {
-        setSemiFinalMatchScores(scoreOne, scoreTwo);
-        return this;
-    }
-
-    public LeaguesPage clickSemiFinalGenerateResultsButton() {
-        page.locator(generateResultsButton).nth(0).click();
-        return this;
-    }
-
-    public LeaguesPage clickPhaseOneGenerateResultsButton() {
-        int count = page.locator(generateResultsButton).count();
-
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < tableCount; i++) {
+            Locator currentTable = tables.nth(i);
+            updateMatchScores(currentTable, scoreOne, scoreTwo);
             page.locator(generateResultsButton).nth(0).click();
         }
         return this;
     }
 
-    public LeaguesPage setPhaseOneMatchScores(String scoreOne, String scoreTwo) {
-        int count = page.locator(editMatchScoreIcon).count();
-
-        for (int i = 0; i < count; i++) {
-            page.locator(editMatchScoreIcon).nth(i).click();
-            fillMatchScoreOne(scoreOne);
-            fillMatchScoreTwo(scoreTwo);
-            clickSaveMatchScoreButton();
-        }
+    public LeaguesPage setSemiFinalMatchScores(String scoreOne, String scoreTwo) {
+        Locator table = page.locator(matchScoreTable).first();
+        updateMatchScores(table, scoreOne, scoreTwo);
+        page.locator(generateResultsButton).nth(0).click();
         return this;
     }
 
-    public void clickFinalGenerateResultsButton() {
+    public void setFinalMatchScores(String scoreOne, String scoreTwo) {
+        Locator table = page.locator(matchScoreTable).nth(1);
+        updateMatchScores(table, scoreOne, scoreTwo);
         page.locator(generateResultsButton).nth(0).click();
+    }
+
+    private void updateMatchScores(Locator table, String scoreOne, String scoreTwo) {
+        boolean updated;
+        do {
+            updated = false;
+            Locator rows = table.locator("tbody > tr");
+            int rowCount = rows.count();
+
+            for (int j = 0; j < rowCount; j++) {
+                Locator scoreCell = rows.nth(j).locator("td").nth(4);
+                String leftScore = scoreCell.locator("p").nth(0).innerText().trim();
+                String rightScore = scoreCell.locator("p").nth(1).innerText().trim();
+
+                if ("0".equals(leftScore) && "0".equals(rightScore)) {
+                    Locator editButton = rows.nth(j).locator(editMatchScoreIcon);
+                    if (editButton.count() > 0) {
+                        editButton.first().click();
+                        fillMatchScoreOne(scoreOne);
+                        fillMatchScoreTwo(scoreTwo);
+                        clickSaveMatchScoreButton();
+                        page.waitForTimeout(2000);
+                        updated = true;
+                        break;
+                    }
+                }
+            }
+        } while (updated);
     }
 
     public void fillMatchScoreOne(String scoreOne) {

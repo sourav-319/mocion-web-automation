@@ -471,12 +471,9 @@ public class LeaguesTest extends BaseTest {
                 .clickNextButton()
                 .clickSaveAndNextButton()
                 .setPhaseOneMatchScores(scoreOne, scoreTwo)
-                .clickPhaseOneGenerateResultsButton()
                 .clickPhaseOneNextButton()
                 .setSemiFinalMatchScores(scoreOne, scoreTwo)
-                .clickSemiFinalGenerateResultsButton()
-                .setFinalMatchScores(scoreOne, scoreTwo)
-                .clickFinalGenerateResultsButton();
+                .setFinalMatchScores(scoreOne, scoreTwo);
 
         assertThat(leaguesPage.scoresUpdateSuccessMessageLocator()).isVisible();
     }

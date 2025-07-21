@@ -87,7 +87,7 @@ public class LeaguesPage {
     public String saveMatchScoreButton = "button:has-text(\"Save\")";
     public String scoreOneInputField = "input[name='score_1']";
     public String scoreTwoInputField = "input[name='score_2']";
-    public String generateResultsButton = "//button[contains(text(),'Generate results')]";
+    public String generateResultsButton = "button.bg-primary:has-text('Generate results')";
     public String phaseOneNextButton = "button:has-text(\"Next\")";
     public String scoresUpdateSuccessMessageLocator = "text='scores have been updated successfully'";
     public String matchScoreTable = "div.fixed-table > table";
@@ -512,8 +512,9 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage clickSaveAndNextButton() {
+    public LeaguesPage clickSaveAndNextButton() throws InterruptedException {
         page.locator(saveAndNextButton).click();
+        Thread.sleep(20000);
         return this;
     }
 
@@ -539,28 +540,34 @@ public class LeaguesPage {
     }
 
     public LeaguesPage setPhaseOneMatchScores(String scoreOne, String scoreTwo) {
-        Locator tables = page.locator(matchScoreTable);
+        Locator phaseOneSection = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText("Phase 1"));
+        Locator tables = phaseOneSection.locator(matchScoreTable);
         int tableCount = tables.count();
 
         for (int i = 0; i < tableCount; i++) {
-            Locator currentTable = tables.nth(i);
-            updateMatchScores(currentTable, scoreOne, scoreTwo);
-            page.locator(generateResultsButton).nth(0).click();
+            updateMatchScores(tables.nth(i), scoreOne, scoreTwo);
         }
+        phaseOneSection.locator(generateResultsButton).first().click();
+
         return this;
     }
 
     public LeaguesPage setSemiFinalMatchScores(String scoreOne, String scoreTwo) {
-        Locator table = page.locator(matchScoreTable).first();
+        return setSingleTableSectionScores("Semi Final", scoreOne, scoreTwo);
+    }
+
+    private LeaguesPage setSingleTableSectionScores(String sectionTitle, String scoreOne, String scoreTwo) {
+        Locator section = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText(sectionTitle));
+        Locator table = section.locator(matchScoreTable).first();
+
         updateMatchScores(table, scoreOne, scoreTwo);
-        page.locator(generateResultsButton).nth(0).click();
+        section.locator(generateResultsButton).first().click();
+
         return this;
     }
 
     public void setFinalMatchScores(String scoreOne, String scoreTwo) {
-        Locator table = page.locator(matchScoreTable).nth(1);
-        updateMatchScores(table, scoreOne, scoreTwo);
-        page.locator(generateResultsButton).nth(0).click();
+        setSingleTableSectionScores("Final", scoreOne, scoreTwo);
     }
 
     private void updateMatchScores(Locator table, String scoreOne, String scoreTwo) {
@@ -570,15 +577,16 @@ public class LeaguesPage {
             Locator rows = table.locator("tbody > tr");
             int rowCount = rows.count();
 
-            for (int j = 0; j < rowCount; j++) {
-                Locator scoreCell = rows.nth(j).locator("td").nth(4);
+            for (int i = 0; i < rowCount; i++) {
+                Locator row = rows.nth(i);
+                Locator scoreCell = row.locator("td").nth(4);
                 String leftScore = scoreCell.locator("p").nth(0).innerText().trim();
                 String rightScore = scoreCell.locator("p").nth(1).innerText().trim();
 
                 if ("0".equals(leftScore) && "0".equals(rightScore)) {
-                    Locator editButton = rows.nth(j).locator(editMatchScoreIcon);
-                    if (editButton.count() > 0) {
-                        editButton.first().click();
+                    Locator editIcon = row.locator(editMatchScoreIcon).first();
+                    if (editIcon.count() > 0) {
+                        editIcon.click();
                         fillMatchScoreOne(scoreOne);
                         fillMatchScoreTwo(scoreTwo);
                         clickSaveMatchScoreButton();

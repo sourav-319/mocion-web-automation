@@ -90,7 +90,7 @@ public class LeaguesPage {
     public String generateResultsButton = "button.bg-primary:has-text('Generate results')";
     public String phaseOneNextButton = "button:has-text(\"Next\")";
     public String scoresUpdateSuccessMessageLocator = "text='scores have been updated successfully'";
-    public String matchScoreTable = "div.fixed-table > table";
+    public String matchScoreTable = "div.fixed-table";
 
     public LeaguesPage(Page page) {
         this.page = page;
@@ -541,33 +541,34 @@ public class LeaguesPage {
 
     public LeaguesPage setPhaseOneMatchScores(String scoreOne, String scoreTwo) {
         Locator phaseOneSection = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText("Phase 1"));
-        Locator tables = phaseOneSection.locator(matchScoreTable);
-        int tableCount = tables.count();
+        List<String> groupTitles = List.of("Group A", "Group B");
 
-        for (int i = 0; i < tableCount; i++) {
-            updateMatchScores(tables.nth(i), scoreOne, scoreTwo);
+        for (String groupTitle : groupTitles) {
+            Locator groupContainer = phaseOneSection.locator("h3").filter(new Locator.FilterOptions().setHasText(groupTitle)).locator("..");
+            Locator tableContainer = groupContainer.locator(matchScoreTable).first();
+            Locator table = tableContainer.locator("table");
+            updateMatchScores(table, scoreOne, scoreTwo);
+            groupContainer.locator(generateResultsButton).first().click();
         }
-        phaseOneSection.locator(generateResultsButton).first().click();
-
         return this;
     }
 
-    public LeaguesPage setSemiFinalMatchScores(String scoreOne, String scoreTwo) {
-        return setSingleTableSectionScores("Semi Final", scoreOne, scoreTwo);
-    }
-
-    private LeaguesPage setSingleTableSectionScores(String sectionTitle, String scoreOne, String scoreTwo) {
-        Locator section = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText(sectionTitle));
-        Locator table = section.locator(matchScoreTable).first();
-
+    public LeaguesPage setSemiFinalMatchScores(String scoreOne, String scoreTwo) throws InterruptedException {
+        Locator semiSection = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText("Semi Final"));
+        Locator tableContainer = semiSection.locator(matchScoreTable);
+        Locator table = tableContainer.locator("table");
         updateMatchScores(table, scoreOne, scoreTwo);
-        section.locator(generateResultsButton).first().click();
-
+        semiSection.locator(generateResultsButton).first().click();
         return this;
     }
 
-    public void setFinalMatchScores(String scoreOne, String scoreTwo) {
-        setSingleTableSectionScores("Final", scoreOne, scoreTwo);
+    public LeaguesPage setFinalMatchScores(String scoreOne, String scoreTwo) {
+        Locator finalSection = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText("Final"));
+        Locator tableContainer = finalSection.locator(matchScoreTable);
+        Locator table = tableContainer.locator("table");
+        updateMatchScores(table, scoreOne, scoreTwo);
+        finalSection.locator(generateResultsButton).first().click();
+        return this;
     }
 
     private void updateMatchScores(Locator table, String scoreOne, String scoreTwo) {
@@ -576,13 +577,11 @@ public class LeaguesPage {
             updated = false;
             Locator rows = table.locator("tbody > tr");
             int rowCount = rows.count();
-
             for (int i = 0; i < rowCount; i++) {
                 Locator row = rows.nth(i);
                 Locator scoreCell = row.locator("td").nth(4);
                 String leftScore = scoreCell.locator("p").nth(0).innerText().trim();
                 String rightScore = scoreCell.locator("p").nth(1).innerText().trim();
-
                 if ("0".equals(leftScore) && "0".equals(rightScore)) {
                     Locator editIcon = row.locator(editMatchScoreIcon).first();
                     if (editIcon.count() > 0) {

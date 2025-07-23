@@ -559,6 +559,7 @@ public class LeaguesPage {
         Locator table = tableContainer.locator("table");
         updateMatchScores(table, scoreOne, scoreTwo);
         semiSection.locator(generateResultsButton).first().click();
+        page.waitForTimeout(2000);
         return this;
     }
 

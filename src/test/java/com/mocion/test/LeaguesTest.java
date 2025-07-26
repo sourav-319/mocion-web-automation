@@ -23,7 +23,7 @@ public class LeaguesTest extends BaseTest {
     private static final String MAX_PLAYER_LEVEL = "5";
     private static final String PRICE_PER_PLAYER = "10";
     private static final int MAX_NUMBER_OF_DATE_INCREMENT = 5;
-    private static final int NUMBER_OF_COURTS_TO_SELECT = 2;
+    private static final int NUMBER_OF_COURTS_TO_SELECT = 3;
     private static final List<String> ALLOWED_DAYS = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
     private static final List<String> EDIT_ALLOWED_DAYS = Arrays.asList("Saturday", "Sunday");
 

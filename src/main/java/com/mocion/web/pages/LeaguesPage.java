@@ -29,12 +29,11 @@ public class LeaguesPage {
     public String termsAndConditionsField = "input[name='terms_and_conditions']";
     public String pricePerPlayerField = "input[name='price_per_player']";
     public String dateFields = "div.absolute.right-1.top-2 svg";
-    public String allowedCourtsDropdown = "div.react-select__indicator.react-select__dropdown-indicator";
+    public String scheduleCourtsDropdowns = "div.react-select__indicator";
     public String courtOptions = ".react-select__option";
     public String startTime = "input[name='start_time']";
     public String endTime = "input[name='end_time']";
     public String setPerMatchOne = "input[type='radio'][value='1']";
-    public String matchDuration = "div.react-select__indicator.react-select__dropdown-indicator";
     public String checkAvailabilityButton = "button:text('Check court availibility')";
     public String saveAndPublishButton = "text='Save and publish'";
     public String allAvailableCourts = "span.bg-\\[\\#f3f3f3\\].text-primary";
@@ -258,7 +257,7 @@ public class LeaguesPage {
     }
 
     public LeaguesPage selectAllowedCourts(int courtsToSelect) {
-        page.locator(allowedCourtsDropdown).nth(0).click();
+        page.locator(scheduleCourtsDropdowns).nth(0).click();
         Locator options = page.locator(courtOptions);
         int count = options.count();
 
@@ -305,7 +304,7 @@ public class LeaguesPage {
     }
 
     public LeaguesPage selectMatchDuration() {
-        page.locator(matchDuration).nth(2).click();
+        page.locator(scheduleCourtsDropdowns).nth(1).click();
         page.keyboard().press("Enter");
         return this;
     }

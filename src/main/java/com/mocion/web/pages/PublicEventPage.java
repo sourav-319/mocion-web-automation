@@ -34,7 +34,6 @@ public class PublicEventPage {
     public String eventStyleAmericano = "input[type='radio'][value='Americano']";
     public String eventStyleMexicano = "input[type='radio'][value='Mexicano']";
     public String playerJoiningTypeSingle = "input[type='radio'][value='Single']";
-    public String playerJoiningTypeBoth = "input[type='radio'][value='Both']";
     public String saveEventButton = "button.bg-primary.text-white";
     public String eventCreateSuccessMessage = "text='Successful.'";
     public String minNumberOfPlayers = "input[name='min_number_of_players']";

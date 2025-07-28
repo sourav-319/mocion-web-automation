@@ -29,12 +29,11 @@ public class LeaguesPage {
     public String termsAndConditionsField = "input[name='terms_and_conditions']";
     public String pricePerPlayerField = "input[name='price_per_player']";
     public String dateFields = "div.absolute.right-1.top-2 svg";
-    public String allowedCourtsDropdown = "div.react-select__indicator.react-select__dropdown-indicator";
+    public String scheduleCourtsDropdowns = "div.react-select__indicator";
     public String courtOptions = ".react-select__option";
     public String startTime = "input[name='start_time']";
     public String endTime = "input[name='end_time']";
     public String setPerMatchOne = "input[type='radio'][value='1']";
-    public String matchDuration = "div.react-select__indicator.react-select__dropdown-indicator";
     public String checkAvailabilityButton = "button:text('Check court availibility')";
     public String saveAndPublishButton = "text='Save and publish'";
     public String allAvailableCourts = "span.bg-\\[\\#f3f3f3\\].text-primary";
@@ -44,10 +43,15 @@ public class LeaguesPage {
     public String menuIcon = "button[class*='flex']:has(svg)";
     public String addPlayerText = "text='Add Players'";
     public String addPlayerButton = "text='Add Players'";
-    public String addPlayerNameDropdown = "div.react-select.__dropdown-indicator";
-    public String joinTypeSingle = "input[type='radio'][value='Single']";
+    public String addPlayerDropdown = "div[class*='dropdown-indicator']";
     public String paymentMethodDropdown = "div.react-select.w-full__dropdown-indicator";
+    public String joinTypeSingle = "input[type='radio'][value='Single']";
+    public String joinTypeDouble = "input[type='radio'][value='Double']";
     public String paymentMethodInApp = "text='In app'";
+    public String paymentMethodPaymentLink = "text='Payment Link'";
+    public String paymentMethodBankTransfer = "text='Bank transfer'";
+    public String paymentMethodCash = "text='Cash'";
+    public String paymentMethodCreditDebitCard = "text='Credit/Debit card'";
     public String addPlayerSaveButton = "button[type='submit']";
     public String addPlayersToLeagueSuccessMessageLocator = "text='Players were added successfully as League Players'";
     public String chatWithPlayersText = "li:has-text('chat with players')";
@@ -62,8 +66,30 @@ public class LeaguesPage {
     public String cancelLeagueSuccessMessage = "text='league has been canceled successfully'";
     public String leagueCreateDropdowns = ".react-select__dropdown-indicator";
     public String paymentDetailsApp = "text='App'";
+    public String paymentDetailsClub = "text='Club'";
     public String saveLeagueButton = "button.bg-primary.text-white";
     public String scheduleCourtsText = "li.flex.cursor-pointer:has-text('Schedule courts')";
+    public String shareWithPlayersText = "text='Share with players'";
+    public String mocionIcon = "img.cursor-pointer[src*='logoIcon']";
+    public String playerNameDropdownTOShare = "div.__dropdown-indicator";
+    public String okButtonToShare = "button.border-primary";
+    public String downSizeCourtText = "label:has(img):has-text('Down size league')";
+    public String yesToDownSizeCourtText = "button.bg-primary.text-white.rounded-full";
+    public String leagueDownSizeSuccessMessage = "text='League was edited successfully'";
+    public String generateGroupsButton = "button:has-text(\"Generate groups\")";
+    public String saveAndNextButton = "button:has-text(\"save And Next\")";
+    public String nextButton = "//button[contains(text(), 'Next')]";
+    public String scheduleText = "text='Schedule'";
+    public String numberOfGroupsDropdown = ".react-select__indicator.react-select__dropdown-indicator";
+    public String numberOfGroupsTwo = "text='2'";
+    public String editMatchScoreIcon = "img[alt='edit icon']";
+    public String saveMatchScoreButton = "button:has-text(\"Save\")";
+    public String scoreOneInputField = "input[name='score_1']";
+    public String scoreTwoInputField = "input[name='score_2']";
+    public String generateResultsButton = "button.bg-primary:has-text('Generate results')";
+    public String phaseOneNextButton = "button:has-text(\"Next\")";
+    public String scoresUpdateSuccessMessageLocator = "text='scores have been updated successfully'";
+    public String matchScoreTable = "div.fixed-table";
 
     public LeaguesPage(Page page) {
         this.page = page;
@@ -231,7 +257,7 @@ public class LeaguesPage {
     }
 
     public LeaguesPage selectAllowedCourts(int courtsToSelect) {
-        page.locator(allowedCourtsDropdown).nth(0).click();
+        page.locator(scheduleCourtsDropdowns).nth(0).click();
         Locator options = page.locator(courtOptions);
         int count = options.count();
 
@@ -278,7 +304,7 @@ public class LeaguesPage {
     }
 
     public LeaguesPage selectMatchDuration() {
-        page.locator(matchDuration).nth(2).click();
+        page.locator(scheduleCourtsDropdowns).nth(1).click();
         page.keyboard().press("Enter");
         return this;
     }
@@ -336,8 +362,14 @@ public class LeaguesPage {
         return this;
     }
 
-    public LeaguesPage selectPlayerName() {
-        page.locator(addPlayerNameDropdown).click();
+    public LeaguesPage selectPlayerNameToAdd() {
+        page.locator(addPlayerDropdown).nth(0).click();
+        page.keyboard().press("Enter");
+        return this;
+    }
+
+    public LeaguesPage selectTeammateNameToAdd() {
+        page.locator(addPlayerDropdown).nth(1).click();
         page.keyboard().press("Enter");
         return this;
     }
@@ -347,9 +379,38 @@ public class LeaguesPage {
         return this;
     }
 
+    public LeaguesPage selectJoinTypeDouble() {
+        page.locator(joinTypeDouble).click();
+        return this;
+    }
+
+    public LeaguesPage selectPaymentMethodCash() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodCash).click();
+        return this;
+    }
+
+    public LeaguesPage selectPaymentMethodCreditDebitCard() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodCreditDebitCard).click();
+        return this;
+    }
+
     public LeaguesPage selectPaymentMethodInApp() {
         page.locator(paymentMethodDropdown).click();
         page.locator(paymentMethodInApp).click();
+        return this;
+    }
+
+    public LeaguesPage selectPaymentMethodPaymentLink() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodPaymentLink).click();
+        return this;
+    }
+
+    public LeaguesPage selectPaymentMethodBankTransfer() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodBankTransfer).click();
         return this;
     }
 
@@ -389,6 +450,12 @@ public class LeaguesPage {
         return this;
     }
 
+    public LeaguesPage selectPaymentDetailsClub() {
+        page.locator(leagueCreateDropdowns).nth(1).click();
+        page.locator(paymentDetailsClub).click();
+        return this;
+    }
+
     public LeaguesPage selectAssignOrganizer() {
         page.locator(leagueCreateDropdowns).nth(2).click();
         page.keyboard().press("Enter");
@@ -411,6 +478,140 @@ public class LeaguesPage {
     public LeaguesPage clickScheduleCourts() {
         page.locator(scheduleCourtsText).click();
         return this;
+    }
+
+    public LeaguesPage clickShareWithPlayers() {
+        page.locator(shareWithPlayersText).click();
+        return this;
+    }
+
+    public LeaguesPage clickMocionIcon() {
+        page.locator(mocionIcon).click();
+        return this;
+    }
+
+    public LeaguesPage selectPlayerNameToShare() {
+        page.locator(playerNameDropdownTOShare).click();
+        page.keyboard().press("Enter");
+        return this;
+    }
+
+    public LeaguesPage clickOkButtonToShare() {
+        page.locator(okButtonToShare).click();
+        return this;
+    }
+
+    public LeaguesPage clickDownSizeLeague() {
+        page.locator(downSizeCourtText).click();
+        return this;
+    }
+
+    public LeaguesPage clickGenerateGroupsButton() {
+        page.locator(generateGroupsButton).click();
+        return this;
+    }
+
+    public LeaguesPage clickSaveAndNextButton() throws InterruptedException {
+        page.locator(saveAndNextButton).click();
+        Thread.sleep(20000);
+        return this;
+    }
+
+    public LeaguesPage clickNextButton() {
+        page.locator(nextButton).click();
+        return this;
+    }
+
+    public LeaguesPage clickSchedule() {
+        page.locator(scheduleText).click();
+        return this;
+    }
+
+    public LeaguesPage selectNumberOfGroupsTwo() {
+        page.locator(numberOfGroupsDropdown).click();
+        page.locator(numberOfGroupsTwo).click();
+        return this;
+    }
+
+    public LeaguesPage clickPhaseOneNextButton() {
+        page.locator(phaseOneNextButton).click();
+        return this;
+    }
+
+    public LeaguesPage setPhaseOneMatchScores(String scoreOne, String scoreTwo) {
+        Locator phaseOneSection = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText("Phase 1"));
+        List<String> groupTitles = List.of("Group A", "Group B");
+
+        for (String groupTitle : groupTitles) {
+            Locator groupContainer = phaseOneSection.locator("h3").filter(new Locator.FilterOptions().setHasText(groupTitle)).locator("..");
+            Locator tableContainer = groupContainer.locator(matchScoreTable).first();
+            Locator table = tableContainer.locator("table");
+            updateMatchScores(table, scoreOne, scoreTwo);
+            groupContainer.locator(generateResultsButton).first().click();
+        }
+        return this;
+    }
+
+    public LeaguesPage setSemiFinalMatchScores(String scoreOne, String scoreTwo) throws InterruptedException {
+        Locator semiSection = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText("Semi Final"));
+        Locator tableContainer = semiSection.locator(matchScoreTable);
+        Locator table = tableContainer.locator("table");
+        updateMatchScores(table, scoreOne, scoreTwo);
+        semiSection.locator(generateResultsButton).first().click();
+        page.waitForTimeout(2000);
+        return this;
+    }
+
+    public LeaguesPage setFinalMatchScores(String scoreOne, String scoreTwo) {
+        Locator finalSection = page.locator("div.py-2").filter(new Locator.FilterOptions().setHasText("Final"));
+        Locator tableContainer = finalSection.locator(matchScoreTable);
+        Locator table = tableContainer.locator("table");
+        updateMatchScores(table, scoreOne, scoreTwo);
+        finalSection.locator(generateResultsButton).first().click();
+        return this;
+    }
+
+    private void updateMatchScores(Locator table, String scoreOne, String scoreTwo) {
+        boolean updated;
+        do {
+            updated = false;
+            Locator rows = table.locator("tbody > tr");
+            int rowCount = rows.count();
+            for (int i = 0; i < rowCount; i++) {
+                Locator row = rows.nth(i);
+                Locator scoreCell = row.locator("td").nth(4);
+                String leftScore = scoreCell.locator("p").nth(0).innerText().trim();
+                String rightScore = scoreCell.locator("p").nth(1).innerText().trim();
+                if ("0".equals(leftScore) && "0".equals(rightScore)) {
+                    Locator editIcon = row.locator(editMatchScoreIcon).first();
+                    if (editIcon.count() > 0) {
+                        editIcon.click();
+                        fillMatchScoreOne(scoreOne);
+                        fillMatchScoreTwo(scoreTwo);
+                        clickSaveMatchScoreButton();
+                        page.waitForTimeout(2000);
+                        updated = true;
+                        break;
+                    }
+                }
+            }
+        } while (updated);
+    }
+
+    public void fillMatchScoreOne(String scoreOne) {
+        page.locator(scoreOneInputField).fill(scoreOne);
+    }
+
+    public void clickSaveMatchScoreButton() {
+        page.locator(saveMatchScoreButton).click();
+    }
+
+    public void fillMatchScoreTwo(String scoreTwo) {
+        page.locator(scoreTwoInputField).fill(scoreTwo);
+    }
+
+    public void clickYestToDownSizeLeague() {
+        page.locator(yesToDownSizeCourtText).click();
     }
 
     private void incrementStartDate() {
@@ -459,6 +660,10 @@ public class LeaguesPage {
         return page.locator(sentMessageText).last().textContent();
     }
 
+    public Locator scoresUpdateSuccessMessageLocator() {
+        return page.locator(scoresUpdateSuccessMessageLocator);
+    }
+
     public Locator cancelLeagueSuccessMessageLocator() {
         return page.locator(cancelLeagueSuccessMessage);
     }
@@ -473,5 +678,9 @@ public class LeaguesPage {
 
     public Locator leagueEditSuccessMessageLocator() {
         return page.locator(leagueEditSuccessMessage);
+    }
+
+    public Locator leagueDownSizeSuccessMessageLocator() {
+        return page.locator(leagueDownSizeSuccessMessage);
     }
 }

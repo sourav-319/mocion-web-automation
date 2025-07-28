@@ -225,8 +225,9 @@ public class BookingPage {
         return this;
     }
 
-    public void clickCloseIcon() {
+    public BookingPage clickCloseIcon() {
         page.locator(bookingCreateCloseIcon).click();
+        return this;
     }
 
     public void clickCancelWithRefundButton() {

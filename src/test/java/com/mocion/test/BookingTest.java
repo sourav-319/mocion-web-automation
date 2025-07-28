@@ -85,8 +85,7 @@ public class BookingTest extends BaseTest {
                 .selectPlayerOneName(4)
                 .selectPlayerOnePaymentMethod(5)
                 .clickSavePublicMatchButton()
-                .clickCloseIcon();
-        bookingPage
+                .clickCloseIcon()
                 .clickMenuIcon()
                 .clickCancelBooking()
                 .clickCancelWithRefundButton();
@@ -126,8 +125,7 @@ public class BookingTest extends BaseTest {
                 .selectPlayerOneName(4)
                 .selectPlayerOnePaymentMethodAsInApp()
                 .clickSavePublicMatchButton()
-                .clickCloseIcon();
-        bookingPage
+                .clickCloseIcon()
                 .clickMenuIcon()
                 .clickCancelBooking()
                 .clickCancelWithoutRefundButton();

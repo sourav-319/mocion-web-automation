@@ -69,7 +69,7 @@ public class PublicEventTest extends BaseTest {
                 .selectEndTime()
                 .clickSaveEventButton();
 
-        assertThat(publicEventPage.eventtCreateSuccessMessageLocator()).isVisible();
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Public competitive mexicano event create with joining type single should successful")
@@ -110,7 +110,7 @@ public class PublicEventTest extends BaseTest {
                 .selectEndTime()
                 .clickSaveEventButton();
 
-        assertThat(publicEventPage.eventtCreateSuccessMessageLocator()).isVisible();
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
     }
 
     private List<String> generateEventData() {

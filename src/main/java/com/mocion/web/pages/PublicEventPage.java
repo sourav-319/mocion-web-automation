@@ -199,7 +199,7 @@ public class PublicEventPage {
         page.locator(saveEventButton).click();
     }
 
-    public Locator eventtCreateSuccessMessageLocator() {
+    public Locator eventCreateSuccessMessageLocator() {
         return page.locator(eventCreateSuccessMessage);
     }
 }

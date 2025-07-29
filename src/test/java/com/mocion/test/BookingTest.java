@@ -137,6 +137,86 @@ public class BookingTest extends BaseTest {
         assertThat(bookingPage.bookingCancelSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Cancel private match booking with refund should successful")
+    public void verify_cancel_private_match_booking_with_refund_should_succeed() {
+        String clubName = "Farah123";
+        String notes = "test_note";
+        String minLevel = "0";
+        String maxLevel = "1";
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        bookingPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(clubName)
+                .clickCreateButton()
+                .clickPublicMatch()
+                .clickCheckScheduleButton()
+                .selectSchedule(2)
+                .clickSaveButton()
+                .selectCourtName()
+                .fillPlayerMinLevel(minLevel)
+                .fillPlayerMaxLevel(maxLevel)
+                .selectGenderMixed()
+                .fillNotes(notes)
+                .selectOwnerName(2)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .selectPlayerOnePaymentMethod(5)
+                .clickSavePublicMatchButton()
+                .clickCloseIcon()
+                .clickMenuIcon()
+                .clickCancelBooking()
+                .clickCancelWithRefundButton();
+
+        bookingPage
+                .bookingCancelSuccessMessageLocator()
+                .waitFor(new Locator.WaitForOptions()
+                        .setState(WaitForSelectorState.VISIBLE));
+        assertThat(bookingPage.bookingCancelSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Cancel private match booking without refund should successful")
+    public void verify_cancel_private_match_booking_without_refund_should_succeed() {
+        String clubName = "Farah123";
+        String notes = "test_note";
+        String minLevel = "0";
+        String maxLevel = "1";
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        bookingPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(clubName)
+                .clickCreateButton()
+                .clickPublicMatch()
+                .clickCheckScheduleButton()
+                .selectSchedule(2)
+                .clickSaveButton()
+                .selectCourtName()
+                .fillPlayerMinLevel(minLevel)
+                .fillPlayerMaxLevel(maxLevel)
+                .selectGenderMixed()
+                .fillNotes(notes)
+                .selectOwnerName(2)
+                .selectOwnerPaymentMethod(3)
+                .selectPlayerOneName(4)
+                .selectPlayerOnePaymentMethodAsInApp()
+                .clickSavePublicMatchButton()
+                .clickCloseIcon()
+                .clickMenuIcon()
+                .clickCancelBooking()
+                .clickCancelWithoutRefundButton();
+
+        bookingPage
+                .bookingCancelSuccessMessageLocator()
+                .waitFor(new Locator.WaitForOptions()
+                        .setState(WaitForSelectorState.VISIBLE));
+        assertThat(bookingPage.bookingCancelSuccessMessageLocator()).isVisible();
+    }
+
     @Test(description = "Public match booking payment status should be paid when all player payments are paid should successful")
     public void verify_public_match_booking_payment_status_should_be_paid_when_all_player_payments_are_paid_should_succeed() {
         String clubName = "Farah123";

@@ -26,14 +26,20 @@ public class PublicEventPage {
     public String pricePerPlayerField = "input[name='price_per_player']";
     public String genderMixed = "input[type='radio'][value='Mixed']";
     public String eventTypeCompetitive = "input[type='radio'][value='competitive']";
+    public String eventTypeFriendly = "input[type='radio'][value='friendly']";
     public String dateFields = "div.absolute.right-1.top-2 svg";
     public String startTime = "input[name='start_time']";
     public String endTime = "input[name='end_time']";
     public String paymentDetailsApp = "text='App'";
+    public String paymentDetailsClub = "text='Club'";
     public String courtTypeIndoor = "text='Indoor'";
+    public String courtTypeRoffed = "text='Roffed'";
+    public String courtTypeOutdoor = "text='Outdoor'";
     public String eventStyleAmericano = "input[type='radio'][value='Americano']";
+    public String eventStyleKingOfTheCourts = "input[type='radio'][value='King of the Courts']";
     public String eventStyleMexicano = "input[type='radio'][value='Mexicano']";
     public String playerJoiningTypeSingle = "input[type='radio'][value='Single']";
+    public String playerJoiningTypeBoth = "input[type='radio'][value='Both']";
     public String saveEventButton = "button.bg-primary.text-white";
     public String eventCreateSuccessMessage = "text='Successful.'";
     public String minNumberOfPlayers = "input[name='min_number_of_players']";
@@ -131,6 +137,12 @@ public class PublicEventPage {
         return this;
     }
 
+    public PublicEventPage selectPaymentDetailsClub() {
+        page.locator(eventCreateDropdowns).nth(0).click();
+        page.locator(paymentDetailsClub).click();
+        return this;
+    }
+
     public PublicEventPage selectGenderMixed() {
         page.locator(genderMixed).click();
         return this;
@@ -164,6 +176,11 @@ public class PublicEventPage {
         return this;
     }
 
+    public PublicEventPage selectEventStyleKingOfTheCourts() {
+        page.locator(eventStyleKingOfTheCourts).click();
+        return this;
+    }
+
     public PublicEventPage selectEventStyleMexicano() {
         page.locator(eventStyleMexicano).click();
         return this;
@@ -174,8 +191,18 @@ public class PublicEventPage {
         return this;
     }
 
+    public PublicEventPage selectEventTypeFriendly() {
+        page.locator(eventTypeFriendly).click();
+        return this;
+    }
+
     public PublicEventPage selectPlayerJoiningTypeSingle() {
         page.locator(playerJoiningTypeSingle).click();
+        return this;
+    }
+
+    public PublicEventPage selectPlayerJoiningTypeBoth() {
+        page.locator(playerJoiningTypeBoth).click();
         return this;
     }
 
@@ -192,6 +219,18 @@ public class PublicEventPage {
     public PublicEventPage selectCourtTypeIndoor() {
         page.locator(eventCreateDropdowns).nth(2).click();
         page.locator(courtTypeIndoor).nth(1).click();
+        return this;
+    }
+
+    public PublicEventPage selectCourtTypeOutdoor() {
+        page.locator(eventCreateDropdowns).nth(2).click();
+        page.locator(courtTypeOutdoor).click();
+        return this;
+    }
+
+    public PublicEventPage selectCourtTypeRoffed() {
+        page.locator(eventCreateDropdowns).nth(2).click();
+        page.locator(courtTypeRoffed).click();
         return this;
     }
 

@@ -31,8 +31,8 @@ public class PublicEventTest extends BaseTest {
         locationPage = new LocationPage(page);
     }
 
-    @Test(description = "Public competitive americano event create with joining type single should successful")
-    public void verify_public_competitive_americano_event_create_with_joining_type_single_should_succeed() {
+    @Test(description = "Public competitive americano event create with joining type single court indoor and payment app should successful")
+    public void verify_public_competitive_americano_event_create_with_joining_type_single_court_indoor_and_payment_app_should_succeed() {
         List<String> data = generateEventData();
 
         initPages();
@@ -72,8 +72,49 @@ public class PublicEventTest extends BaseTest {
         assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
     }
 
-    @Test(description = "Public competitive mexicano event create with joining type single should successful")
-    public void verify_public_competitive_mexicano_event_create_with_joining_type_single_should_succeed() {
+    @Test(description = "Public friendly americano event create with joining type single court outdoor and payment club should successful")
+    public void verify_public_friendly_americano_event_create_with_joining_type_single_court_outdoor_and_payment_club_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsClub()
+                .selectEventStyleAmericano()
+                .selectEventTypeFriendly()
+                .selectPlayerJoiningTypeSingle()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeIndoor()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public competitive mexicano event create with joining type single court roofed and payment app should successful")
+    public void verify_public_competitive_mexicano_event_create_with_joining_type_single_court_roofed_and_payment_app_should_succeed() {
         List<String> data = generateEventData();
 
         initPages();
@@ -99,6 +140,375 @@ public class PublicEventTest extends BaseTest {
                 .selectPaymentDetailsApp()
                 .selectEventStyleMexicano()
                 .selectEventTypeCompetitive()
+                .selectPlayerJoiningTypeSingle()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeRoffed()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public friendly mexicano event create with joining type single court indoor and payment club should successful")
+    public void verify_public_friendly_mexicano_event_create_with_joining_type_single_court_indoor_and_payment_club_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsClub()
+                .selectEventStyleMexicano()
+                .selectEventTypeFriendly()
+                .selectPlayerJoiningTypeSingle()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeIndoor()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public competitive mexicano event create with joining type single / double (team) court outdoor and payment app should successful")
+    public void verify_public_competitive_mexicano_event_create_with_joining_type_single_double_team_court_outdoor_and_payment_app_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
+                .selectEventStyleMexicano()
+                .selectEventTypeCompetitive()
+                .selectPlayerJoiningTypeBoth()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeOutdoor()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public friendly mexicano event create with joining type single / double (team) court roofed and payment club should successful")
+    public void verify_public_friendly_mexicano_event_create_with_joining_type_single_double_team_court_roofed_and_payment_club_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsClub()
+                .selectEventStyleMexicano()
+                .selectEventTypeFriendly()
+                .selectPlayerJoiningTypeBoth()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeRoffed()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public competitive king of the courts event create with joining type single court indoor and payment club should successful")
+    public void verify_public_competitive_king_of_the_courts_event_create_with_joining_type_single_court_indoor_and_payment_club_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsClub()
+                .selectEventStyleKingOfTheCourts()
+                .selectEventTypeCompetitive()
+                .selectPlayerJoiningTypeSingle()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeIndoor()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public friendly king of the courts event create with joining type single court outdoor and payment app should successful")
+    public void verify_public_friendly_king_of_the_courts_event_create_with_joining_type_single_court_outdoor_and_payment_app_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
+                .selectEventStyleKingOfTheCourts()
+                .selectEventTypeFriendly()
+                .selectPlayerJoiningTypeSingle()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeOutdoor()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public competitive king of the courts event create with joining type single / double (team) court roofed and payment club should successful")
+    public void verify_public_competitive_king_of_the_courts_event_create_with_joining_type_single_double_team_court_roofed_and_payment_club_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsClub()
+                .selectEventStyleKingOfTheCourts()
+                .selectEventTypeCompetitive()
+                .selectPlayerJoiningTypeBoth()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeRoffed()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public friendly king of the courts event create with joining type single / double (team) court indoor and payment app should successful")
+    public void verify_public_friendly_king_of_the_courts_event_create_with_joining_type_single_double_team_court_indoor_and_payment_app_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
+                .selectEventStyleKingOfTheCourts()
+                .selectEventTypeFriendly()
+                .selectPlayerJoiningTypeBoth()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeIndoor()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public competitive americano event create with joining type single court roofed and payment club should successful")
+    public void verify_public_competitive_americano_event_create_with_joining_type_single_court_roofed_and_payment_club_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsClub()
+                .selectEventStyleAmericano()
+                .selectEventTypeCompetitive()
+                .selectPlayerJoiningTypeSingle()
+                .selectGenderMixed()
+                .selectAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeRoffed()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Public competitive americano event create with joining type single court indoor and payment app should successful")
+    public void verify_public_friendly_americano_event_create_with_joining_type_single_court_indoor_and_payment_app_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickCreateButton()
+                .fillEventName(data.get(0))
+                .fillOrganizationName(data.get(1))
+                .fillEventDescription(data.get(4))
+                .fillSponsor(data.get(2))
+                .uploadSponsorLogo()
+                .fillPrize(data.get(3))
+                .uploadEventImage()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .selectPaymentDetailsApp()
+                .selectEventStyleAmericano()
+                .selectEventTypeFriendly()
                 .selectPlayerJoiningTypeSingle()
                 .selectGenderMixed()
                 .selectAssignOrganizer()

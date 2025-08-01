@@ -53,7 +53,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
@@ -94,7 +94,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsClub()
@@ -135,7 +135,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
@@ -176,7 +176,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsClub()
@@ -217,7 +217,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
@@ -258,7 +258,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsClub()
@@ -299,7 +299,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsClub()
@@ -340,7 +340,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
@@ -381,7 +381,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsClub()
@@ -422,7 +422,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
@@ -463,7 +463,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsClub()
@@ -504,7 +504,7 @@ public class PublicEventTest extends BaseTest {
                 .uploadEventImage()
                 .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
                 .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
-                .fillMinPlayerLevelField(MIN_PLAYER_LEVEL)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
                 .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .fillPricePerPlayer(PRICE_PER_PLAYER)
                 .selectPaymentDetailsApp()
@@ -789,6 +789,180 @@ public class PublicEventTest extends BaseTest {
                 .clickSendIcon();
 
         Assert.assertTrue(publicEventPage.sentMessageTextContent().contains(conversationText));
+    }
+
+    @Test(description = "Edit public event with required fields should successful")
+    public void verify_edit_public_event_with_required_fields_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditEvent()
+                .clearEventNameField()
+                .fillEventName(data.get(0))
+                .clearMinNumberOfPlayersField()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .clearMaxNumberOfPlayersField()
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .clearMinPlayerLevelField()
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
+                .clearMaxPlayerLevelField()
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .clearPricePerPlayerField()
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .editPaymentDetailsApp()
+                .selectEventStyleAmericano()
+                .selectEventTypeCompetitive()
+                .selectPlayerJoiningTypeSingle()
+                .selectGenderMixed()
+                .editAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeIndoor()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventEditSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Edit public event with optional fields should successful")
+    public void verify_edit_public_event_with_optional_fields_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditEvent()
+                .clearOrganizationNameField()
+                .fillOrganizationName(data.get(1))
+                .clearEventDescriptionField()
+                .fillEventDescription(data.get(4))
+                .clearSponsorField()
+                .fillSponsor(data.get(2))
+                .clearPrizeField()
+                .fillPrize(data.get(3))
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventEditSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Edit public event with all fields should successful")
+    public void verify_edit_public_event_with_all_fields_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickEditEvent()
+                .clearEventNameField()
+                .fillEventName(data.get(0))
+                .clearOrganizationNameField()
+                .fillOrganizationName(data.get(1))
+                .clearEventDescriptionField()
+                .fillEventDescription(data.get(4))
+                .clearSponsorField()
+                .fillSponsor(data.get(2))
+                .clearPrizeField()
+                .fillPrize(data.get(3))
+                .clearMinNumberOfPlayersField()
+                .fillMinNumberOfPlayers(MIN_NUMBER_OF_PLAYERS)
+                .clearMaxNumberOfPlayersField()
+                .fillMaxNumberOfPlayers(MAX_NUMBER_OF_PLAYERS)
+                .clearMinPlayerLevelField()
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
+                .clearMaxPlayerLevelField()
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
+                .clearPricePerPlayerField()
+                .fillPricePerPlayer(PRICE_PER_PLAYER)
+                .editPaymentDetailsApp()
+                .selectEventStyleAmericano()
+                .selectEventTypeCompetitive()
+                .selectPlayerJoiningTypeSingle()
+                .selectGenderMixed()
+                .editAssignOrganizer()
+                .fillTermsAndConditions(data.get(5))
+                .selectStartDate()
+                .selectRegistrationDeadline()
+                .selectCourtTypeIndoor()
+                .selectStartTime()
+                .selectEndTime()
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventEditSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Duplicate public event should successful")
+    public void verify_duplicate_public_event_should_succeed() {
+        List<String> data = generateEventData();
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickDuplicate()
+                .clearEventNameField()
+                .fillEventName(data.getFirst())
+                .clickSaveEventButton();
+
+        assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Chat with public event players should successful")
+    public void verify_chat_with_public_event_players_should_succeed() {
+        String conversationText = "Hello, this is a test message";
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickChatWithPlayers()
+                .clickFirstConversation()
+                .fillConversationText(conversationText)
+                .clickSendIcon();
+
+        Assert.assertTrue(publicEventPage.sentMessageTextContent().contains(conversationText));
+    }
+
+    @Test(description = "Cancel public event should successful")
+    public void verify_cancel_public_event_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickCancelEvent()
+                .clickYesToCancelEvent();
+
+        assertThat(publicEventPage.cancelEventSuccessMessageLocator()).isVisible();
     }
 
     private List<String> generateEventData() {

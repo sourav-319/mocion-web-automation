@@ -79,6 +79,14 @@ public class PublicEventPage {
     public String firstConversation = ".w-full.flex.px-8";
     public String sendMessageIcon = ".lucide.lucide-send";
     public String sentMessageText = ".flex.flex-col.gap-2.py-2.pr-2";
+    public String editEventText = "text='Edit event'";
+    public String eventEditSuccessMessage = "text='tournament has been updated successfully'";
+    public String duplicateText = "li:has-text('Duplicate')";
+    public String chatWithPlayersText = "li:has-text('chat with players')";
+    public String conversationTextInputField = ".editable.w-full.pt-2";
+    public String cancelEventText = "text=Cancel event";
+    public String yesButtonToCancelEvent = "button:has-text('Yes')";
+    public String cancelEventSuccessMessage = "text='tournament has been canceled successfully'";
 
     public PublicEventPage(Page page) {
         this.page = page;
@@ -101,6 +109,30 @@ public class PublicEventPage {
 
     public PublicEventPage clickMenuIcon() {
         page.locator(menuIcon).nth(4).click();
+        return this;
+    }
+
+    public PublicEventPage clickCancelEvent() {
+        page.locator(cancelEventText).click();
+        return this;
+    }
+
+    public void clickYesToCancelEvent() {
+        page.locator(yesButtonToCancelEvent).click();
+    }
+
+    public PublicEventPage clickChatWithPlayers() {
+        page.locator(chatWithPlayersText).click();
+        return this;
+    }
+
+    public PublicEventPage clickDuplicate() {
+        page.locator(duplicateText).click();
+        return this;
+    }
+
+    public PublicEventPage clickEditEvent() {
+        page.locator(editEventText).click();
         return this;
     }
 
@@ -127,6 +159,11 @@ public class PublicEventPage {
 
     public PublicEventPage clickFirstConversation() {
         page.locator(firstConversation).nth(0).click();
+        return this;
+    }
+
+    public PublicEventPage fillConversationText(String conversationText) {
+        page.locator(conversationTextInputField).fill(conversationText);
         return this;
     }
 
@@ -229,8 +266,18 @@ public class PublicEventPage {
         return this;
     }
 
+    public PublicEventPage clearEventNameField() {
+        page.locator(nameInputField).clear();
+        return this;
+    }
+
     public PublicEventPage fillEventName(String eventName) {
         page.locator(nameInputField).fill(eventName);
+        return this;
+    }
+
+    public PublicEventPage clearOrganizationNameField() {
+        page.locator(organizationNameField).clear();
         return this;
     }
 
@@ -239,8 +286,18 @@ public class PublicEventPage {
         return this;
     }
 
+    public PublicEventPage clearEventDescriptionField() {
+        page.locator(eventDescriptionField).clear();
+        return this;
+    }
+
     public PublicEventPage fillEventDescription(String eventDescription) {
         page.locator(eventDescriptionField).fill(eventDescription);
+        return this;
+    }
+
+    public PublicEventPage clearSponsorField() {
+        page.locator(sponsorField).clear();
         return this;
     }
 
@@ -255,6 +312,11 @@ public class PublicEventPage {
         return this;
     }
 
+    public PublicEventPage clearPrizeField() {
+        page.locator(prizeField).clear();
+        return this;
+    }
+
     public PublicEventPage fillPrize(String prize) {
         page.locator(prizeField).fill(prize);
         return this;
@@ -266,8 +328,18 @@ public class PublicEventPage {
         return this;
     }
 
+    public PublicEventPage clearMinNumberOfPlayersField() {
+        page.locator(minNumberOfPlayers).clear();
+        return this;
+    }
+
     public PublicEventPage fillMinNumberOfPlayers(String minPlayerLevel) {
         page.locator(minNumberOfPlayers).fill(minPlayerLevel);
+        return this;
+    }
+
+    public PublicEventPage clearMaxNumberOfPlayersField() {
+        page.locator(maxNumberOfPlayers).clear();
         return this;
     }
 
@@ -276,13 +348,28 @@ public class PublicEventPage {
         return this;
     }
 
-    public PublicEventPage fillMinPlayerLevelField(String minPlayerLevel) {
+    public PublicEventPage clearMinPlayerLevelField() {
+        page.locator(minPlayerLevelField).clear();
+        return this;
+    }
+
+    public PublicEventPage fillMinPlayerLevel(String minPlayerLevel) {
         page.locator(minPlayerLevelField).fill(minPlayerLevel);
+        return this;
+    }
+
+    public PublicEventPage clearMaxPlayerLevelField() {
+        page.locator(maxPlayerLevelField).clear();
         return this;
     }
 
     public PublicEventPage fillMaxPlayerLevel(String maxPlayerLevel) {
         page.locator(maxPlayerLevelField).fill(maxPlayerLevel);
+        return this;
+    }
+
+    public PublicEventPage clearPricePerPlayerField() {
+        page.locator(pricePerPlayerField).clear();
         return this;
     }
 
@@ -294,6 +381,12 @@ public class PublicEventPage {
     public PublicEventPage selectPaymentDetailsApp() {
         page.locator(eventCreateDropdowns).nth(0).click();
         page.locator(paymentDetailsApp).click();
+        return this;
+    }
+
+    public PublicEventPage editPaymentDetailsApp() {
+        page.locator(eventCreateDropdowns).nth(0).click();
+        page.locator(paymentDetailsApp).nth(1).click();
         return this;
     }
 
@@ -311,6 +404,18 @@ public class PublicEventPage {
     public PublicEventPage selectAssignOrganizer() {
         page.locator(eventCreateDropdowns).nth(1).click();
         page.keyboard().press("Enter");
+        return this;
+    }
+
+    public PublicEventPage editAssignOrganizer() {
+        page.locator(eventCreateDropdowns).nth(1).click();
+        page.keyboard().press("Enter");
+        page.keyboard().press("Enter");
+        return this;
+    }
+
+    public PublicEventPage clearTermsAndConditionsField() {
+        page.locator(termsAndConditionsField).clear();
         return this;
     }
 
@@ -475,5 +580,13 @@ public class PublicEventPage {
 
     public Locator scheduleCourtsSuccessMessageLocator() {
         return page.locator(scheduleCourtsSuccessMessage);
+    }
+
+    public Locator eventEditSuccessMessageLocator() {
+        return page.locator(eventEditSuccessMessage);
+    }
+
+    public Locator cancelEventSuccessMessageLocator() {
+        return page.locator(cancelEventSuccessMessage);
     }
 }

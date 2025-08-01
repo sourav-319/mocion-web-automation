@@ -3,6 +3,7 @@ package com.mocion.test;
 import com.mocion.web.pages.LocationPage;
 import com.mocion.web.pages.LoginPage;
 import com.mocion.web.pages.PublicEventPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -728,6 +729,30 @@ public class PublicEventTest extends BaseTest {
         assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
     }
 
+    // Number of players 8 - 8
+    @Test(description = "Schedule courts for public event should successful")
+    public void verify_schedule_courts_for_public_event_should_succeed() {
+        String numberOfServes = "10";
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickScheduleCourts()
+                .selectPauseTime()
+                .selectMaximumDurationOfRound()
+                .fillNumberOfServes(numberOfServes)
+                .clickCheckAvailabilityButton()
+                .selectAvailableCourts()
+                .clickSaveAndPublishButton();
+
+        assertThat(publicEventPage.scheduleCourtsSuccessMessageLocator()).isVisible();
+    }
+
     @Test(description = "Down size public event should successful")
     public void verify_down_size_public_event_should_succeed() {
         initPages();
@@ -742,6 +767,28 @@ public class PublicEventTest extends BaseTest {
                 .clickYestToDownSizeEvent();
 
         assertThat(publicEventPage.eventDownSizeSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Share public event with players should successful")
+    public void verify_share_public_event_with_players_should_succeed() {
+        String conversationText = "you invited to join in this event go to this link to join";
+
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickShareWithPlayers()
+                .clickMocionIcon()
+                .selectPlayerNameToShare()
+                .clickOkButtonToShare()
+                .clickFirstConversation()
+                .clickSendIcon();
+
+        Assert.assertTrue(publicEventPage.sentMessageTextContent().contains(conversationText));
     }
 
     private List<String> generateEventData() {

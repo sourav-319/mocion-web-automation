@@ -40,6 +40,7 @@ public class LeaguesPage {
     public String selectedSlotsCount = "h3.text-primary";
     public String leagueEditSuccessMessage = "text='league has been updated successfully'";
     public String leagueCreateSuccessMessage = "text='Successful.'";
+    public String scheduleCourtsSuccessMessage = "text='Successful.'";
     public String menuIcon = "button[class*='flex']:has(svg)";
     public String addPlayerText = "text='Add Players'";
     public String addPlayerButton = "text='Add Players'";
@@ -670,6 +671,10 @@ public class LeaguesPage {
 
     public Locator leagueCreateSuccessMessageLocator() {
         return page.locator(leagueCreateSuccessMessage);
+    }
+
+    public Locator scheduleCourtsSuccessMessageLocator() {
+        return page.locator(scheduleCourtsSuccessMessage);
     }
 
     public Locator addPlayersToLeagueSuccessMessageLocator() {

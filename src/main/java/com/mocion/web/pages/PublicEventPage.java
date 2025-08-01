@@ -4,6 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 import java.nio.file.Paths;
+import java.util.List;
 
 public class PublicEventPage {
     private final Page page;
@@ -61,6 +62,23 @@ public class PublicEventPage {
     public String downSizeEventText = "label:has(img):has-text('Down size event')";
     public String yesToDownSizeEventText = "button.bg-primary.text-white.rounded-full";
     public String eventDownSizeSuccessMessage = "text='was edited successfully'";
+    public String scheduleCourtsText = "li.flex.cursor-pointer:has-text('Schedule courts')";
+    public String scheduleCourtsDropdowns = "div.react-select__dropdown-indicator";
+    public String pauseTime = "text='20 Min'";
+    public String maximumDurationOfRound = "text='150 Min'";
+    public String numberOfServesField = "input[name='number_of_serves']";
+    public String checkAvailabilityButton = "//button[text()='Check court availibility']";
+    public String saveAndPublishButton = "text='Save and publish'";
+    public String scheduleCourtsSuccessMessage = "text='Successful.'";
+    public String courtsTable = "div.customer-table tbody > tr";
+    public String totalNumberOfRounds = "input[readonly][disabled][type='number']";
+    public String shareWithPlayersText = "text='Share with players'";
+    public String mocionIcon = "img.cursor-pointer[src*='logoIcon']";
+    public String playerNameDropdownTOShare = "div.__dropdown-indicator";
+    public String okButtonToShare = "button.border-primary";
+    public String firstConversation = ".w-full.flex.px-8";
+    public String sendMessageIcon = ".lucide.lucide-send";
+    public String sentMessageText = ".flex.flex-col.gap-2.py-2.pr-2";
 
     public PublicEventPage(Page page) {
         this.page = page;
@@ -86,13 +104,62 @@ public class PublicEventPage {
         return this;
     }
 
-    public PublicEventPage clickDownSizeEvent() {
-        page.locator(downSizeEventText).click();
+    public PublicEventPage clickShareWithPlayers() {
+        page.locator(shareWithPlayersText).click();
         return this;
     }
 
-    public void clickYestToDownSizeEvent() {
-        page.locator(yesToDownSizeEventText).click();
+    public PublicEventPage clickMocionIcon() {
+        page.locator(mocionIcon).click();
+        return this;
+    }
+
+    public PublicEventPage selectPlayerNameToShare() {
+        page.locator(playerNameDropdownTOShare).click();
+        page.keyboard().press("Enter");
+        return this;
+    }
+
+    public PublicEventPage clickOkButtonToShare() {
+        page.locator(okButtonToShare).click();
+        return this;
+    }
+
+    public PublicEventPage clickFirstConversation() {
+        page.locator(firstConversation).nth(0).click();
+        return this;
+    }
+
+    public PublicEventPage clickScheduleCourts() {
+        page.locator(scheduleCourtsText).click();
+        return this;
+    }
+
+    public PublicEventPage selectPauseTime() {
+        page.locator(scheduleCourtsDropdowns).nth(0).click();
+        page.locator(pauseTime).click();
+        return this;
+    }
+
+    public PublicEventPage selectMaximumDurationOfRound() {
+        page.locator(scheduleCourtsDropdowns).nth(1).click();
+        page.locator(maximumDurationOfRound).click();
+        return this;
+    }
+
+    public PublicEventPage fillNumberOfServes(String numberOfServes) {
+        page.locator(numberOfServesField).fill(numberOfServes);
+        return this;
+    }
+
+    public PublicEventPage clickCheckAvailabilityButton() {
+        page.locator(checkAvailabilityButton).click();
+        return this;
+    }
+
+    public PublicEventPage clickDownSizeEvent() {
+        page.locator(downSizeEventText).click();
+        return this;
     }
 
     public PublicEventPage clickAddPlayers() {
@@ -327,12 +394,71 @@ public class PublicEventPage {
         return this;
     }
 
+    public PublicEventPage selectAvailableCourts() {
+        int totalRounds = Integer.parseInt(page.locator(totalNumberOfRounds).nth(1).getAttribute("value").trim());
+        Locator rows = page.locator(courtsTable);
+        int rowCount = rows.count();
+        int cumulativeCount = 0;
+
+        for (int i = 0; i < rowCount; i++) {
+            Locator row = rows.nth(i);
+            int required = Integer.parseInt(row.locator("td").nth(3).locator("strong").innerText().trim());
+
+            List<Locator> courts = row.locator("td").nth(2).locator("span").all();
+            long availableCount = courts.stream()
+                    .filter(court -> court.getAttribute("class").contains("bg-[#f3f3f3]") && court.isEnabled())
+                    .count();
+
+            if (availableCount < required) {
+                throw new RuntimeException("Not enough available courts found at row " + (i + 1));
+            }
+
+            cumulativeCount += required;
+        }
+
+        if (cumulativeCount < totalRounds) {
+            throw new RuntimeException("Not enough available courts found in total");
+        }
+
+        for (int i = 0; i < rowCount; i++) {
+            Locator row = rows.nth(i);
+            int required = Integer.parseInt(row.locator("td").nth(3).locator("strong").innerText().trim());
+
+            List<Locator> courts = row.locator("td").nth(2).locator("span").all();
+            List<Locator> available = courts.stream()
+                    .filter(court -> court.getAttribute("class").contains("bg-[#f3f3f3]") && court.isEnabled())
+                    .toList();
+
+            for (int j = 0; j < required; j++) {
+                available.get(j).scrollIntoViewIfNeeded();
+                available.get(j).click();
+            }
+        }
+        return this;
+    }
+
+    public void clickYestToDownSizeEvent() {
+        page.locator(yesToDownSizeEventText).click();
+    }
+
+    public void clickSendIcon() {
+        page.locator(sendMessageIcon).click();
+    }
+
+    public void clickSaveAndPublishButton() {
+        page.locator(saveAndPublishButton).click();
+    }
+
     public void clickAddPlayerSaveButton() {
         page.locator(addPlayerSaveButton).click();
     }
 
     public void clickSaveEventButton() {
         page.locator(saveEventButton).click();
+    }
+
+    public String sentMessageTextContent() {
+        return page.locator(sentMessageText).last().textContent();
     }
 
     public Locator eventCreateSuccessMessageLocator() {
@@ -345,5 +471,9 @@ public class PublicEventPage {
 
     public Locator eventDownSizeSuccessMessageLocator() {
         return page.locator(eventDownSizeSuccessMessage);
+    }
+
+    public Locator scheduleCourtsSuccessMessageLocator() {
+        return page.locator(scheduleCourtsSuccessMessage);
     }
 }

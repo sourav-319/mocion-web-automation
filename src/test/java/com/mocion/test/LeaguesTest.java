@@ -412,7 +412,7 @@ public class LeaguesTest extends BaseTest {
                 .selectCourtsWithDateIncrement(MAX_NUMBER_OF_DATE_INCREMENT)
                 .clickSaveAndPublishButton();
 
-        assertThat(leaguesPage.leagueCreateSuccessMessageLocator()).isVisible();
+        assertThat(leaguesPage.scheduleCourtsSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Down size league should successful")

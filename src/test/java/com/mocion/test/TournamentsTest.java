@@ -399,7 +399,7 @@ public class TournamentsTest extends BaseTest {
                 .selectCourtsWithDateIncrement(MAX_NUMBER_OF_DATE_INCREMENT)
                 .clickSaveAndPublishButton();
 
-        assertThat(tournamentsPage.tournamentCreateSuccessMessageLocator()).isVisible();
+        assertThat(tournamentsPage.scheduleCourtsSuccessMessageLocator()).isVisible();
     }
 
     @Test(description = "Chat with tournament players should successful")

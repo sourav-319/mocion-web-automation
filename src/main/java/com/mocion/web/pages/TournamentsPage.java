@@ -48,6 +48,7 @@ public class TournamentsPage {
     public String saveAndPublishButton = "text='Save and publish'";
     public String checkAvailabilityButton = "button:text('Check court availibility')";
     public String tournamentCreateSuccessMessage = "text='Successful.'";
+    public String scheduleCourtsSuccessMessage = "text='Successful.'";
     public String tournamentEditSuccessMessage = "text='tournament has been updated successfully'";
     public String chatWithPlayersText = "li:has-text('chat with players')";
     public String firstConversation = ".w-full.flex.px-8";
@@ -622,6 +623,10 @@ public class TournamentsPage {
 
     public Locator tournamentCreateSuccessMessageLocator() {
         return page.locator(tournamentCreateSuccessMessage);
+    }
+
+    public Locator scheduleCourtsSuccessMessageLocator() {
+        return page.locator(scheduleCourtsSuccessMessage);
     }
 
     public Locator tournamentEditSuccessMessageLocator() {

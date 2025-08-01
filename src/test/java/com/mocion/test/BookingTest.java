@@ -15,6 +15,11 @@ public class BookingTest extends BaseTest {
     public BookingPage bookingPage;
     public LocationPage locationPage;
 
+    private static final String CLUB_NAME = "Farah123";
+    private static final String MIN_PLAYER_LEVEL = "0";
+    private static final String MAX_PLAYER_LEVEL = "5";
+    private static final String NOTES = "test_note";
+
     public void initPages() {
         locationPage = new LocationPage(page);
         loginPage = new LoginPage(page);
@@ -23,27 +28,22 @@ public class BookingTest extends BaseTest {
 
     @Test(description = "Public match booking create should successful")
     public void verify_public_match_booking_create_should_succeed() {
-        String clubName = "Farah123";
-        String notes = "test_note";
-        String minLevel = "0";
-        String maxLevel = "1";
-
         initPages();
         locationPage.setLocationPermissionAllowed();
         loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
-                .selectClubName(clubName)
+                .selectClubName(CLUB_NAME)
                 .clickCreateButton()
                 .clickPublicMatch()
                 .clickCheckScheduleButton()
                 .selectSchedule(2)
                 .clickSaveButton()
                 .selectCourtName()
-                .fillPlayerMinLevel(minLevel)
-                .fillPlayerMaxLevel(maxLevel)
+                .fillMinPlayerLevel(MIN_PLAYER_LEVEL)
+                .fillMaxPlayerLevel(MAX_PLAYER_LEVEL)
                 .selectGenderMixed()
-                .fillNotes(notes)
+                .fillNotes(NOTES)
                 .selectOwnerName(2)
                 .selectOwnerPaymentMethod(3)
                 .selectPlayerOneName(4)
@@ -59,33 +59,12 @@ public class BookingTest extends BaseTest {
 
     @Test(description = "Cancel public match booking with refund should successful")
     public void verify_cancel_public_match_booking_with_refund_should_succeed() {
-        String clubName = "Farah123";
-        String notes = "test_note";
-        String minLevel = "0";
-        String maxLevel = "1";
-
         initPages();
         locationPage.setLocationPermissionAllowed();
         loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
-                .selectClubName(clubName)
-                .clickCreateButton()
-                .clickPublicMatch()
-                .clickCheckScheduleButton()
-                .selectSchedule(2)
-                .clickSaveButton()
-                .selectCourtName()
-                .fillPlayerMinLevel(minLevel)
-                .fillPlayerMaxLevel(maxLevel)
-                .selectGenderMixed()
-                .fillNotes(notes)
-                .selectOwnerName(2)
-                .selectOwnerPaymentMethod(3)
-                .selectPlayerOneName(4)
-                .selectPlayerOnePaymentMethod(5)
-                .clickSavePublicMatchButton()
-                .clickCloseIcon()
+                .selectClubName(CLUB_NAME)
                 .clickMenuIcon()
                 .clickCancelBooking()
                 .clickCancelWithRefundButton();
@@ -99,33 +78,50 @@ public class BookingTest extends BaseTest {
 
     @Test(description = "Cancel public match booking without refund should successful")
     public void verify_cancel_public_match_booking_without_refund_should_succeed() {
-        String clubName = "Farah123";
-        String notes = "test_note";
-        String minLevel = "0";
-        String maxLevel = "1";
-
         initPages();
         locationPage.setLocationPermissionAllowed();
         loginPage.userLogin();
         bookingPage
                 .clickBookingFromNavigationBar()
-                .selectClubName(clubName)
-                .clickCreateButton()
-                .clickPublicMatch()
-                .clickCheckScheduleButton()
-                .selectSchedule(2)
-                .clickSaveButton()
-                .selectCourtName()
-                .fillPlayerMinLevel(minLevel)
-                .fillPlayerMaxLevel(maxLevel)
-                .selectGenderMixed()
-                .fillNotes(notes)
-                .selectOwnerName(2)
-                .selectOwnerPaymentMethod(3)
-                .selectPlayerOneName(4)
-                .selectPlayerOnePaymentMethodAsInApp()
-                .clickSavePublicMatchButton()
-                .clickCloseIcon()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickCancelBooking()
+                .clickCancelWithoutRefundButton();
+
+        bookingPage
+                .bookingCancelSuccessMessageLocator()
+                .waitFor(new Locator.WaitForOptions()
+                        .setState(WaitForSelectorState.VISIBLE));
+        assertThat(bookingPage.bookingCancelSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Cancel private match booking with refund should successful")
+    public void verify_cancel_private_match_booking_with_refund_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        bookingPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickCancelBooking()
+                .clickCancelWithRefundButton();
+
+        bookingPage
+                .bookingCancelSuccessMessageLocator()
+                .waitFor(new Locator.WaitForOptions()
+                        .setState(WaitForSelectorState.VISIBLE));
+        assertThat(bookingPage.bookingCancelSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Cancel private match booking without refund should successful")
+    public void verify_cancel_private_match_booking_without_refund_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        bookingPage
+                .clickBookingFromNavigationBar()
+                .selectClubName(CLUB_NAME)
                 .clickMenuIcon()
                 .clickCancelBooking()
                 .clickCancelWithoutRefundButton();
@@ -156,8 +152,8 @@ public class BookingTest extends BaseTest {
                 .selectSchedule(2)
                 .clickSaveButton()
                 .selectCourtName()
-                .fillPlayerMinLevel(minLevel)
-                .fillPlayerMaxLevel(maxLevel)
+                .fillMinPlayerLevel(minLevel)
+                .fillMaxPlayerLevel(maxLevel)
                 .selectGenderMixed()
                 .fillNotes(notes)
                 .selectOwnerName(2)

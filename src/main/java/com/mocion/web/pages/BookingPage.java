@@ -17,8 +17,8 @@ public class BookingPage {
     public String notesField = "textarea[name='notes']";
     public String paymentMethodDropdown = ".react-select__control";
     public String playerNameDropdown = ".react-select__control";
-    public String playerMinLevel = "input[name='min_level']";
-    public String playerMaxLevel = "input[name='max_level']";
+    public String minPlayerLevelField = "input[name='min_level']";
+    public String maxPlayerLevelField = "input[name='max_level']";
     public String genderMale = ".undefined.accent-primary";
     public String bookingCreateSuccessMessage = "text='Successful.'";
     public String ownerPaymentMethod = "text='Cash'";
@@ -28,7 +28,7 @@ public class BookingPage {
     public String bookingCreateCloseIcon = "button img[alt='Close']";
     public String menuIcon = "div.mx-auto.cursor-pointer";
     public String cancelBookingText = "text='Cancel Booking'";
-    public String bookingCancelSuccessMessage = "text='Booking canceled successfully'";
+    public String bookingCancelSuccessMessage = "text='Bookings canceled successfully'";
     public String cancelWithRefundButton = "text='Cancel with refund'";
     public String cancelWithoutRefundButton = "text='Cancel without refund'";
     public String paymentStatus = ".grid.px-4.py-2.rounded-3xl.text-primary";
@@ -90,13 +90,13 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage fillPlayerMinLevel(String minLevel) {
-        page.locator(playerMinLevel).fill(minLevel);
+    public BookingPage fillMinPlayerLevel(String minLevel) {
+        page.locator(minPlayerLevelField).fill(minLevel);
         return this;
     }
 
-    public BookingPage fillPlayerMaxLevel(String maxLevel) {
-        page.locator(playerMaxLevel).fill(maxLevel);
+    public BookingPage fillMaxPlayerLevel(String maxLevel) {
+        page.locator(maxPlayerLevelField).fill(maxLevel);
         return this;
     }
 
@@ -138,12 +138,6 @@ public class BookingPage {
     public BookingPage selectPlayerOnePaymentMethod(int playerOnePaymentMethodIndex) {
         page.locator(paymentMethodDropdown).nth(playerOnePaymentMethodIndex).click();
         page.locator(playerOnePaymentMethod).click();
-        return this;
-    }
-
-    public BookingPage selectPlayerOnePaymentMethodAsInApp() {
-        page.locator(paymentMethodDropdown).nth(5).click();
-        page.locator(playerThreePaymentMethod).click();
         return this;
     }
 
@@ -225,9 +219,8 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage clickCloseIcon() {
+    public void clickCloseIcon() {
         page.locator(bookingCreateCloseIcon).click();
-        return this;
     }
 
     public void clickCancelWithRefundButton() {

@@ -523,6 +523,227 @@ public class PublicEventTest extends BaseTest {
         assertThat(publicEventPage.eventCreateSuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Add players to public event with join type single and payment cash should successful")
+    public void verify_add_players_to_public_event_with_join_type_single_and_payment_cash_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeSingle()
+                .selectPaymentMethodCash()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type single and payment credit debit card should successful")
+    public void verify_add_players_to_public_event_with_join_type_single_and_payment_credit_debit_card_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeSingle()
+                .selectPaymentMethodCreditDebitCard()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type single and payment in app should successful")
+    public void verify_add_players_to_public_event_with_join_type_single_and_payment_in_app_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeSingle()
+                .selectPaymentMethodInApp()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type single and payment payment link should successful")
+    public void verify_add_players_to_public_event_with_join_type_single_and_payment_payment_link_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeSingle()
+                .selectPaymentMethodPaymentLink()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type single and payment bank transfer should successful")
+    public void verify_add_players_to_public_event_with_join_type_single_and_payment_bank_transfer_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeSingle()
+                .selectPaymentMethodBankTransfer()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type double and payment cash should successful")
+    public void verify_add_players_to_public_event_with_join_type_double_and_payment_cash_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeDouble()
+                .selectTeammateNameToAdd()
+                .selectPaymentMethodCash()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type double and payment credit debit card should successful")
+    public void verify_add_players_to_public_event_with_join_type_double_and_payment_credit_debit_card_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeDouble()
+                .selectTeammateNameToAdd()
+                .selectPaymentMethodCreditDebitCard()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type double and payment in app should successful")
+    public void verify_add_players_to_public_event_with_join_type_double_and_payment_in_app_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeDouble()
+                .selectTeammateNameToAdd()
+                .selectPaymentMethodInApp()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type double and payment payment link should successful")
+    public void verify_add_players_to_public_event_with_join_type_double_and_payment_payment_link_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeDouble()
+                .selectTeammateNameToAdd()
+                .selectPaymentMethodPaymentLink()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Add players to public event with join type double and payment bank transfer should successful")
+    public void verify_add_players_to_public_event_with_join_type_double_and_payment_bank_transfer_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickAddPlayers()
+                .clickAddPlayersButton()
+                .selectPlayerNameToAdd()
+                .selectJoinTypeDouble()
+                .selectTeammateNameToAdd()
+                .selectPaymentMethodBankTransfer()
+                .clickAddPlayerSaveButton();
+
+        assertThat(publicEventPage.addPlayersToEventSuccessMessageLocator()).isVisible();
+    }
+
+    @Test(description = "Down size public event should successful")
+    public void verify_down_size_public_event_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        publicEventPage
+                .clickEventsFromNavigationBar()
+                .clickPublicEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickDownSizeEvent()
+                .clickYestToDownSizeEvent();
+
+        assertThat(publicEventPage.eventDownSizeSuccessMessageLocator()).isVisible();
+    }
+
     private List<String> generateEventData() {
         random = new Random();
         String id = String.format("%03d", random.nextInt(999) + 1);

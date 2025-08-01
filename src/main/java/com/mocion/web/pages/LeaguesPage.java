@@ -73,8 +73,8 @@ public class LeaguesPage {
     public String mocionIcon = "img.cursor-pointer[src*='logoIcon']";
     public String playerNameDropdownTOShare = "div.__dropdown-indicator";
     public String okButtonToShare = "button.border-primary";
-    public String downSizeCourtText = "label:has(img):has-text('Down size league')";
-    public String yesToDownSizeCourtText = "button.bg-primary.text-white.rounded-full";
+    public String downSizeLeagueText = "label:has(img):has-text('Down size league')";
+    public String yesToDownSizeLeagueText = "button.bg-primary.text-white.rounded-full";
     public String leagueDownSizeSuccessMessage = "text='League was edited successfully'";
     public String generateGroupsButton = "button:has-text(\"Generate groups\")";
     public String saveAndNextButton = "button:has-text(\"save And Next\")";
@@ -502,7 +502,7 @@ public class LeaguesPage {
     }
 
     public LeaguesPage clickDownSizeLeague() {
-        page.locator(downSizeCourtText).click();
+        page.locator(downSizeLeagueText).click();
         return this;
     }
 
@@ -611,7 +611,7 @@ public class LeaguesPage {
     }
 
     public void clickYestToDownSizeLeague() {
-        page.locator(yesToDownSizeCourtText).click();
+        page.locator(yesToDownSizeLeagueText).click();
     }
 
     private void incrementStartDate() {

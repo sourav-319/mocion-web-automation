@@ -44,6 +44,23 @@ public class PublicEventPage {
     public String eventCreateSuccessMessage = "text='Successful.'";
     public String minNumberOfPlayers = "input[name='min_number_of_players']";
     public String maxNumberOfPlayers = "input[name='max_number_of_players']";
+    public String menuIcon = "button[class*='flex']:has(svg)";
+    public String addPlayerText = "text='Add Players'";
+    public String addPlayerButton = "text='Add player'";
+    public String addPlayerDropdown = "div[class*='dropdown-indicator']";
+    public String joinTypeSingle = "input[type='radio'][value='Single']";
+    public String paymentMethodDropdown = "div.react-select.w-full__dropdown-indicator";
+    public String paymentMethodCash = "text='Cash'";
+    public String addPlayerSaveButton = "button[type='submit']";
+    public String addPlayersToEventSuccessMessageLocator = "text='Players were added successfully as League Players'";
+    public String paymentMethodCreditDebitCard = "text='Credit/Debit card'";
+    public String paymentMethodInApp = "text='In app'";
+    public String paymentMethodPaymentLink = "text='Payment Link'";
+    public String paymentMethodBankTransfer = "text='Bank transfer'";
+    public String joinTypeDouble = "input[type='radio'][value='Double']";
+    public String downSizeEventText = "label:has(img):has-text('Down size event')";
+    public String yesToDownSizeEventText = "button.bg-primary.text-white.rounded-full";
+    public String eventDownSizeSuccessMessage = "text='was edited successfully'";
 
     public PublicEventPage(Page page) {
         this.page = page;
@@ -61,6 +78,82 @@ public class PublicEventPage {
 
     public PublicEventPage selectClubName(String clubName) {
         page.selectOption(clubNameDropdown, clubName);
+        return this;
+    }
+
+    public PublicEventPage clickMenuIcon() {
+        page.locator(menuIcon).nth(4).click();
+        return this;
+    }
+
+    public PublicEventPage clickDownSizeEvent() {
+        page.locator(downSizeEventText).click();
+        return this;
+    }
+
+    public void clickYestToDownSizeEvent() {
+        page.locator(yesToDownSizeEventText).click();
+    }
+
+    public PublicEventPage clickAddPlayers() {
+        page.locator(addPlayerText).click();
+        return this;
+    }
+
+    public PublicEventPage clickAddPlayersButton() {
+        page.locator(addPlayerButton).click();
+        return this;
+    }
+
+    public PublicEventPage selectPlayerNameToAdd() {
+        page.locator(addPlayerDropdown).nth(0).click();
+        page.keyboard().press("Enter");
+        return this;
+    }
+
+    public PublicEventPage selectJoinTypeDouble() {
+        page.locator(joinTypeDouble).click();
+        return this;
+    }
+
+    public PublicEventPage selectTeammateNameToAdd() {
+        page.locator(addPlayerDropdown).nth(1).click();
+        page.keyboard().press("Enter");
+        return this;
+    }
+
+    public PublicEventPage selectJoinTypeSingle() {
+        page.locator(joinTypeSingle).click();
+        return this;
+    }
+
+    public PublicEventPage selectPaymentMethodBankTransfer() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodBankTransfer).click();
+        return this;
+    }
+
+    public PublicEventPage selectPaymentMethodPaymentLink() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodPaymentLink).click();
+        return this;
+    }
+
+    public PublicEventPage selectPaymentMethodInApp() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodInApp).click();
+        return this;
+    }
+
+    public PublicEventPage selectPaymentMethodCreditDebitCard() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodCreditDebitCard).click();
+        return this;
+    }
+
+    public PublicEventPage selectPaymentMethodCash() {
+        page.locator(paymentMethodDropdown).click();
+        page.locator(paymentMethodCash).click();
         return this;
     }
 
@@ -234,11 +327,23 @@ public class PublicEventPage {
         return this;
     }
 
+    public void clickAddPlayerSaveButton() {
+        page.locator(addPlayerSaveButton).click();
+    }
+
     public void clickSaveEventButton() {
         page.locator(saveEventButton).click();
     }
 
     public Locator eventCreateSuccessMessageLocator() {
         return page.locator(eventCreateSuccessMessage);
+    }
+
+    public Locator addPlayersToEventSuccessMessageLocator() {
+        return page.locator(addPlayersToEventSuccessMessageLocator);
+    }
+
+    public Locator eventDownSizeSuccessMessageLocator() {
+        return page.locator(eventDownSizeSuccessMessage);
     }
 }

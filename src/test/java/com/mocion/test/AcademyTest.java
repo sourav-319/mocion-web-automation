@@ -62,7 +62,7 @@ public class AcademyTest extends BaseTest {
     }
 
     @Test(description = "Add players to academy with payment in app should successful")
-    public void verify_add_player_to_academy_with_payment_in_app_should_succeed() throws InterruptedException {
+    public void verify_add_player_to_academy_with_payment_in_app_should_succeed() {
         initPages();
         locationPage.setLocationPermissionAllowed();
         loginPage.userLogin();

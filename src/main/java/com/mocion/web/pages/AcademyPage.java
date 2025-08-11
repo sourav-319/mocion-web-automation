@@ -175,13 +175,13 @@ public class AcademyPage {
     }
 
     public AcademyPage selectPlayerNameToAdd() {
-        page.locator(addPlayersDropdown).nth(1).click();
+        page.locator(addPlayersDropdown).nth(0).click();
         page.keyboard().press("Enter");
         return this;
     }
 
     public AcademyPage selectPaymentMethodInApp() {
-        page.locator(PaymentMethodDropdown).nth(1).click();
+        page.locator(PaymentMethodDropdown).nth(0).click();
         page.locator(paymentMethodInApp).click();
         return this;
     }

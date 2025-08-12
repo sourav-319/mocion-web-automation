@@ -1,0 +1,43 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="FullSuite" verbose="1" preserve-order="true">
+    <test name="Ordered Test Run" preserve-order="true">
+        <classes>
+
+            <class name="com.mocion.test.ClubTest">
+                <methods>
+                    <include name="verify_club_create_should_succeed"/>
+                    <include name="verify_club_edit_should_succeed"/>
+                    <include name="verify_club_duplicate_should_succeed"/>
+                    <include name="verify_club_deactivate_should_succeed"/>
+                    <include name="verify_club_activate_should_succeed"/>
+                    <include name="verify_club_search_should_succeed"/>
+                </methods>
+            </class>
+
+            <class name="com.mocion.test.CourtsTest">
+                <methods>
+                    <include name="verify_courts_create_should_succeed"/>
+                    <include name="verify_courts_edit_should_succeed"/>
+                    <include name="verify_courts_duplicate_should_succeed"/>
+                    <include name="verify_courts_deactivate_should_succeed"/>
+                    <include name="verify_courts_activate_should_succeed"/>
+                    <include name="verify_courts_search_should_succeed"/>
+                    <include name="verify_courts_filter_should_succeed"/>
+                </methods>
+            </class>
+
+            <class name="com.mocion.test.PricingTest">
+                <methods>
+                    <include name="Price_create_should_succeed"/>
+                    <include name="verify_configure_price_should_succeed"/>
+                    <include name="verify_price_duplicate_should_succeed"/>
+                    <include name="verify_price_deactivate_should_succeed"/>
+                    <include name="verify_price_activate_should_succeed"/>
+                    <include name="verify_price_delete_should_succeed"/>
+                    <include name="verify_price_filter_should_succeed"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>

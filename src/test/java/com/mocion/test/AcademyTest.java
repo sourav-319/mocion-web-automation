@@ -79,6 +79,22 @@ public class AcademyTest extends BaseTest {
         assertThat(academyPage.addPlayerToAcademySuccessMessageLocator()).isVisible();
     }
 
+    @Test(description = "Cancel booking to academy should successful")
+    public void verify_cancel_booking_to_academy_should_succeed() {
+        initPages();
+        locationPage.setLocationPermissionAllowed();
+        loginPage.userLogin();
+        academyPage
+                .clickCoachingFromNavigationBar()
+                .clickAcademyEventFromNavigationBar()
+                .selectClubName(CLUB_NAME)
+                .clickMenuIcon()
+                .clickCancelBooking()
+                .clickYesToCancelBooking();
+
+        assertThat(academyPage.cancelBookingSuccessMessageLocator()).isVisible();
+    }
+
     private List<String> generateAcademyData() {
         random = new Random();
         String id = String.format("%03d", random.nextInt(999) + 1);

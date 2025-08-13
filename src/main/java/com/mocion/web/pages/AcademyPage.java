@@ -38,6 +38,9 @@ public class AcademyPage {
     public String paymentMethodInApp = "text='In app'";
     public String saveButton = "button:has-text('Save')";
     public String addPlayersToAcademySuccessMessage = "text='players were added successfully'";
+    public String cancelBookingText = "button:has-text('Cancel Booking')";
+    public String yesButtonToCancelBooking = "button:has-text('Yes')";
+    public String cancelBookingSuccessMessage = "text='academy was cancelled'";
 
     public AcademyPage(Page page) {
         this.page = page;
@@ -186,12 +189,25 @@ public class AcademyPage {
         return this;
     }
 
+    public AcademyPage clickCancelBooking() {
+        page.locator(cancelBookingText).click();
+        return this;
+    }
+
+    public void clickYesToCancelBooking() {
+        page.locator(yesButtonToCancelBooking).click();
+    }
+
     public void clickSaveButton() {
         page.locator(saveButton).click();
     }
 
     public void clickSaveAndPublishButton() {
         page.locator(saveAndPublishButton).click();
+    }
+
+    public Locator cancelBookingSuccessMessageLocator() {
+        return page.locator(cancelBookingSuccessMessage);
     }
 
     public Locator academyCreateSuccessMessageLocator() {

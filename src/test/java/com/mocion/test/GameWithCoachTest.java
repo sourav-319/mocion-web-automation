@@ -19,6 +19,7 @@ public class GameWithCoachTest extends BaseTest {
     public void initPages() {
         loginPage = new LoginPage(page);
         locationPage = new LocationPage(page);
+        gameWithCoachPage = new GameWithCoachPage(page);
     }
 
     @Test(description = "Cancel booking with refund should successful")

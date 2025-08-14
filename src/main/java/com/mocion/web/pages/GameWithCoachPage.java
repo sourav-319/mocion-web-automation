@@ -9,7 +9,7 @@ public class GameWithCoachPage {
     public String coachingText = "text='Coaching'";
     public String clubNameDropdown = "select[title='Club name here']";
     public String menuIcon = "button:has(svg.w-full.h-auto)";
-    public String gameWithCoachText = "text='Game with the coach'";
+    public String gameWithCoachText = "text='game with the coach'";
     public String cancelBookingText = "text='Cancel Booking'";
     public String cancelWithRefundButton = "text='Cancel with refund'";
     public String bookingCancelSuccessMessage = "text='Bookings canceled successfully'";

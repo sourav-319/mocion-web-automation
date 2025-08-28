@@ -1,0 +1,1 @@
+{"uuid":"62c7eb49-6ee0-4a6d-8f79-3268277bf862","name":"com.mocion.web.BaseTest.setUp","children":["141b3544-015c-47f2-919f-ad6ff97995b0"],"description":"","befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1748714753588,"stop":1748714753902}],"afters":[],"start":1748714753588,"stop":1748714753902}

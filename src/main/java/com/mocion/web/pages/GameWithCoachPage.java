@@ -147,11 +147,6 @@ public class GameWithCoachPage {
         return this;
     }
 
-    public GameWithCoachPage clickSaveGameWithCoachButton() {
-        page.locator(saveButton).click();
-        return this;
-    }
-
     public GameWithCoachPage selectPlayerOneName() {
         page.locator(coachingCreateDropdowns).nth(1).click();
         page.keyboard().press("Enter");
@@ -210,6 +205,10 @@ public class GameWithCoachPage {
 
     public void clickSendIcon() {
         page.locator(sendMessageIcon).click();
+    }
+
+    public void clickSaveGameWithCoachButton() {
+        page.locator(saveButton).click();
     }
 
     public void clickBookNowButton() {

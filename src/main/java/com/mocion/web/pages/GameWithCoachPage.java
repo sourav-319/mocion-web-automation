@@ -137,8 +137,8 @@ public class GameWithCoachPage {
     }
 
     public GameWithCoachPage selectSchedule() {
-        page.locator(scheduleField).nth(8).click();
-        page.locator(scheduleField).nth(8).click();
+        page.locator(scheduleField).nth(12).click();
+        page.locator(scheduleField).nth(12).click();
         return this;
     }
 

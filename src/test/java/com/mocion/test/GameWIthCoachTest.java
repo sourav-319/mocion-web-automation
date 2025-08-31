@@ -238,9 +238,6 @@ public class GameWIthCoachTest extends BaseTest {
                 .selectClubName(CLUB_NAME)
                 .clickMenuIcon()
                 .clickDuplicate()
-                .clickCheckScheduleButton()
-                .selectSchedule()
-                .clickSaveButton()
                 .clickSaveGameWithCoachButton();
 
         assertThat(gameWithCoachPage.gameWithCoachCreateSuccessMessageLocator()).isVisible();
